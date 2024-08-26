@@ -28,6 +28,20 @@ class MainCoordinator: Coordinator {
         loginViewController.coordinator = self
         navigationController.pushViewController(loginViewController, animated: true)
     }
+    
+//    func showHomeScreen() {
+//        let homeViewController = TabBarViewController()
+//        let presenter = TabBarViewPresenter(view: homeViewController)
+//        homeViewController.presenter = presenter
+//        navigationController.pushViewController(homeViewController, animated: true)
+//    }
+    func showHomeScreen() {
+        print("Navigating to TabBarViewController")
+        let homeViewController = TabBarViewController()
+        let presenter = TabBarViewPresenter(view: homeViewController)
+        homeViewController.presenter = presenter
+        navigationController.pushViewController(homeViewController, animated: true)
+    }
  
     func showNextScreen() {
         

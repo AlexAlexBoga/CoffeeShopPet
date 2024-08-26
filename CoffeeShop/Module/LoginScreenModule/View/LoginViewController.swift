@@ -159,7 +159,9 @@ class LoginViewController: UIViewController {
     }
     func loginButtonPressed() {
         print("loginButtonPressed")
+        coordinator?.showHomeScreen()
     }
+  
     
     private func setupCreateButton() {
         view.addSubview(createButton)

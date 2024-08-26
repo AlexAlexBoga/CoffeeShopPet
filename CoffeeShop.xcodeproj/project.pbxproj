@@ -18,6 +18,13 @@
 		A99749122C7CC08C00C6191F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749112C7CC08C00C6191F /* AppCoordinator.swift */; };
 		A99749142C7CC10F00C6191F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749132C7CC10F00C6191F /* MainCoordinator.swift */; };
 		A99749162C7CCA4300C6191F /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749152C7CCA4200C6191F /* LoginPresenter.swift */; };
+		A99749192C7CEAD500C6191F /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749182C7CEAD500C6191F /* TabBarViewController.swift */; };
+		A997491D2C7CEC9800C6191F /* TabBarViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997491C2C7CEC9800C6191F /* TabBarViewPresenter.swift */; };
+		A99749212C7CF60600C6191F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749202C7CF60600C6191F /* TabBarController.swift */; };
+		A99749252C7CF8C000C6191F /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749242C7CF8C000C6191F /* CartViewController.swift */; };
+		A99749292C7D134900C6191F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749282C7D134900C6191F /* HomeViewController.swift */; };
+		A997492D2C7D16C800C6191F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997492C2C7D16C800C6191F /* FavoriteViewController.swift */; };
+		A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749302C7D18DB00C6191F /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +41,13 @@
 		A99749112C7CC08C00C6191F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		A99749132C7CC10F00C6191F /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		A99749152C7CCA4200C6191F /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		A99749182C7CEAD500C6191F /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		A997491C2C7CEC9800C6191F /* TabBarViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewPresenter.swift; sourceTree = "<group>"; };
+		A99749202C7CF60600C6191F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		A99749242C7CF8C000C6191F /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
+		A99749282C7D134900C6191F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		A997492C2C7D16C800C6191F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		A99749302C7D18DB00C6191F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,9 +64,6 @@
 		A95875502C78C6DA0092D79E = {
 			isa = PBXGroup;
 			children = (
-				A99749102C7CC05D00C6191F /* Coordinator */,
-				A95875702C78F2D90092D79E /* Common */,
-				A99749042C7C686100C6191F /* CustomElements */,
 				A958755B2C78C6DA0092D79E /* CoffeeShop */,
 				A958755A2C78C6DA0092D79E /* Products */,
 			);
@@ -69,7 +80,10 @@
 		A958755B2C78C6DA0092D79E /* CoffeeShop */ = {
 			isa = PBXGroup;
 			children = (
+				A997491E2C7CF58900C6191F /* Navigation */,
+				A95875702C78F2D90092D79E /* Common */,
 				A95875712C78F3460092D79E /* Module */,
+				A99749042C7C686100C6191F /* CustomElements */,
 				A95875652C78C6DB0092D79E /* Assets.xcassets */,
 				A95875672C78C6DB0092D79E /* LaunchScreen.storyboard */,
 				A958756A2C78C6DB0092D79E /* Info.plist */,
@@ -89,8 +103,13 @@
 		A95875712C78F3460092D79E /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				A99749172C7CEA9700C6191F /* TabBarScreenModule */,
 				A95875722C78F3750092D79E /* FirstScreenModule */,
 				A99749082C7C810A00C6191F /* LoginScreenModule */,
+				A99749262C7D12EF00C6191F /* HomeScreenModule */,
+				A99749222C7CF86700C6191F /* CartScreenModule */,
+				A997492A2C7D166400C6191F /* FavoriteScreenModule */,
+				A997492E2C7D186C00C6191F /* ProfileScreenModule */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -169,13 +188,119 @@
 			path = BackGroundView;
 			sourceTree = "<group>";
 		};
-		A99749102C7CC05D00C6191F /* Coordinator */ = {
+		A99749102C7CC05D00C6191F /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
 				A99749112C7CC08C00C6191F /* AppCoordinator.swift */,
 				A99749132C7CC10F00C6191F /* MainCoordinator.swift */,
 			);
-			path = Coordinator;
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		A99749172C7CEA9700C6191F /* TabBarScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				A997491B2C7CEB0500C6191F /* Presenter */,
+				A997491A2C7CEAF500C6191F /* View */,
+			);
+			path = TabBarScreenModule;
+			sourceTree = "<group>";
+		};
+		A997491A2C7CEAF500C6191F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A99749182C7CEAD500C6191F /* TabBarViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A997491B2C7CEB0500C6191F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A997491C2C7CEC9800C6191F /* TabBarViewPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A997491E2C7CF58900C6191F /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				A99749102C7CC05D00C6191F /* Coordinators */,
+				A997491F2C7CF5CE00C6191F /* Controllers */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		A997491F2C7CF5CE00C6191F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A99749202C7CF60600C6191F /* TabBarController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A99749222C7CF86700C6191F /* CartScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				A99749232C7CF8A800C6191F /* View */,
+			);
+			path = CartScreenModule;
+			sourceTree = "<group>";
+		};
+		A99749232C7CF8A800C6191F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A99749242C7CF8C000C6191F /* CartViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A99749262C7D12EF00C6191F /* HomeScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				A99749272C7D132F00C6191F /* View */,
+			);
+			path = HomeScreenModule;
+			sourceTree = "<group>";
+		};
+		A99749272C7D132F00C6191F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A99749282C7D134900C6191F /* HomeViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A997492A2C7D166400C6191F /* FavoriteScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				A997492B2C7D16AC00C6191F /* View */,
+			);
+			path = FavoriteScreenModule;
+			sourceTree = "<group>";
+		};
+		A997492B2C7D16AC00C6191F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A997492C2C7D16C800C6191F /* FavoriteViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A997492E2C7D186C00C6191F /* ProfileScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				A997492F2C7D18BA00C6191F /* View */,
+			);
+			path = ProfileScreenModule;
+			sourceTree = "<group>";
+		};
+		A997492F2C7D18BA00C6191F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A99749302C7D18DB00C6191F /* ProfileViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,9 +377,16 @@
 				A99749142C7CC10F00C6191F /* MainCoordinator.swift in Sources */,
 				A958755D2C78C6DA0092D79E /* AppDelegate.swift in Sources */,
 				A99749162C7CCA4300C6191F /* LoginPresenter.swift in Sources */,
+				A997492D2C7D16C800C6191F /* FavoriteViewController.swift in Sources */,
 				A958755F2C78C6DA0092D79E /* SceneDelegate.swift in Sources */,
+				A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */,
+				A99749292C7D134900C6191F /* HomeViewController.swift in Sources */,
+				A99749192C7CEAD500C6191F /* TabBarViewController.swift in Sources */,
+				A99749252C7CF8C000C6191F /* CartViewController.swift in Sources */,
+				A997491D2C7CEC9800C6191F /* TabBarViewPresenter.swift in Sources */,
 				A95875762C78F4620092D79E /* FirstViewController.swift in Sources */,
 				A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */,
+				A99749212C7CF60600C6191F /* TabBarController.swift in Sources */,
 				A99749072C7C68BE00C6191F /* CSButton.swift in Sources */,
 				A99749122C7CC08C00C6191F /* AppCoordinator.swift in Sources */,
 			);
