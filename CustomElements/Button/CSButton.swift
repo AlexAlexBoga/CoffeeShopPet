@@ -62,8 +62,11 @@ class CSButton: UIView {
     private func setCollorScheme(scheme: CSButtonCollorScheme) {
         switch scheme {
         case .white:
-            button.backgroundColor = .white
+            button.backgroundColor = .clear
             button.setTitleColor(.black, for: .normal)
+            button.layer.borderWidth = 2
+            button.layer.borderColor = UIColor.black.cgColor
+            button.layer.cornerRadius = 24
         case.black:
             button.backgroundColor = .black
             button.setTitleColor(.white, for: .normal)

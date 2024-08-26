@@ -13,6 +13,8 @@
 		A95875692C78C6DB0092D79E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A95875682C78C6DB0092D79E /* Base */; };
 		A95875762C78F4620092D79E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95875752C78F4620092D79E /* FirstViewController.swift */; };
 		A99749072C7C68BE00C6191F /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749062C7C68BE00C6191F /* CSButton.swift */; };
+		A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490B2C7C818700C6191F /* LoginViewController.swift */; };
+		A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490E2C7C829800C6191F /* CSBackGroundView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		A958756A2C78C6DB0092D79E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A95875752C78F4620092D79E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		A99749062C7C68BE00C6191F /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButton.swift; sourceTree = "<group>"; };
+		A997490B2C7C818700C6191F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		A997490E2C7C829800C6191F /* CSBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSBackGroundView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,8 +44,8 @@
 		A95875502C78C6DA0092D79E = {
 			isa = PBXGroup;
 			children = (
-				A99749042C7C686100C6191F /* CustomElements */,
 				A95875702C78F2D90092D79E /* Common */,
+				A99749042C7C686100C6191F /* CustomElements */,
 				A958755B2C78C6DA0092D79E /* CoffeeShop */,
 				A958755A2C78C6DA0092D79E /* Products */,
 			);
@@ -79,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				A95875722C78F3750092D79E /* FirstScreenModule */,
+				A99749082C7C810A00C6191F /* LoginScreenModule */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -110,6 +115,7 @@
 		A99749042C7C686100C6191F /* CustomElements */ = {
 			isa = PBXGroup;
 			children = (
+				A997490D2C7C826300C6191F /* BackGroundView */,
 				A99749052C7C688200C6191F /* Button */,
 			);
 			path = CustomElements;
@@ -121,6 +127,38 @@
 				A99749062C7C68BE00C6191F /* CSButton.swift */,
 			);
 			path = Button;
+			sourceTree = "<group>";
+		};
+		A99749082C7C810A00C6191F /* LoginScreenModule */ = {
+			isa = PBXGroup;
+			children = (
+				A99749092C7C812E00C6191F /* Presenter */,
+				A997490A2C7C813B00C6191F /* View */,
+			);
+			path = LoginScreenModule;
+			sourceTree = "<group>";
+		};
+		A99749092C7C812E00C6191F /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A997490A2C7C813B00C6191F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A997490B2C7C818700C6191F /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A997490D2C7C826300C6191F /* BackGroundView */ = {
+			isa = PBXGroup;
+			children = (
+				A997490E2C7C829800C6191F /* CSBackGroundView.swift */,
+			);
+			path = BackGroundView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,9 +231,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */,
 				A958755D2C78C6DA0092D79E /* AppDelegate.swift in Sources */,
 				A958755F2C78C6DA0092D79E /* SceneDelegate.swift in Sources */,
 				A95875762C78F4620092D79E /* FirstViewController.swift in Sources */,
+				A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */,
 				A99749072C7C68BE00C6191F /* CSButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

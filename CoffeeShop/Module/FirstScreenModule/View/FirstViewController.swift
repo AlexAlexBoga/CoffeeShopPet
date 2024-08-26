@@ -9,7 +9,7 @@ import UIKit
 
 class FirstViewController: UIViewController {
     
-    private let backGroundImage = UIImageView()
+    private let backGroundImage = CSBackGroundView()
     private let coffeeLabel = UILabel()
     private let ehjoyLabel = UILabel()
     private let shopButton = CSButton()
@@ -28,10 +28,7 @@ class FirstViewController: UIViewController {
 
     private func setupBackGroundImage() {
         view.addSubview(backGroundImage)
-        backGroundImage.image = UIImage(named: "backgroundImage")
         backGroundImage.translatesAutoresizingMaskIntoConstraints = false
-        backGroundImage.contentMode = .scaleAspectFit
-        backGroundImage.clipsToBounds = true
         
         NSLayoutConstraint.activate([
             backGroundImage.topAnchor.constraint(equalTo: view.topAnchor),
@@ -39,7 +36,6 @@ class FirstViewController: UIViewController {
             backGroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backGroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
-        view.sendSubviewToBack(backGroundImage)
     }
     
     private func stupCoffeeLabel() {
@@ -77,10 +73,8 @@ class FirstViewController: UIViewController {
         shopButton.setTitle("SHOP NOW")
         shopButton.action = { [weak self] in
             self?.buttonPressed()
-            
         }
-        
-        
+                
         NSLayoutConstraint.activate([
             shopButton.topAnchor.constraint(equalTo: ehjoyLabel.bottomAnchor, constant: 121),
             shopButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
