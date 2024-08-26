@@ -9,6 +9,8 @@ import UIKit
 
 class FirstViewController: UIViewController {
     
+    var coordinator: MainCoordinator?
+    
     private let backGroundImage = CSBackGroundView()
     private let coffeeLabel = UILabel()
     private let ehjoyLabel = UILabel()
@@ -84,6 +86,6 @@ class FirstViewController: UIViewController {
     }
 
     func buttonPressed() {
-        print("shopButtonPressed")
+        coordinator?.showLoginScreen()
     }
 }

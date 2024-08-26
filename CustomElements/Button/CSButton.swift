@@ -50,7 +50,6 @@ class CSButton: UIView {
             button.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             button.topAnchor.constraint(equalTo: self.topAnchor)
         ])
-
     }
     
     @objc

@@ -15,6 +15,9 @@
 		A99749072C7C68BE00C6191F /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749062C7C68BE00C6191F /* CSButton.swift */; };
 		A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490B2C7C818700C6191F /* LoginViewController.swift */; };
 		A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490E2C7C829800C6191F /* CSBackGroundView.swift */; };
+		A99749122C7CC08C00C6191F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749112C7CC08C00C6191F /* AppCoordinator.swift */; };
+		A99749142C7CC10F00C6191F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749132C7CC10F00C6191F /* MainCoordinator.swift */; };
+		A99749162C7CCA4300C6191F /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749152C7CCA4200C6191F /* LoginPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		A99749062C7C68BE00C6191F /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButton.swift; sourceTree = "<group>"; };
 		A997490B2C7C818700C6191F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A997490E2C7C829800C6191F /* CSBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSBackGroundView.swift; sourceTree = "<group>"; };
+		A99749112C7CC08C00C6191F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		A99749132C7CC10F00C6191F /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		A99749152C7CCA4200C6191F /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +50,7 @@
 		A95875502C78C6DA0092D79E = {
 			isa = PBXGroup;
 			children = (
+				A99749102C7CC05D00C6191F /* Coordinator */,
 				A95875702C78F2D90092D79E /* Common */,
 				A99749042C7C686100C6191F /* CustomElements */,
 				A958755B2C78C6DA0092D79E /* CoffeeShop */,
@@ -141,6 +148,7 @@
 		A99749092C7C812E00C6191F /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A99749152C7CCA4200C6191F /* LoginPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -159,6 +167,15 @@
 				A997490E2C7C829800C6191F /* CSBackGroundView.swift */,
 			);
 			path = BackGroundView;
+			sourceTree = "<group>";
+		};
+		A99749102C7CC05D00C6191F /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				A99749112C7CC08C00C6191F /* AppCoordinator.swift */,
+				A99749132C7CC10F00C6191F /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,11 +249,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */,
+				A99749142C7CC10F00C6191F /* MainCoordinator.swift in Sources */,
 				A958755D2C78C6DA0092D79E /* AppDelegate.swift in Sources */,
+				A99749162C7CCA4300C6191F /* LoginPresenter.swift in Sources */,
 				A958755F2C78C6DA0092D79E /* SceneDelegate.swift in Sources */,
 				A95875762C78F4620092D79E /* FirstViewController.swift in Sources */,
 				A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */,
 				A99749072C7C68BE00C6191F /* CSButton.swift in Sources */,
+				A99749122C7CC08C00C6191F /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

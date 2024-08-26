@@ -7,7 +7,15 @@
 
 import UIKit
 
+protocol LoginViewProtocol: AnyObject{
+
+    func goToNextScreen()
+}
+
 class LoginViewController: UIViewController {
+    
+    var presenter: LoginPresenterProtocol?
+    var coordinator: MainCoordinator?
     
     private let backGroundImage = CSBackGroundView()
     private let welcomeLabel = UILabel()
@@ -34,7 +42,6 @@ class LoginViewController: UIViewController {
         setupPasswordStackView()
         setupLoginButton()
         setupCreateButton()
-       
     }
     
     private func setupBackGroundImage() {
@@ -71,7 +78,6 @@ class LoginViewController: UIViewController {
         emailLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
         
         emailUnderLineView.backgroundColor = .gray
-        
         
         emailTextField.placeholder = "Email"
         emailTextField.font = UIFont.systemFont(ofSize: 15)
@@ -174,4 +180,13 @@ class LoginViewController: UIViewController {
     func createButtonPressed() {
         print("createButtonPressed")
     }
+}
+
+extension LoginViewController: LoginViewProtocol {
+   
+    func goToNextScreen() {
+        coordinator?.showNextScreen()
+    }
+    
+    
 }
