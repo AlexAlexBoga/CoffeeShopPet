@@ -14,6 +14,7 @@
 		A95875762C78F4620092D79E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95875752C78F4620092D79E /* FirstViewController.swift */; };
 		A962A6532C7DAF7600798FD5 /* CSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6522C7DAF7600798FD5 /* CSLabel.swift */; };
 		A962A6552C7DB85700798FD5 /* SmallHCViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6542C7DB85700798FD5 /* SmallHCViewCell.swift */; };
+		A962A6572C7DDCED00798FD5 /* BigVCViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6562C7DDCED00798FD5 /* BigVCViewCell.swift */; };
 		A99749072C7C68BE00C6191F /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749062C7C68BE00C6191F /* CSButton.swift */; };
 		A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490B2C7C818700C6191F /* LoginViewController.swift */; };
 		A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490E2C7C829800C6191F /* CSBackGroundView.swift */; };
@@ -39,6 +40,7 @@
 		A95875752C78F4620092D79E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		A962A6522C7DAF7600798FD5 /* CSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLabel.swift; sourceTree = "<group>"; };
 		A962A6542C7DB85700798FD5 /* SmallHCViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallHCViewCell.swift; sourceTree = "<group>"; };
+		A962A6562C7DDCED00798FD5 /* BigVCViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigVCViewCell.swift; sourceTree = "<group>"; };
 		A99749062C7C68BE00C6191F /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButton.swift; sourceTree = "<group>"; };
 		A997490B2C7C818700C6191F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A997490E2C7C829800C6191F /* CSBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSBackGroundView.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			children = (
 				A99749282C7D134900C6191F /* HomeViewController.swift */,
 				A962A6542C7DB85700798FD5 /* SmallHCViewCell.swift */,
+				A962A6562C7DDCED00798FD5 /* BigVCViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				A99749192C7CEAD500C6191F /* TabBarViewController.swift in Sources */,
 				A99749252C7CF8C000C6191F /* CartViewController.swift in Sources */,
 				A997491D2C7CEC9800C6191F /* TabBarViewPresenter.swift in Sources */,
+				A962A6572C7DDCED00798FD5 /* BigVCViewCell.swift in Sources */,
 				A95875762C78F4620092D79E /* FirstViewController.swift in Sources */,
 				A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */,
 				A99749212C7CF60600C6191F /* TabBarController.swift in Sources */,
