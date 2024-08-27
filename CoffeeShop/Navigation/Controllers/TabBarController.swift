@@ -29,10 +29,15 @@ class TabBarController: UITabBarController {
         tabBar.unselectedItemTintColor = .gray
         tabBar.itemPositioning = .centered
         tabBar.itemWidth = 40.0
-        tabBar.itemSpacing = 30.0
+        tabBar.itemSpacing = 60.0
         
-        UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -3)
+        
+        for item in tabBar.items ?? [] {
+                    item.imageInsets = UIEdgeInsets(top: -6, left: 0, bottom: 0, right: 0)
+                    item.title = nil // Убираем текст
+                }
+            UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -3)
+        }
     }
-}
 
 

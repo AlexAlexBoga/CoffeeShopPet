@@ -26,16 +26,16 @@ class TabBarViewController: UIViewController, TabBarViewProtocol {
     private func setupTabBar() {
         
         let firstViewController = HomeViewController()
-        firstViewController.tabBarItem = UITabBarItem(title: "First", image: UIImage(systemName: "house"), tag: 0)
+        firstViewController.tabBarItem = UITabBarItem(title: "Home", image: UIImage(resource: .home), tag: 0)
         
         let secondViewController = CartViewController()
-        secondViewController.tabBarItem = UITabBarItem(title: "Second", image: UIImage(systemName: "star"), tag: 1)
+        secondViewController.tabBarItem = UITabBarItem(title: "Cart", image: UIImage(resource: .cart), tag: 1)
         
         let therdViewController = FavoriteViewController()
-        therdViewController.tabBarItem = UITabBarItem(title: "Therd", image: UIImage(systemName: "star"), tag: 2)
+        therdViewController.tabBarItem = UITabBarItem(title: "Favorite", image: UIImage(resource: .heart), tag: 2)
         
         let fourthViewController = ProfileViewController()
-        fourthViewController.tabBarItem = UITabBarItem(title: "Therd", image: UIImage(systemName: "star"), tag: 3)
+        fourthViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(resource: .user), tag: 3)
         
         let tabBarController = TabBarController(tabBarControllers: [firstViewController, secondViewController,therdViewController,fourthViewController])
         

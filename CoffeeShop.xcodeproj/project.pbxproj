@@ -12,6 +12,8 @@
 		A95875662C78C6DB0092D79E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95875652C78C6DB0092D79E /* Assets.xcassets */; };
 		A95875692C78C6DB0092D79E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A95875682C78C6DB0092D79E /* Base */; };
 		A95875762C78F4620092D79E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95875752C78F4620092D79E /* FirstViewController.swift */; };
+		A962A6532C7DAF7600798FD5 /* CSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6522C7DAF7600798FD5 /* CSLabel.swift */; };
+		A962A6552C7DB85700798FD5 /* SmallHCViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6542C7DB85700798FD5 /* SmallHCViewCell.swift */; };
 		A99749072C7C68BE00C6191F /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749062C7C68BE00C6191F /* CSButton.swift */; };
 		A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490B2C7C818700C6191F /* LoginViewController.swift */; };
 		A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490E2C7C829800C6191F /* CSBackGroundView.swift */; };
@@ -35,6 +37,8 @@
 		A95875682C78C6DB0092D79E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A958756A2C78C6DB0092D79E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A95875752C78F4620092D79E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		A962A6522C7DAF7600798FD5 /* CSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLabel.swift; sourceTree = "<group>"; };
+		A962A6542C7DB85700798FD5 /* SmallHCViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallHCViewCell.swift; sourceTree = "<group>"; };
 		A99749062C7C68BE00C6191F /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButton.swift; sourceTree = "<group>"; };
 		A997490B2C7C818700C6191F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A997490E2C7C829800C6191F /* CSBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSBackGroundView.swift; sourceTree = "<group>"; };
@@ -141,18 +145,11 @@
 		A99749042C7C686100C6191F /* CustomElements */ = {
 			isa = PBXGroup;
 			children = (
-				A997490D2C7C826300C6191F /* BackGroundView */,
-				A99749052C7C688200C6191F /* Button */,
+				A997490E2C7C829800C6191F /* CSBackGroundView.swift */,
+				A99749062C7C68BE00C6191F /* CSButton.swift */,
+				A962A6522C7DAF7600798FD5 /* CSLabel.swift */,
 			);
 			path = CustomElements;
-			sourceTree = "<group>";
-		};
-		A99749052C7C688200C6191F /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				A99749062C7C68BE00C6191F /* CSButton.swift */,
-			);
-			path = Button;
 			sourceTree = "<group>";
 		};
 		A99749082C7C810A00C6191F /* LoginScreenModule */ = {
@@ -178,14 +175,6 @@
 				A997490B2C7C818700C6191F /* LoginViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		A997490D2C7C826300C6191F /* BackGroundView */ = {
-			isa = PBXGroup;
-			children = (
-				A997490E2C7C829800C6191F /* CSBackGroundView.swift */,
-			);
-			path = BackGroundView;
 			sourceTree = "<group>";
 		};
 		A99749102C7CC05D00C6191F /* Coordinators */ = {
@@ -267,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				A99749282C7D134900C6191F /* HomeViewController.swift */,
+				A962A6542C7DB85700798FD5 /* SmallHCViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -378,6 +368,7 @@
 				A958755D2C78C6DA0092D79E /* AppDelegate.swift in Sources */,
 				A99749162C7CCA4300C6191F /* LoginPresenter.swift in Sources */,
 				A997492D2C7D16C800C6191F /* FavoriteViewController.swift in Sources */,
+				A962A6552C7DB85700798FD5 /* SmallHCViewCell.swift in Sources */,
 				A958755F2C78C6DA0092D79E /* SceneDelegate.swift in Sources */,
 				A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */,
 				A99749292C7D134900C6191F /* HomeViewController.swift in Sources */,
@@ -387,6 +378,7 @@
 				A95875762C78F4620092D79E /* FirstViewController.swift in Sources */,
 				A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */,
 				A99749212C7CF60600C6191F /* TabBarController.swift in Sources */,
+				A962A6532C7DAF7600798FD5 /* CSLabel.swift in Sources */,
 				A99749072C7C68BE00C6191F /* CSButton.swift in Sources */,
 				A99749122C7CC08C00C6191F /* AppCoordinator.swift in Sources */,
 			);
