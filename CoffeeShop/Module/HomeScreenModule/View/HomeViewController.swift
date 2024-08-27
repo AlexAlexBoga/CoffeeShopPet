@@ -91,7 +91,6 @@ class HomeViewController: UIViewController {
             bigVCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -99,9 +98,9 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView.tag {
         case 1:
-            return 10
+            return coffeeArray.count
         case 2:
-            return 15
+            return imageArray.count
         default:
             return 0
         }
@@ -111,10 +110,20 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         
         switch collectionView.tag {
         case 1:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SmallHCViewCell", for: indexPath)
-            return cell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SmallHCViewCell", for: indexPath) as! SmallHCViewCell
+            guard indexPath.item < coffeeArray.count else {
+                return cell
+            }
+            let coffeeName = coffeeArray[indexPath.item].coffeeName
+            cell.bottomLabel.text = coffeeName
+                return cell
         case 2:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BigVCViewCell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BigVCViewCell", for: indexPath) as! BigVCViewCell
+            guard indexPath.item < imageArray.count else {
+                return cell
+            }
+            let imageName = imageArray[indexPath.item].imageName
+            cell.imageView.image = UIImage(named: imageName)
             return cell
         default:
             return UICollectionViewCell()

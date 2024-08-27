@@ -10,7 +10,7 @@ import UIKit
 
 class BigVCViewCell: UICollectionViewCell {
     
-    let topView = UIView()
+    let imageView = UIImageView()
     let titleLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -29,24 +29,23 @@ class BigVCViewCell: UICollectionViewCell {
     }
     
     func setupTopView() {
-        contentView.addSubview(topView)
-        topView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(imageView)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.layer.cornerRadius = 10
-         
-        topView.backgroundColor = .green
-        topView.layer.cornerRadius = 8
-        topView.layer.masksToBounds = true
+        
+        imageView.backgroundColor = .green
+        imageView.layer.cornerRadius = 8
+        imageView.layer.masksToBounds = true
         
         NSLayoutConstraint.activate([
-            topView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 256),
-            topView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            topView.widthAnchor.constraint(equalToConstant: 70),
-            topView.heightAnchor.constraint(equalToConstant: 93),
+            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 256),
+            imageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            imageView.widthAnchor.constraint(equalToConstant: 70),
+            imageView.heightAnchor.constraint(equalToConstant: 93),
         ])
-        
-    }
     
+    }
     func setupBottomLabel() {
         contentView.addSubview(titleLabel)
         
