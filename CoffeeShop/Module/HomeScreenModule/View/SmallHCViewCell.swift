@@ -33,7 +33,7 @@ class SmallHCViewCell: UICollectionViewCell {
         bottomLabel.text = "test label"
         bottomLabel.textColor = .white
         bottomLabel.textAlignment = .center
-        bottomLabel.backgroundColor = .blue
+        bottomLabel.backgroundColor = .backgroundCollection
         bottomLabel.layer.cornerRadius = 10
         bottomLabel.layer.masksToBounds = true
     

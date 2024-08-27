@@ -144,6 +144,20 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
+		A962A6582C7E00D600798FD5 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A962A6592C7E00EA00798FD5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A99749042C7C686100C6191F /* CustomElements */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +263,8 @@
 		A99749262C7D12EF00C6191F /* HomeScreenModule */ = {
 			isa = PBXGroup;
 			children = (
+				A962A6592C7E00EA00798FD5 /* Model */,
+				A962A6582C7E00D600798FD5 /* Presenter */,
 				A99749272C7D132F00C6191F /* View */,
 			);
 			path = HomeScreenModule;

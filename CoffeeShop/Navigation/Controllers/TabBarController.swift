@@ -24,8 +24,8 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tabBar.backgroundColor = .blue
-        tabBar.tintColor = .white
+        tabBar.backgroundColor = .backgroud
+        tabBar.tintColor = .black
         tabBar.unselectedItemTintColor = .gray
         tabBar.itemPositioning = .centered
         tabBar.itemWidth = 40.0

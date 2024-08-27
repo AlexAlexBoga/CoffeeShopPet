@@ -23,7 +23,7 @@ class BigVCViewCell: UICollectionViewCell {
     }
     
     func setupCell() {
-        contentView.backgroundColor = .blue
+        contentView.backgroundColor = .itemBackground
         setupTopView()
         setupBottomLabel()
     }

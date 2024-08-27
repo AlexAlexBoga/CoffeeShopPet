@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 20
-        layout.minimumLineSpacing = 20
+        layout.minimumLineSpacing = 27
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.tag = 2
         
@@ -38,7 +38,7 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gray
+        view.backgroundColor = .backgroud
         setupLabel()
         setupSmallHCollection()
         setupBigVCollection() 
@@ -62,13 +62,13 @@ class HomeViewController: UIViewController {
         view.addSubview(smallHCollection)
         smallHCollection.translatesAutoresizingMaskIntoConstraints = false
         
-        smallHCollection.backgroundColor = .red
+        smallHCollection.backgroundColor = .backgroud
         smallHCollection.delegate = self
         smallHCollection.dataSource = self
         smallHCollection.register(SmallHCViewCell.self, forCellWithReuseIdentifier: "SmallHCViewCell")
         
         NSLayoutConstraint.activate([
-           smallHCollection.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 40),
+           smallHCollection.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 28),
            smallHCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
            smallHCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
            smallHCollection.heightAnchor.constraint(equalToConstant: 24),
@@ -79,16 +79,15 @@ class HomeViewController: UIViewController {
         view.addSubview(bigVCollection)
         bigVCollection.translatesAutoresizingMaskIntoConstraints = false
         
-        bigVCollection.backgroundColor = .red
+        bigVCollection.backgroundColor = .backgroundCollection
         bigVCollection.delegate = self
         bigVCollection.dataSource = self
         bigVCollection.register(BigVCViewCell.self, forCellWithReuseIdentifier: "BigVCViewCell")
         
         NSLayoutConstraint.activate([
-            bigVCollection.topAnchor.constraint(equalTo: smallHCollection.bottomAnchor, constant: 50),
-            bigVCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            bigVCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-//            bigVCollection.heightAnchor.constraint(equalToConstant: 1000),
+            bigVCollection.topAnchor.constraint(equalTo: smallHCollection.bottomAnchor, constant: 34),
+            bigVCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            bigVCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bigVCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
@@ -126,20 +125,28 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
     extension HomeViewController: UICollectionViewDelegateFlowLayout {
+        
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+                switch collectionView.tag {
+                case 1:
+                    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                case 2:
+                    return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+                default:
+                    return UIEdgeInsets.zero
+                }
+            }
+        
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
             switch collectionView.tag {
             case 1:
                 return CGSize(width: 110, height: 24)
                      case 2:
-//                let width = collectionView.bounds.width
-//                let height = 130.0
-//                return CGSize(width: width, height: height)
                 return CGSize(width: 332, height: 105)
             default:
                 return CGSize(width: 0, height: 0)
             }
-//            return CGSize(width: 110, height: 24)
         }
     }
 
