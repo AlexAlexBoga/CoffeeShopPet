@@ -13,7 +13,6 @@ protocol TabBarViewProtocol: AnyObject {
 
 class TabBarViewController: UIViewController, TabBarViewProtocol {
     
-    
     var presenter: TabBarPresenterProtocol?
     
     override func viewDidLoad() {
@@ -55,6 +54,6 @@ class TabBarViewController: UIViewController, TabBarViewProtocol {
             tabBarController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
     }
-    
 }
+
 

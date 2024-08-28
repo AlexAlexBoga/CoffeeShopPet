@@ -7,8 +7,15 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+protocol HomeViewProtocol: AnyObject {
+    
+}
 
+class HomeViewController: UIViewController, HomeViewProtocol {
+
+    var coordinator: MainCoordinator?
+    var presenter: HomePresenter?
+    
     private let label = CSLabel()
     
     lazy var smallHCollection: UICollectionView = {
@@ -127,11 +134,15 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         default:
             return UICollectionViewCell()
-            
         }
-        
     }
-}
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Item selected at index \(indexPath.row)")
+
+        showHalfScreen()
+        }
+    }
 
     extension HomeViewController: UICollectionViewDelegateFlowLayout {
         
@@ -159,3 +170,24 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
 
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
+        return HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+    
+    func showHalfScreen() {
+        let halfScreenViewController = HalfScreenViewController()
+        halfScreenViewController.modalPresentationStyle = .pageSheet
+        halfScreenViewController.transitioningDelegate = self
+        
+        if let sheet = halfScreenViewController.sheetPresentationController {
+            sheet.detents = [.custom(resolver: { context in
+                return self.view.bounds.height * 2 / 3
+            })]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 16
+        }
+        
+        self.present(halfScreenViewController, animated: true, completion: nil)
+    }
+}

@@ -6,3 +6,21 @@
 //
 
 import Foundation
+
+protocol HomePresenterProtocol: AnyObject {
+   
+}
+
+class HomePresenter: HomePresenterProtocol {
+    
+    weak var view: HomeViewProtocol?
+    private let coordinator: MainCoordinator?
+    
+    init(view: HomeViewProtocol?, coordinator: MainCoordinator?) {
+        self.view = view
+        self.coordinator = coordinator
+    }
+    
+   
+    
+}

@@ -187,7 +187,7 @@ class LoginViewController: UIViewController {
 extension LoginViewController: LoginViewProtocol {
    
     func goToNextScreen() {
-        coordinator?.showNextScreen()
+//        coordinator?.showNextScreen()
     }
     
     
