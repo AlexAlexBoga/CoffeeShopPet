@@ -5,22 +5,25 @@
 //  Created by Александр Богачев on 27.08.24.
 //
 
-import Foundation
+import UIKit
 
 protocol HomePresenterProtocol: AnyObject {
-   
+    
 }
 
-class HomePresenter: HomePresenterProtocol {
+class HomePresenter {
     
     weak var view: HomeViewProtocol?
-    private let coordinator: MainCoordinator?
+    private let imageArray: [ImageModel]
     
-    init(view: HomeViewProtocol?, coordinator: MainCoordinator?) {
+    init(view: HomeViewProtocol?, imageArray: [ImageModel]) {
         self.view = view
-        self.coordinator = coordinator
+        self.imageArray = imageArray
     }
     
-   
+}
+
+extension HomePresenter: HomePresenterProtocol {
+    
     
 }

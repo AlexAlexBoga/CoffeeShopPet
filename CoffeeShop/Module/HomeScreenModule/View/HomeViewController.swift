@@ -46,10 +46,13 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
+        setupLayout()
+    }
+    
+    private func setupLayout() {
         setupLabel()
         setupSmallHCollection()
-        setupBigVCollection() 
-        
+        setupBigVCollection()
     }
  
     func setupLabel() {
@@ -98,7 +101,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
             bigVCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-}
+    
+    }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -123,7 +127,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             let coffeeName = coffeeArray[indexPath.item].coffeeName
             cell.bottomLabel.text = coffeeName
-                return cell
+            return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BigVCViewCell", for: indexPath) as! BigVCViewCell
             guard indexPath.item < imageArray.count else {
@@ -139,11 +143,23 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Item selected at index \(indexPath.row)")
-
-        showHalfScreen()
+        if collectionView.tag == 2 {
+            let selectedImageModel = imageArray[indexPath.item]
+            let imageName = selectedImageModel.imageName
+            
+            guard let selectedImage = UIImage(named: imageName) else {
+                print("Image not found: \(imageName)")
+                return
+            }
+            let halfVC = OrderViewController()
+            halfVC.setImage(image: selectedImage)
+            halfVC.modalPresentationStyle = .pageSheet
+            halfVC.modalPresentationStyle = .fullScreen
+            
+            present(halfVC, animated: true, completion: nil)
         }
     }
-
+}
     extension HomeViewController: UICollectionViewDelegateFlowLayout {
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -170,24 +186,3 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
 
-extension HomeViewController: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return HalfScreenPresentationController(presentedViewController: presented, presenting: presenting)
-    }
-    
-    func showHalfScreen() {
-        let halfScreenViewController = HalfScreenViewController()
-        halfScreenViewController.modalPresentationStyle = .pageSheet
-        halfScreenViewController.transitioningDelegate = self
-        
-        if let sheet = halfScreenViewController.sheetPresentationController {
-            sheet.detents = [.custom(resolver: { context in
-                return self.view.bounds.height * 2 / 3
-            })]
-            sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = 16
-        }
-        
-        self.present(halfScreenViewController, animated: true, completion: nil)
-    }
-}

@@ -1,29 +1,28 @@
 //
-//  CSButton.swift
+//  CSOrderButton.swift
 //  CoffeeShop
 //
-//  Created by Александр Богачев on 26.08.24.
+//  Created by Александр Богачев on 29.08.24.
 //
 
 import UIKit
 
-enum CSButtonCollorScheme {
-    case white
-    case black
-    case test
+enum CSOrderButtonCollorScheme {
+    case onButton
+    case offButton
 }
 
-class CSButton: UIView {
+class CSOrderButton: UIView {
     
     private let button = UIButton()
     var action: (() -> Void)?
-    var scheme: CSButtonCollorScheme = .white {
+    var scheme: CSOrderButtonCollorScheme = .onButton {
         didSet {
             setCollorScheme(scheme: scheme)
         }
     }
     
-    init(scheme: CSButtonCollorScheme = .white) {
+    init(scheme: CSOrderButtonCollorScheme = .onButton) {
         super.init(frame: .zero)
         self.scheme = scheme
         setupLayout()
@@ -59,23 +58,17 @@ class CSButton: UIView {
         action()
     }
     
-    private func setCollorScheme(scheme: CSButtonCollorScheme) {
+    private func setCollorScheme(scheme: CSOrderButtonCollorScheme) {
         switch scheme {
-        case .white:
-            button.backgroundColor = .clear
+        case .onButton:
+            button.backgroundColor = .gray
             button.setTitleColor(.black, for: .normal)
             button.layer.borderWidth = 2
-            button.layer.borderColor = UIColor.black.cgColor
-            button.layer.cornerRadius = 24
-        case.black:
+            button.layer.borderColor = UIColor.white.cgColor
+            button.layer.cornerRadius = 8
+        case.offButton:
             button.backgroundColor = .backgroundCollection
             button.setTitleColor(.white, for: .normal)
-        case .test:
-            button.backgroundColor = .white
-            button.setTitleColor(.black, for: .normal)
-            button.layer.borderWidth = 2
-            button.layer.borderColor = UIColor.gray.cgColor
-            button.layer.cornerRadius = 24
         }
     }
     
@@ -83,5 +76,4 @@ class CSButton: UIView {
         button.setTitle(title, for: .normal)
     }
 }
-
 

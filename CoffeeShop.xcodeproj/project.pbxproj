@@ -17,9 +17,11 @@
 		A962A6572C7DDCED00798FD5 /* BigVCViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6562C7DDCED00798FD5 /* BigVCViewCell.swift */; };
 		A962A65B2C7E039E00798FD5 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A65A2C7E039E00798FD5 /* HomeModel.swift */; };
 		A962A65D2C7E075200798FD5 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A65C2C7E075200798FD5 /* HomePresenter.swift */; };
-		A962A6632C7E3C4B00798FD5 /* HalfScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6622C7E3C4B00798FD5 /* HalfScreenViewController.swift */; };
-		A962A6652C7E3D2400798FD5 /* HalfScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6642C7E3D2400798FD5 /* HalfScreenPresenter.swift */; };
-		A962A6672C7E3E6E00798FD5 /* HalfScreenPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6662C7E3E6E00798FD5 /* HalfScreenPresentationController.swift */; };
+		A962A6632C7E3C4B00798FD5 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6622C7E3C4B00798FD5 /* OrderViewController.swift */; };
+		A962A6652C7E3D2400798FD5 /* OrderScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */; };
+		A98074632C8083E700004745 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98074622C8083E700004745 /* ModalViewController.swift */; };
+		A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98074642C80EA2600004745 /* CSOrderButton.swift */; };
+		A98074672C80FC6B00004745 /* CSCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98074662C80FC6B00004745 /* CSCounterButton.swift */; };
 		A99749072C7C68BE00C6191F /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749062C7C68BE00C6191F /* CSButton.swift */; };
 		A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490B2C7C818700C6191F /* LoginViewController.swift */; };
 		A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490E2C7C829800C6191F /* CSBackGroundView.swift */; };
@@ -48,9 +50,11 @@
 		A962A6562C7DDCED00798FD5 /* BigVCViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigVCViewCell.swift; sourceTree = "<group>"; };
 		A962A65A2C7E039E00798FD5 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		A962A65C2C7E075200798FD5 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
-		A962A6622C7E3C4B00798FD5 /* HalfScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenViewController.swift; sourceTree = "<group>"; };
-		A962A6642C7E3D2400798FD5 /* HalfScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenPresenter.swift; sourceTree = "<group>"; };
-		A962A6662C7E3E6E00798FD5 /* HalfScreenPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfScreenPresentationController.swift; sourceTree = "<group>"; };
+		A962A6622C7E3C4B00798FD5 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderScreenPresenter.swift; sourceTree = "<group>"; };
+		A98074622C8083E700004745 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		A98074642C80EA2600004745 /* CSOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSOrderButton.swift; sourceTree = "<group>"; };
+		A98074662C80FC6B00004745 /* CSCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCounterButton.swift; sourceTree = "<group>"; };
 		A99749062C7C68BE00C6191F /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButton.swift; sourceTree = "<group>"; };
 		A997490B2C7C818700C6191F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A997490E2C7C829800C6191F /* CSBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSBackGroundView.swift; sourceTree = "<group>"; };
@@ -123,7 +127,7 @@
 				A95875722C78F3750092D79E /* FirstScreenModule */,
 				A99749082C7C810A00C6191F /* LoginScreenModule */,
 				A99749262C7D12EF00C6191F /* HomeScreenModule */,
-				A962A65E2C7E3BB200798FD5 /* HalfScreen */,
+				A962A65E2C7E3BB200798FD5 /* OrderScreen */,
 				A99749222C7CF86700C6191F /* CartScreenModule */,
 				A997492A2C7D166400C6191F /* FavoriteScreenModule */,
 				A997492E2C7D186C00C6191F /* ProfileScreenModule */,
@@ -171,21 +175,20 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		A962A65E2C7E3BB200798FD5 /* HalfScreen */ = {
+		A962A65E2C7E3BB200798FD5 /* OrderScreen */ = {
 			isa = PBXGroup;
 			children = (
 				A962A6612C7E3C1800798FD5 /* Model */,
 				A962A6602C7E3C0400798FD5 /* Presenter */,
 				A962A65F2C7E3BFA00798FD5 /* View */,
 			);
-			path = HalfScreen;
+			path = OrderScreen;
 			sourceTree = "<group>";
 		};
 		A962A65F2C7E3BFA00798FD5 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A962A6622C7E3C4B00798FD5 /* HalfScreenViewController.swift */,
-				A962A6662C7E3E6E00798FD5 /* HalfScreenPresentationController.swift */,
+				A962A6622C7E3C4B00798FD5 /* OrderViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -193,7 +196,7 @@
 		A962A6602C7E3C0400798FD5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				A962A6642C7E3D2400798FD5 /* HalfScreenPresenter.swift */,
+				A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -211,6 +214,8 @@
 				A997490E2C7C829800C6191F /* CSBackGroundView.swift */,
 				A99749062C7C68BE00C6191F /* CSButton.swift */,
 				A962A6522C7DAF7600798FD5 /* CSLabel.swift */,
+				A98074642C80EA2600004745 /* CSOrderButton.swift */,
+				A98074662C80FC6B00004745 /* CSCounterButton.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 		A99749232C7CF8A800C6191F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A98074622C8083E700004745 /* ModalViewController.swift */,
 				A99749242C7CF8C000C6191F /* CartViewController.swift */,
 			);
 			path = View;
@@ -433,13 +439,15 @@
 				A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */,
 				A99749142C7CC10F00C6191F /* MainCoordinator.swift in Sources */,
 				A958755D2C78C6DA0092D79E /* AppDelegate.swift in Sources */,
-				A962A6672C7E3E6E00798FD5 /* HalfScreenPresentationController.swift in Sources */,
 				A99749162C7CCA4300C6191F /* LoginPresenter.swift in Sources */,
 				A997492D2C7D16C800C6191F /* FavoriteViewController.swift in Sources */,
 				A962A6552C7DB85700798FD5 /* SmallHCViewCell.swift in Sources */,
 				A958755F2C78C6DA0092D79E /* SceneDelegate.swift in Sources */,
-				A962A6652C7E3D2400798FD5 /* HalfScreenPresenter.swift in Sources */,
+				A98074672C80FC6B00004745 /* CSCounterButton.swift in Sources */,
+				A962A6652C7E3D2400798FD5 /* OrderScreenPresenter.swift in Sources */,
+				A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */,
 				A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */,
+				A98074632C8083E700004745 /* ModalViewController.swift in Sources */,
 				A962A65B2C7E039E00798FD5 /* HomeModel.swift in Sources */,
 				A99749292C7D134900C6191F /* HomeViewController.swift in Sources */,
 				A99749192C7CEAD500C6191F /* TabBarViewController.swift in Sources */,
@@ -448,7 +456,7 @@
 				A962A6572C7DDCED00798FD5 /* BigVCViewCell.swift in Sources */,
 				A95875762C78F4620092D79E /* FirstViewController.swift in Sources */,
 				A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */,
-				A962A6632C7E3C4B00798FD5 /* HalfScreenViewController.swift in Sources */,
+				A962A6632C7E3C4B00798FD5 /* OrderViewController.swift in Sources */,
 				A99749212C7CF60600C6191F /* TabBarController.swift in Sources */,
 				A962A6532C7DAF7600798FD5 /* CSLabel.swift in Sources */,
 				A99749072C7C68BE00C6191F /* CSButton.swift in Sources */,
