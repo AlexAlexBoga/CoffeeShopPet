@@ -19,7 +19,6 @@
 		A962A65D2C7E075200798FD5 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A65C2C7E075200798FD5 /* HomePresenter.swift */; };
 		A962A6632C7E3C4B00798FD5 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6622C7E3C4B00798FD5 /* OrderViewController.swift */; };
 		A962A6652C7E3D2400798FD5 /* OrderScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */; };
-		A98074632C8083E700004745 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98074622C8083E700004745 /* ModalViewController.swift */; };
 		A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98074642C80EA2600004745 /* CSOrderButton.swift */; };
 		A98074672C80FC6B00004745 /* CSCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98074662C80FC6B00004745 /* CSCounterButton.swift */; };
 		A99749072C7C68BE00C6191F /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749062C7C68BE00C6191F /* CSButton.swift */; };
@@ -35,6 +34,8 @@
 		A99749292C7D134900C6191F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749282C7D134900C6191F /* HomeViewController.swift */; };
 		A997492D2C7D16C800C6191F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997492C2C7D16C800C6191F /* FavoriteViewController.swift */; };
 		A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749302C7D18DB00C6191F /* ProfileViewController.swift */; };
+		A9F373BB2C82317D0037A51A /* CSCartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BA2C82317D0037A51A /* CSCartButton.swift */; };
+		A9F373BD2C82422C0037A51A /* CartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BC2C82422C0037A51A /* CartViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +53,6 @@
 		A962A65C2C7E075200798FD5 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		A962A6622C7E3C4B00798FD5 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
 		A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderScreenPresenter.swift; sourceTree = "<group>"; };
-		A98074622C8083E700004745 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		A98074642C80EA2600004745 /* CSOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSOrderButton.swift; sourceTree = "<group>"; };
 		A98074662C80FC6B00004745 /* CSCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCounterButton.swift; sourceTree = "<group>"; };
 		A99749062C7C68BE00C6191F /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButton.swift; sourceTree = "<group>"; };
@@ -68,6 +68,8 @@
 		A99749282C7D134900C6191F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A997492C2C7D16C800C6191F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		A99749302C7D18DB00C6191F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A9F373BA2C82317D0037A51A /* CSCartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCartButton.swift; sourceTree = "<group>"; };
+		A9F373BC2C82422C0037A51A /* CartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +218,7 @@
 				A962A6522C7DAF7600798FD5 /* CSLabel.swift */,
 				A98074642C80EA2600004745 /* CSOrderButton.swift */,
 				A98074662C80FC6B00004745 /* CSCounterButton.swift */,
+				A9F373BA2C82317D0037A51A /* CSCartButton.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -307,8 +310,8 @@
 		A99749232C7CF8A800C6191F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A98074622C8083E700004745 /* ModalViewController.swift */,
 				A99749242C7CF8C000C6191F /* CartViewController.swift */,
+				A9F373BC2C82422C0037A51A /* CartViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -446,8 +449,8 @@
 				A98074672C80FC6B00004745 /* CSCounterButton.swift in Sources */,
 				A962A6652C7E3D2400798FD5 /* OrderScreenPresenter.swift in Sources */,
 				A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */,
+				A9F373BB2C82317D0037A51A /* CSCartButton.swift in Sources */,
 				A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */,
-				A98074632C8083E700004745 /* ModalViewController.swift in Sources */,
 				A962A65B2C7E039E00798FD5 /* HomeModel.swift in Sources */,
 				A99749292C7D134900C6191F /* HomeViewController.swift in Sources */,
 				A99749192C7CEAD500C6191F /* TabBarViewController.swift in Sources */,
@@ -457,6 +460,7 @@
 				A95875762C78F4620092D79E /* FirstViewController.swift in Sources */,
 				A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */,
 				A962A6632C7E3C4B00798FD5 /* OrderViewController.swift in Sources */,
+				A9F373BD2C82422C0037A51A /* CartViewCell.swift in Sources */,
 				A99749212C7CF60600C6191F /* TabBarController.swift in Sources */,
 				A962A6532C7DAF7600798FD5 /* CSLabel.swift in Sources */,
 				A99749072C7C68BE00C6191F /* CSButton.swift in Sources */,
