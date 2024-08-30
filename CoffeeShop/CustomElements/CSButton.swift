@@ -65,16 +65,16 @@ class CSButton: UIView {
             button.backgroundColor = .clear
             button.setTitleColor(.black, for: .normal)
             button.layer.borderWidth = 2
-            button.layer.borderColor = UIColor.black.cgColor
+            button.layer.borderColor = UIColor.backgroundCollection.cgColor
             button.layer.cornerRadius = 24
         case.black:
             button.backgroundColor = .backgroundCollection
-            button.setTitleColor(.white, for: .normal)
+            button.setTitleColor(.backgroud, for: .normal)
         case .test:
-            button.backgroundColor = .white
-            button.setTitleColor(.black, for: .normal)
-            button.layer.borderWidth = 2
-            button.layer.borderColor = UIColor.gray.cgColor
+            button.backgroundColor = .orderText
+            button.setTitleColor(.orderBack, for: .normal)
+//            button.layer.borderWidth = 2
+//            button.layer.borderColor = UIColor.gray.cgColor
             button.layer.cornerRadius = 24
         }
     }

@@ -41,7 +41,7 @@ class CSOrderButton: UIView {
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        button.layer.cornerRadius = 24
+        button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
@@ -54,6 +54,8 @@ class CSOrderButton: UIView {
     
     @objc
     private func buttonPressed() {
+        scheme = (scheme == .offButton) ? .onButton : .offButton
+        
         guard let action = self.action else { return }
         action()
     }
@@ -61,14 +63,15 @@ class CSOrderButton: UIView {
     private func setCollorScheme(scheme: CSOrderButtonCollorScheme) {
         switch scheme {
         case .onButton:
-            button.backgroundColor = .gray
-            button.setTitleColor(.black, for: .normal)
+            button.backgroundColor = .orderButton
+            button.setTitleColor(.orderText, for: .normal)
             button.layer.borderWidth = 2
-            button.layer.borderColor = UIColor.white.cgColor
+            button.layer.borderColor = UIColor.orderText.cgColor
             button.layer.cornerRadius = 8
         case.offButton:
-            button.backgroundColor = .backgroundCollection
-            button.setTitleColor(.white, for: .normal)
+            button.backgroundColor = .orderButton
+            button.setTitleColor(.orderText2, for: .normal)
+            button.layer.borderWidth = 0
         }
     }
     

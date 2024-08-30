@@ -18,7 +18,6 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
     
     private var imageView: UIImageView!
     private var imageToSet: UIImage?
-    private let dismissButton = UIButton()
     private let bottomView = UIView()
     private var mainLabel = CSLabel()
     private let addFavoriteImage = UIImageView()
@@ -44,7 +43,6 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
     private func setupLayout() {
         setupImageView()
         setupbottomViewView()
-        setupdismissButton()
         setupMainLabel()
         setupAddFavoriteImage()
         setupshareImage()
@@ -79,23 +77,9 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
             imageView.image = image
         }
     }
-    
-    private func setupdismissButton() {
-        dismissButton.setTitleColor(.black, for: .normal)
-        dismissButton.backgroundColor = .green
-        dismissButton.setTitle("Dismiss", for: .normal)
-        dismissButton.addTarget(self, action: #selector(dismissTapped), for: .touchUpInside)
-        bottomView.addSubview(dismissButton)
-        dismissButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            dismissButton.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
-            dismissButton.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: -30)
-        ])
-    }
-    
+
     private func setupbottomViewView() {
-        bottomView.backgroundColor = .backgroundCollection
+        bottomView.backgroundColor = .orderBack
         bottomView.layer.cornerRadius = 25
         view.addSubview(bottomView)
         bottomView.translatesAutoresizingMaskIntoConstraints = false
@@ -113,7 +97,7 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         bottomView.addSubview(mainLabel)
         mainLabel.translatesAutoresizingMaskIntoConstraints = false
         mainLabel.text = "Winter special"  // заменить на текст из ячейки
-        mainLabel.textColor = .white
+        mainLabel.textColor = .orderText
         mainLabel.font = .systemFont(ofSize: 36, weight: .bold)
         
         NSLayoutConstraint.activate([
@@ -127,7 +111,7 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         bottomView.addSubview(coffeeNameLabel)
         coffeeNameLabel.translatesAutoresizingMaskIntoConstraints = false
         coffeeNameLabel.text = "CAPPUCINO LATTE"  // заменить на текст из ячейки
-        coffeeNameLabel.textColor = .white
+        coffeeNameLabel.textColor = .orderText
         coffeeNameLabel.font = .systemFont(ofSize: 16, weight: .bold)
         
         NSLayoutConstraint.activate([
@@ -141,7 +125,7 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         bottomView.addSubview(orderLabel)
         orderLabel.translatesAutoresizingMaskIntoConstraints = false
         orderLabel.text = "Complex, yet smooth flavor made to order."
-        orderLabel.textColor = .white
+        orderLabel.textColor = .orderText
         orderLabel.font = .systemFont(ofSize: 14, weight: .regular)
         
         NSLayoutConstraint.activate([
@@ -207,7 +191,7 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         bottomView.addSubview(sizeLabel)
         sizeLabel.translatesAutoresizingMaskIntoConstraints = false
         sizeLabel.text = "Size"
-        sizeLabel.textColor = .white
+        sizeLabel.textColor = .orderText
         sizeLabel.font = .systemFont(ofSize: 14, weight: .medium)
         
         NSLayoutConstraint.activate([
@@ -220,7 +204,7 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
     private func setupFirstPriceButton() {
         bottomView.addSubview(firstPriceButton)
         firstPriceButton.translatesAutoresizingMaskIntoConstraints = false
-        firstPriceButton.scheme = .onButton
+        firstPriceButton.scheme = .offButton
         firstPriceButton.setTitle("First")
         firstPriceButton.action = { [weak self] in
             self?.firstButtonPressed()
@@ -238,7 +222,7 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
     private func setupSecondPriceButton() {
         bottomView.addSubview(secondPriceButton)
         secondPriceButton.translatesAutoresizingMaskIntoConstraints = false
-        secondPriceButton.scheme = .onButton
+        secondPriceButton.scheme = .offButton
         secondPriceButton.setTitle("Second")
         secondPriceButton.action = { [weak self] in
             self?.secondButtonPressed()
@@ -256,7 +240,7 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
     private func setupTherdPriceButton() {
         bottomView.addSubview(therdPriceButton)
         therdPriceButton.translatesAutoresizingMaskIntoConstraints = false
-        therdPriceButton.scheme = .onButton
+        therdPriceButton.scheme = .offButton
         therdPriceButton.setTitle("Therd")
         therdPriceButton.action = { [weak self] in
             self?.therdButtonPressed()
@@ -275,7 +259,7 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         bottomView.addSubview(priceLabel)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         priceLabel.text = "€ 4,95" // заменить на текст из ячейки
-        priceLabel.textColor = .white
+        priceLabel.textColor = .orderText
         priceLabel.font = .systemFont(ofSize: 32, weight: .bold)
         
         NSLayoutConstraint.activate([
@@ -328,12 +312,9 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
     }
     func addButtonPressed() {
         print("addButtonPressed")
-    }
-    
-    @objc private func dismissTapped() {
         dismiss(animated: true, completion: nil)
     }
-    
+ 
     func setImage(image: UIImage) {
         imageToSet = image
         if imageView != nil {
