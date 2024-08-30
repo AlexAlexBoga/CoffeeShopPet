@@ -36,6 +36,7 @@
 		A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749302C7D18DB00C6191F /* ProfileViewController.swift */; };
 		A9F373BB2C82317D0037A51A /* CSCartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BA2C82317D0037A51A /* CSCartButton.swift */; };
 		A9F373BD2C82422C0037A51A /* CartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BC2C82422C0037A51A /* CartViewCell.swift */; };
+		A9F373BF2C826BA50037A51A /* FavoriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BE2C826BA50037A51A /* FavoriteViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		A99749302C7D18DB00C6191F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		A9F373BA2C82317D0037A51A /* CSCartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCartButton.swift; sourceTree = "<group>"; };
 		A9F373BC2C82422C0037A51A /* CartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewCell.swift; sourceTree = "<group>"; };
+		A9F373BE2C826BA50037A51A /* FavoriteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +350,7 @@
 			isa = PBXGroup;
 			children = (
 				A997492C2C7D16C800C6191F /* FavoriteViewController.swift */,
+				A9F373BE2C826BA50037A51A /* FavoriteViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -442,6 +445,7 @@
 				A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */,
 				A99749142C7CC10F00C6191F /* MainCoordinator.swift in Sources */,
 				A958755D2C78C6DA0092D79E /* AppDelegate.swift in Sources */,
+				A9F373BF2C826BA50037A51A /* FavoriteViewCell.swift in Sources */,
 				A99749162C7CCA4300C6191F /* LoginPresenter.swift in Sources */,
 				A997492D2C7D16C800C6191F /* FavoriteViewController.swift in Sources */,
 				A962A6552C7DB85700798FD5 /* SmallHCViewCell.swift in Sources */,
