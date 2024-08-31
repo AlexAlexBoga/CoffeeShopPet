@@ -12,6 +12,15 @@
 		A95875662C78C6DB0092D79E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95875652C78C6DB0092D79E /* Assets.xcassets */; };
 		A95875692C78C6DB0092D79E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = A95875682C78C6DB0092D79E /* Base */; };
 		A95875762C78F4620092D79E /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A95875752C78F4620092D79E /* FirstViewController.swift */; };
+		A9606F4E2C830BC1007C9AB0 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9606F4D2C830BC1007C9AB0 /* Coordinator.swift */; };
+		A9606F502C831AAE007C9AB0 /* FirstCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9606F4F2C831AAE007C9AB0 /* FirstCoordinator.swift */; };
+		A9606F522C83247A007C9AB0 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9606F512C83247A007C9AB0 /* HomeCoordinator.swift */; };
+		A9606F542C832497007C9AB0 /* CartCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9606F532C832497007C9AB0 /* CartCoordinator.swift */; };
+		A9606F562C8324B7007C9AB0 /* FavoriteCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9606F552C8324B7007C9AB0 /* FavoriteCoordinator.swift */; };
+		A9606F582C8324CD007C9AB0 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9606F572C8324CD007C9AB0 /* ProfileCoordinator.swift */; };
+		A9606F5A2C833540007C9AB0 /* FirstViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9606F592C833540007C9AB0 /* FirstViewPresenter.swift */; };
+		A9606F5E2C834803007C9AB0 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9606F5D2C834803007C9AB0 /* UserStorage.swift */; };
+		A9606F602C835028007C9AB0 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9606F5F2C835028007C9AB0 /* LoginCoordinator.swift */; };
 		A962A6532C7DAF7600798FD5 /* CSLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6522C7DAF7600798FD5 /* CSLabel.swift */; };
 		A962A6552C7DB85700798FD5 /* SmallHCViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6542C7DB85700798FD5 /* SmallHCViewCell.swift */; };
 		A962A6572C7DDCED00798FD5 /* BigVCViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6562C7DDCED00798FD5 /* BigVCViewCell.swift */; };
@@ -25,10 +34,7 @@
 		A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490B2C7C818700C6191F /* LoginViewController.swift */; };
 		A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997490E2C7C829800C6191F /* CSBackGroundView.swift */; };
 		A99749122C7CC08C00C6191F /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749112C7CC08C00C6191F /* AppCoordinator.swift */; };
-		A99749142C7CC10F00C6191F /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749132C7CC10F00C6191F /* MainCoordinator.swift */; };
 		A99749162C7CCA4300C6191F /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749152C7CCA4200C6191F /* LoginPresenter.swift */; };
-		A99749192C7CEAD500C6191F /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749182C7CEAD500C6191F /* TabBarViewController.swift */; };
-		A997491D2C7CEC9800C6191F /* TabBarViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997491C2C7CEC9800C6191F /* TabBarViewPresenter.swift */; };
 		A99749212C7CF60600C6191F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749202C7CF60600C6191F /* TabBarController.swift */; };
 		A99749252C7CF8C000C6191F /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749242C7CF8C000C6191F /* CartViewController.swift */; };
 		A99749292C7D134900C6191F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749282C7D134900C6191F /* HomeViewController.swift */; };
@@ -47,6 +53,15 @@
 		A95875682C78C6DB0092D79E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A958756A2C78C6DB0092D79E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A95875752C78F4620092D79E /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		A9606F4D2C830BC1007C9AB0 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		A9606F4F2C831AAE007C9AB0 /* FirstCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstCoordinator.swift; sourceTree = "<group>"; };
+		A9606F512C83247A007C9AB0 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		A9606F532C832497007C9AB0 /* CartCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartCoordinator.swift; sourceTree = "<group>"; };
+		A9606F552C8324B7007C9AB0 /* FavoriteCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteCoordinator.swift; sourceTree = "<group>"; };
+		A9606F572C8324CD007C9AB0 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		A9606F592C833540007C9AB0 /* FirstViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewPresenter.swift; sourceTree = "<group>"; };
+		A9606F5D2C834803007C9AB0 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		A9606F5F2C835028007C9AB0 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		A962A6522C7DAF7600798FD5 /* CSLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLabel.swift; sourceTree = "<group>"; };
 		A962A6542C7DB85700798FD5 /* SmallHCViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallHCViewCell.swift; sourceTree = "<group>"; };
 		A962A6562C7DDCED00798FD5 /* BigVCViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigVCViewCell.swift; sourceTree = "<group>"; };
@@ -60,10 +75,7 @@
 		A997490B2C7C818700C6191F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A997490E2C7C829800C6191F /* CSBackGroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSBackGroundView.swift; sourceTree = "<group>"; };
 		A99749112C7CC08C00C6191F /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		A99749132C7CC10F00C6191F /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		A99749152C7CCA4200C6191F /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
-		A99749182C7CEAD500C6191F /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
-		A997491C2C7CEC9800C6191F /* TabBarViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewPresenter.swift; sourceTree = "<group>"; };
 		A99749202C7CF60600C6191F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A99749242C7CF8C000C6191F /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
 		A99749282C7D134900C6191F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +116,7 @@
 		A958755B2C78C6DA0092D79E /* CoffeeShop */ = {
 			isa = PBXGroup;
 			children = (
+				A9606F5B2C8347AE007C9AB0 /* Services */,
 				A997491E2C7CF58900C6191F /* Navigation */,
 				A95875702C78F2D90092D79E /* Common */,
 				A95875712C78F3460092D79E /* Module */,
@@ -127,7 +140,6 @@
 		A95875712C78F3460092D79E /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				A99749172C7CEA9700C6191F /* TabBarScreenModule */,
 				A95875722C78F3750092D79E /* FirstScreenModule */,
 				A99749082C7C810A00C6191F /* LoginScreenModule */,
 				A99749262C7D12EF00C6191F /* HomeScreenModule */,
@@ -159,8 +171,17 @@
 		A95875742C78F40D0092D79E /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				A9606F592C833540007C9AB0 /* FirstViewPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A9606F5B2C8347AE007C9AB0 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A9606F5D2C834803007C9AB0 /* UserStorage.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		A962A6582C7E00D600798FD5 /* Presenter */ = {
@@ -253,35 +274,16 @@
 		A99749102C7CC05D00C6191F /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				A9606F4D2C830BC1007C9AB0 /* Coordinator.swift */,
 				A99749112C7CC08C00C6191F /* AppCoordinator.swift */,
-				A99749132C7CC10F00C6191F /* MainCoordinator.swift */,
+				A9606F4F2C831AAE007C9AB0 /* FirstCoordinator.swift */,
+				A9606F5F2C835028007C9AB0 /* LoginCoordinator.swift */,
+				A9606F512C83247A007C9AB0 /* HomeCoordinator.swift */,
+				A9606F532C832497007C9AB0 /* CartCoordinator.swift */,
+				A9606F552C8324B7007C9AB0 /* FavoriteCoordinator.swift */,
+				A9606F572C8324CD007C9AB0 /* ProfileCoordinator.swift */,
 			);
 			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		A99749172C7CEA9700C6191F /* TabBarScreenModule */ = {
-			isa = PBXGroup;
-			children = (
-				A997491B2C7CEB0500C6191F /* Presenter */,
-				A997491A2C7CEAF500C6191F /* View */,
-			);
-			path = TabBarScreenModule;
-			sourceTree = "<group>";
-		};
-		A997491A2C7CEAF500C6191F /* View */ = {
-			isa = PBXGroup;
-			children = (
-				A99749182C7CEAD500C6191F /* TabBarViewController.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		A997491B2C7CEB0500C6191F /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				A997491C2C7CEC9800C6191F /* TabBarViewPresenter.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A997491E2C7CF58900C6191F /* Navigation */ = {
@@ -443,8 +445,9 @@
 			files = (
 				A962A65D2C7E075200798FD5 /* HomePresenter.swift in Sources */,
 				A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */,
-				A99749142C7CC10F00C6191F /* MainCoordinator.swift in Sources */,
+				A9606F5A2C833540007C9AB0 /* FirstViewPresenter.swift in Sources */,
 				A958755D2C78C6DA0092D79E /* AppDelegate.swift in Sources */,
+				A9606F582C8324CD007C9AB0 /* ProfileCoordinator.swift in Sources */,
 				A9F373BF2C826BA50037A51A /* FavoriteViewCell.swift in Sources */,
 				A99749162C7CCA4300C6191F /* LoginPresenter.swift in Sources */,
 				A997492D2C7D16C800C6191F /* FavoriteViewController.swift in Sources */,
@@ -455,19 +458,24 @@
 				A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */,
 				A9F373BB2C82317D0037A51A /* CSCartButton.swift in Sources */,
 				A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */,
+				A9606F562C8324B7007C9AB0 /* FavoriteCoordinator.swift in Sources */,
 				A962A65B2C7E039E00798FD5 /* HomeModel.swift in Sources */,
 				A99749292C7D134900C6191F /* HomeViewController.swift in Sources */,
-				A99749192C7CEAD500C6191F /* TabBarViewController.swift in Sources */,
 				A99749252C7CF8C000C6191F /* CartViewController.swift in Sources */,
-				A997491D2C7CEC9800C6191F /* TabBarViewPresenter.swift in Sources */,
+				A9606F4E2C830BC1007C9AB0 /* Coordinator.swift in Sources */,
+				A9606F502C831AAE007C9AB0 /* FirstCoordinator.swift in Sources */,
 				A962A6572C7DDCED00798FD5 /* BigVCViewCell.swift in Sources */,
 				A95875762C78F4620092D79E /* FirstViewController.swift in Sources */,
 				A997490C2C7C818700C6191F /* LoginViewController.swift in Sources */,
 				A962A6632C7E3C4B00798FD5 /* OrderViewController.swift in Sources */,
 				A9F373BD2C82422C0037A51A /* CartViewCell.swift in Sources */,
 				A99749212C7CF60600C6191F /* TabBarController.swift in Sources */,
+				A9606F522C83247A007C9AB0 /* HomeCoordinator.swift in Sources */,
 				A962A6532C7DAF7600798FD5 /* CSLabel.swift in Sources */,
+				A9606F602C835028007C9AB0 /* LoginCoordinator.swift in Sources */,
+				A9606F5E2C834803007C9AB0 /* UserStorage.swift in Sources */,
 				A99749072C7C68BE00C6191F /* CSButton.swift in Sources */,
+				A9606F542C832497007C9AB0 /* CartCoordinator.swift in Sources */,
 				A99749122C7CC08C00C6191F /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

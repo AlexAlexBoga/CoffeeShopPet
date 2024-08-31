@@ -9,7 +9,16 @@ import UIKit
 
 class FirstViewController: UIViewController {
     
-    var coordinator: MainCoordinator?
+    var viewOutput: FirstViewOutput!
+    
+    init(viewOutput: FirstViewOutput!) {
+        super.init(nibName: nil, bundle: nil)
+        self.viewOutput = viewOutput
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private let backGroundImage = CSBackGroundView()
     private let coffeeLabel = UILabel()
@@ -86,6 +95,6 @@ class FirstViewController: UIViewController {
     }
 
     func buttonPressed() {
-        coordinator?.showLoginScreen()
+        viewOutput.firstViewFinish()
     }
 }

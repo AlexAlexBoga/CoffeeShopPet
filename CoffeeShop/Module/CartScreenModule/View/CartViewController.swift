@@ -8,9 +8,7 @@
 import UIKit
 
 class CartViewController: UIViewController {
-    
-    weak var coordinator: MainCoordinator?
-    
+        
     private let cartLabel = CSLabel()
     private let cartImage = UIImageView()
     private let recentlyButton = CSCartButton()

@@ -213,7 +213,6 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         NSLayoutConstraint.activate([
             firstPriceButton.topAnchor.constraint(equalTo: sizeLabel.bottomAnchor, constant: 9),
             firstPriceButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
-//            firstPriceButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -30),
             firstPriceButton.heightAnchor.constraint(equalToConstant: 44),
             firstPriceButton.widthAnchor.constraint(equalToConstant: 100)
         ])
@@ -231,7 +230,6 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         NSLayoutConstraint.activate([
             secondPriceButton.centerYAnchor.constraint(equalTo: firstPriceButton.centerYAnchor),
             secondPriceButton.leadingAnchor.constraint(equalTo: firstPriceButton.trailingAnchor, constant: 12),
-//            firstPriceButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -30),
             secondPriceButton.heightAnchor.constraint(equalToConstant: 44),
             secondPriceButton.widthAnchor.constraint(equalToConstant: 100)
         ])
@@ -276,8 +274,7 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         NSLayoutConstraint.activate([
             countButton.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 10),
             countButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
-//            countButton.trailingAnchor.constraint(equalTo: bottomView.leadingAnchor,constant: -30)
-//            countButton.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
+            countButton.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             countButton.widthAnchor.constraint(equalToConstant: 133),
             countButton.heightAnchor.constraint(equalToConstant: 47),
         ])

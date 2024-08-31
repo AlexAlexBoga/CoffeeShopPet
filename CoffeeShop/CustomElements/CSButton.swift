@@ -73,8 +73,6 @@ class CSButton: UIView {
         case .test:
             button.backgroundColor = .orderText
             button.setTitleColor(.orderBack, for: .normal)
-//            button.layer.borderWidth = 2
-//            button.layer.borderColor = UIColor.gray.cgColor
             button.layer.cornerRadius = 24
         }
     }

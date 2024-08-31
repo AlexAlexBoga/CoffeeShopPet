@@ -31,7 +31,6 @@ class CSCounterView: UIView {
     }
     
     private func setupView() {
-        // Настройка StackView
         stackView.backgroundColor = .clear
         stackView.axis = .horizontal
         stackView.layer.cornerRadius = 24
@@ -40,21 +39,17 @@ class CSCounterView: UIView {
             stackView.layer.borderColor = borderColor.cgColor
         }
         
-        
-//        stackView.alignment = .center
         stackView.distribution = .fillProportionally
         stackView.spacing = 0
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
         
-        // Настройка кнопки Decrement
         decrementButton.setTitle("-", for: .normal)
         decrementButton.titleLabel?.font = .systemFont(ofSize: 16)
         decrementButton.setTitleColor(.orderText, for: .normal)
         decrementButton.addTarget(self, action: #selector(decrementTapped), for: .touchUpInside)
         stackView.addArrangedSubview(decrementButton)
         
-        // Настройка Label для отображения числа
         countLabel.text = "0"
         countLabel.font = .systemFont(ofSize: 16, weight: .bold)
         countLabel.textColor = .orderText
@@ -62,14 +57,12 @@ class CSCounterView: UIView {
         countLabel.widthAnchor.constraint(equalToConstant: 10).isActive = true
         stackView.addArrangedSubview(countLabel)
         
-        // Настройка кнопки Increment
         incrementButton.setTitle("+", for: .normal)
         incrementButton.titleLabel?.font = .systemFont(ofSize: 16)
         incrementButton.setTitleColor(.orderText, for: .normal)
         incrementButton.addTarget(self, action: #selector(incrementTapped), for: .touchUpInside)
         stackView.addArrangedSubview(incrementButton)
         
-        // Установка ограничений для StackView
         NSLayoutConstraint.activate([
                    stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
                    stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),

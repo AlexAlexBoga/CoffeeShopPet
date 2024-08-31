@@ -13,7 +13,7 @@ protocol HomeViewProtocol: AnyObject {
 
 class HomeViewController: UIViewController, HomeViewProtocol {
 
-    var coordinator: MainCoordinator?
+//    var coordinator: MainCoordinator?
     var presenter: HomePresenter?
     
     private let label = CSLabel()
