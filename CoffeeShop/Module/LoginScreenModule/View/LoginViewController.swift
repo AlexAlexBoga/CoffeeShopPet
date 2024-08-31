@@ -9,13 +9,20 @@ import UIKit
 
 protocol LoginViewProtocol: AnyObject{
 
-    func goToNextScreen()
 }
 
 class LoginViewController: UIViewController {
     
-    var presenter: LoginPresenterProtocol?
-    var coordinator: MainCoordinator?
+    var viewOutput: LoginViewOutput!
+    
+    init(viewOutput: LoginViewOutput!) {
+        super .init(nibName: nil, bundle: nil)
+        self.viewOutput = viewOutput
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private let backGroundImage = CSBackGroundView()
     private let welcomeLabel = UILabel()
@@ -159,7 +166,7 @@ class LoginViewController: UIViewController {
     }
     func loginButtonPressed() {
         print("loginButtonPressed")
-        coordinator?.showHomeScreen()
+        viewOutput.loginViewFinish()
     }
   
     
@@ -182,13 +189,4 @@ class LoginViewController: UIViewController {
     func createButtonPressed() {
         print("createButtonPressed")
     }
-}
-
-extension LoginViewController: LoginViewProtocol {
-   
-    func goToNextScreen() {
-        coordinator?.showNextScreen()
-    }
-    
-    
 }

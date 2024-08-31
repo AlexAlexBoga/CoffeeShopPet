@@ -7,8 +7,15 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+protocol HomeViewProtocol: AnyObject {
+    
+}
 
+class HomeViewController: UIViewController, HomeViewProtocol {
+
+//    var coordinator: MainCoordinator?
+    var presenter: HomePresenter?
+    
     private let label = CSLabel()
     
     lazy var smallHCollection: UICollectionView = {
@@ -39,10 +46,13 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
+        setupLayout()
+    }
+    
+    private func setupLayout() {
         setupLabel()
         setupSmallHCollection()
-        setupBigVCollection() 
-        
+        setupBigVCollection()
     }
  
     func setupLabel() {
@@ -91,7 +101,8 @@ class HomeViewController: UIViewController {
             bigVCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-}
+    
+    }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -116,7 +127,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
             let coffeeName = coffeeArray[indexPath.item].coffeeName
             cell.bottomLabel.text = coffeeName
-                return cell
+            return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BigVCViewCell", for: indexPath) as! BigVCViewCell
             guard indexPath.item < imageArray.count else {
@@ -127,12 +138,28 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         default:
             return UICollectionViewCell()
-            
         }
-        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Item selected at index \(indexPath.row)")
+        if collectionView.tag == 2 {
+            let selectedImageModel = imageArray[indexPath.item]
+            let imageName = selectedImageModel.imageName
+            
+            guard let selectedImage = UIImage(named: imageName) else {
+                print("Image not found: \(imageName)")
+                return
+            }
+            let halfVC = OrderViewController()
+            halfVC.setImage(image: selectedImage)
+            halfVC.modalPresentationStyle = .pageSheet
+            halfVC.modalPresentationStyle = .fullScreen
+            
+            present(halfVC, animated: true, completion: nil)
+        }
     }
 }
-
     extension HomeViewController: UICollectionViewDelegateFlowLayout {
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

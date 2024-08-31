@@ -1,29 +1,28 @@
 //
-//  CSButton.swift
+//  CSCartButton.swift
 //  CoffeeShop
 //
-//  Created by Александр Богачев on 26.08.24.
+//  Created by Александр Богачев on 30.08.24.
 //
 
 import UIKit
 
-enum CSButtonCollorScheme {
+enum CSCartButtonColorScheme {
     case white
     case black
-    case test
 }
 
-class CSButton: UIView {
+class CSCartButton: UIView {
     
     private let button = UIButton()
     var action: (() -> Void)?
-    var scheme: CSButtonCollorScheme = .white {
+    var scheme: CSCartButtonColorScheme = .white {
         didSet {
             setCollorScheme(scheme: scheme)
         }
     }
     
-    init(scheme: CSButtonCollorScheme = .white) {
+    init(scheme: CSCartButtonColorScheme = .white) {
         super.init(frame: .zero)
         self.scheme = scheme
         setupLayout()
@@ -41,8 +40,8 @@ class CSButton: UIView {
     private func setupButton() {
         addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        button.layer.cornerRadius = 24
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .semibold)
+        button.layer.cornerRadius = 8
         button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         
         NSLayoutConstraint.activate([
@@ -55,25 +54,24 @@ class CSButton: UIView {
     
     @objc
     private func buttonPressed() {
+        scheme = (scheme == .white) ? .black : .white
         guard let action = self.action else { return }
         action()
     }
     
-    private func setCollorScheme(scheme: CSButtonCollorScheme) {
+    private func setCollorScheme(scheme: CSCartButtonColorScheme) {
         switch scheme {
         case .white:
-            button.backgroundColor = .clear
+            button.backgroundColor = .orderButton
+            button.setTitleColor(.orderText, for: .normal)
+            
+            button.layer.cornerRadius = 8
+        case.black:
+            button.backgroundColor = .backgroud
             button.setTitleColor(.black, for: .normal)
             button.layer.borderWidth = 2
-            button.layer.borderColor = UIColor.backgroundCollection.cgColor
-            button.layer.cornerRadius = 24
-        case.black:
-            button.backgroundColor = .backgroundCollection
-            button.setTitleColor(.backgroud, for: .normal)
-        case .test:
-            button.backgroundColor = .orderText
-            button.setTitleColor(.orderBack, for: .normal)
-            button.layer.cornerRadius = 24
+            button.layer.borderColor = UIColor.black.cgColor
+          
         }
     }
     

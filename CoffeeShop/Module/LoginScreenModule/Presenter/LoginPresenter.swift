@@ -4,25 +4,24 @@
 //
 //  Created by Александр Богачев on 26.08.24.
 //
-
 import Foundation
 
-protocol LoginPresenterProtocol: AnyObject {
-    func login(email: String, password: String)
+protocol LoginViewOutput: AnyObject {
+    func loginViewFinish()
 }
 
-class LoginPresenter: LoginPresenterProtocol {
+class LoginViewPresenter: LoginViewOutput {
     
-    weak var view: LoginViewProtocol?
-    private let coordinator: MainCoordinator?
+    weak var coordinator: LoginCoordinator!
     
-    init(view: LoginViewProtocol?, coordinator: MainCoordinator?) {
-        self.view = view
+    init(coordinator: LoginCoordinator!) {
         self.coordinator = coordinator
     }
     
-    func login(email: String, password: String) {
-        
+    func loginViewFinish() {
+        coordinator.finish()
     }
     
+    
 }
+
