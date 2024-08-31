@@ -7,8 +7,9 @@
 
 import UIKit
 
-class AppCoordinator: Coordinator {
-  
+class AppCoordinator: Coordinator, TabBarCoordinator {
+    var tabBarController: UITabBarController?
+    
     private let userStorage = UserStorage.shared
     
     override func start() {
@@ -84,13 +85,14 @@ private extension AppCoordinator {
 
 extension AppCoordinator: CoordinatorFinishDelegate {
     func coordinatorDidFinish(childeCoordinators: CoordinatorProtocol) {
+        removeChildCoordinator(childeCoordinators)
         switch childeCoordinators.type {
         case .login:
-            navigationController?.viewControllers.removeAll()
             showMainFlow()
+            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
         case .first:
-            navigationController?.viewControllers.removeAll()
             showLoginFlow()
+            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
         case .app:
             return
         default:
