@@ -87,12 +87,13 @@ extension AppCoordinator: CoordinatorFinishDelegate {
     func coordinatorDidFinish(childeCoordinators: CoordinatorProtocol) {
         removeChildCoordinator(childeCoordinators)
         switch childeCoordinators.type {
-        case .login:
-            showMainFlow()
-            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
         case .first:
             showLoginFlow()
             navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
+        case .login:
+            showMainFlow()
+            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
+            
         case .app:
             return
         default:

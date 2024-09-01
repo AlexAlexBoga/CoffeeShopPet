@@ -188,5 +188,6 @@ class LoginViewController: UIViewController {
     }
     func createButtonPressed() {
         print("createButtonPressed")
+        viewOutput.loginViewFinish()
     }
 }

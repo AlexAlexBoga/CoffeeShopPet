@@ -12,6 +12,7 @@ class BigVCViewCell: UICollectionViewCell {
     
     let imageView = UIImageView()
     let titleLabel = UILabel()
+    let priceLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +27,8 @@ class BigVCViewCell: UICollectionViewCell {
         contentView.backgroundColor = .itemBackground
         setupTopView()
         setupBottomLabel()
+        setupPriceLabel()
+    
     }
     
     func setupTopView() {
@@ -60,5 +63,26 @@ class BigVCViewCell: UICollectionViewCell {
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
         ])
     }
+    
+    func setupPriceLabel() {
+        contentView.addSubview(priceLabel)
+        
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        priceLabel.font = .systemFont(ofSize: 16, weight: .medium)
+        priceLabel.text = "€"
+        priceLabel.textColor = .black
+    
+        NSLayoutConstraint.activate([
+            priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
+            priceLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
+            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -15),
+        ])
+    }
+    func configure(with imageName: String, title: String, price: Double) {
+            imageView.image = UIImage(named: imageName)
+            titleLabel.text = title
+            priceLabel.text = "€ \(price)"
+        }
     
 }

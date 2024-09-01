@@ -13,7 +13,6 @@ protocol HomeViewProtocol: AnyObject {
 
 class HomeViewController: UIViewController, HomeViewProtocol {
 
-//    var coordinator: MainCoordinator?
     var presenter: HomePresenter?
     
     private let label = CSLabel()
@@ -133,8 +132,10 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             guard indexPath.item < imageArray.count else {
                 return cell
             }
-            let imageName = imageArray[indexPath.item].imageName
-            cell.imageView.image = UIImage(named: imageName)
+            let imageModel = imageArray[indexPath.item]
+            cell.configure(with: imageModel.imageName,
+                           title: imageModel.description,
+                           price: imageModel.price)
             return cell
         default:
             return UICollectionViewCell()

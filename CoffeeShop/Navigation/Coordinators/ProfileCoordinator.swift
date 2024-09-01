@@ -16,5 +16,3 @@ class ProfileCoordinator: Coordinator {
         print("AppCoordinator finish")
     }
 }
-
-
