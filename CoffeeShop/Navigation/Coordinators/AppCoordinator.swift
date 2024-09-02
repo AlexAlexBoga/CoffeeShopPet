@@ -18,8 +18,9 @@ class AppCoordinator: Coordinator, TabBarCoordinator {
 //        } else {
 //            showFirstFlow()
 //        }
-        showFirstFlow()
+//        showFirstFlow()
 //        showLoginFlow()
+        showMainFlow()
     }
     
     override func finish() {
@@ -36,11 +37,19 @@ private extension AppCoordinator {
         firstCoordinator.start()
     }
     
-    func showLoginFlow() {
+    func showLoginScreen() {
         guard let navigationController = navigationController else { return }
         let loginCoordinator = LoginCoordinator(type: .login, navigationController: navigationController, finishDelegate: self)
         addChildCoordinator(loginCoordinator)
         loginCoordinator.start()
+    }
+   
+    
+    func showProfileScreen() {
+        guard let navigationController = navigationController else { return }
+        let profileCoordinator = ProfileCoordinator(type: .profile, navigationController: navigationController, finishDelegate: self)
+        addChildCoordinator(profileCoordinator)
+        profileCoordinator.start()
     }
     
     func showMainFlow() {
@@ -88,12 +97,18 @@ extension AppCoordinator: CoordinatorFinishDelegate {
         removeChildCoordinator(childeCoordinators)
         switch childeCoordinators.type {
         case .first:
-            showLoginFlow()
+            showLoginScreen()
             navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
         case .login:
-            showMainFlow()
+            if let loginCoordinator = childeCoordinators as? LoginCoordinator, loginCoordinator.shouldShowProfile { showProfileScreen()
+            } else {
+                showMainFlow()
+            }
             navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
-            
+        case .profile:
+            showLoginScreen()
+            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
+
         case .app:
             return
         default:

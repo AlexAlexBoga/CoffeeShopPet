@@ -27,7 +27,9 @@
 		A962A65B2C7E039E00798FD5 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A65A2C7E039E00798FD5 /* HomeModel.swift */; };
 		A962A65D2C7E075200798FD5 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A65C2C7E075200798FD5 /* HomePresenter.swift */; };
 		A962A6632C7E3C4B00798FD5 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6622C7E3C4B00798FD5 /* OrderViewController.swift */; };
-		A962A6652C7E3D2400798FD5 /* OrderScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */; };
+		A962A6652C7E3D2400798FD5 /* OrderViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6642C7E3D2400798FD5 /* OrderViewPresenter.swift */; };
+		A96654662C84E14C004F9D0C /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96654652C84E14C004F9D0C /* ProfilePresenter.swift */; };
+		A97129D62C84B28000D59F5F /* OrderCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97129D52C84B28000D59F5F /* OrderCoordinator.swift */; };
 		A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98074642C80EA2600004745 /* CSOrderButton.swift */; };
 		A98074672C80FC6B00004745 /* CSCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98074662C80FC6B00004745 /* CSCounterButton.swift */; };
 		A99749072C7C68BE00C6191F /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749062C7C68BE00C6191F /* CSButton.swift */; };
@@ -68,7 +70,9 @@
 		A962A65A2C7E039E00798FD5 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		A962A65C2C7E075200798FD5 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		A962A6622C7E3C4B00798FD5 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
-		A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderScreenPresenter.swift; sourceTree = "<group>"; };
+		A962A6642C7E3D2400798FD5 /* OrderViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewPresenter.swift; sourceTree = "<group>"; };
+		A96654652C84E14C004F9D0C /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		A97129D52C84B28000D59F5F /* OrderCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCoordinator.swift; sourceTree = "<group>"; };
 		A98074642C80EA2600004745 /* CSOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSOrderButton.swift; sourceTree = "<group>"; };
 		A98074662C80FC6B00004745 /* CSCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCounterButton.swift; sourceTree = "<group>"; };
 		A99749062C7C68BE00C6191F /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButton.swift; sourceTree = "<group>"; };
@@ -221,7 +225,7 @@
 		A962A6602C7E3C0400798FD5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */,
+				A962A6642C7E3D2400798FD5 /* OrderViewPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -231,6 +235,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A96654642C84E12B004F9D0C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A96654652C84E14C004F9D0C /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A99749042C7C686100C6191F /* CustomElements */ = {
@@ -282,6 +294,7 @@
 				A9606F532C832497007C9AB0 /* CartCoordinator.swift */,
 				A9606F552C8324B7007C9AB0 /* FavoriteCoordinator.swift */,
 				A9606F572C8324CD007C9AB0 /* ProfileCoordinator.swift */,
+				A97129D52C84B28000D59F5F /* OrderCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -360,6 +373,7 @@
 		A997492E2C7D186C00C6191F /* ProfileScreenModule */ = {
 			isa = PBXGroup;
 			children = (
+				A96654642C84E12B004F9D0C /* Presenter */,
 				A997492F2C7D18BA00C6191F /* View */,
 			);
 			path = ProfileScreenModule;
@@ -454,8 +468,10 @@
 				A962A6552C7DB85700798FD5 /* SmallHCViewCell.swift in Sources */,
 				A958755F2C78C6DA0092D79E /* SceneDelegate.swift in Sources */,
 				A98074672C80FC6B00004745 /* CSCounterButton.swift in Sources */,
-				A962A6652C7E3D2400798FD5 /* OrderScreenPresenter.swift in Sources */,
+				A97129D62C84B28000D59F5F /* OrderCoordinator.swift in Sources */,
+				A962A6652C7E3D2400798FD5 /* OrderViewPresenter.swift in Sources */,
 				A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */,
+				A96654662C84E14C004F9D0C /* ProfilePresenter.swift in Sources */,
 				A9F373BB2C82317D0037A51A /* CSCartButton.swift in Sources */,
 				A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */,
 				A9606F562C8324B7007C9AB0 /* FavoriteCoordinator.swift in Sources */,

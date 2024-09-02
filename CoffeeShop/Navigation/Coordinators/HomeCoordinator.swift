@@ -9,6 +9,8 @@ class HomeCoordinator: Coordinator {
     
     override func start() {
         let vc = HomeViewController()
+        let presenter = HomePresenter(view: vc, imageArray: imageArray, coffeeArray: coffeeArray)
+        vc.presenter = presenter
         navigationController?.pushViewController(vc, animated: true)
     }
     

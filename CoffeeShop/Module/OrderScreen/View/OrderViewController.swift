@@ -7,12 +7,11 @@
 
 import UIKit
 
-protocol HalfScreenViewProtocol: AnyObject {
+protocol OrderViewProtocol: AnyObject {
     
-    func setImage(image: UIImage)
 }
 
-class OrderViewController: UIViewController, HalfScreenViewProtocol {
+class OrderViewController: UIViewController, OrderViewProtocol {
     
     var presenter: OrderPresenterProtocol?
     

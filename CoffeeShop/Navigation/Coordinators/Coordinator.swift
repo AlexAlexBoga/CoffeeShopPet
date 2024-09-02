@@ -15,6 +15,7 @@ enum CoordinatorType {
     case cart
     case favorite
     case profile
+    case order
 }
 
 protocol CoordinatorProtocol: AnyObject {

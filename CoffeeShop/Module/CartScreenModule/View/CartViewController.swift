@@ -11,8 +11,8 @@ class CartViewController: UIViewController {
         
     private let cartLabel = CSLabel()
     private let cartImage = UIImageView()
-    private let recentlyButton = CSCartButton()
-    private let pastOrderButton = CSCartButton()
+    private let makeOrderButton = CSCartButton()
+    private let clearButton = CSCartButton()
     private let bottomView = UIView()
     private let locationImage = UIImageView()
     private let deliverLabel = CSLabel()
@@ -35,6 +35,11 @@ class CartViewController: UIViewController {
         
         return collection
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,36 +93,36 @@ class CartViewController: UIViewController {
     }
     
     private func setupRecentlyButton() {
-        view.addSubview(recentlyButton)
-        recentlyButton.translatesAutoresizingMaskIntoConstraints = false
-        recentlyButton.scheme = .black
-        recentlyButton.setTitle("Recently")
-        recentlyButton.action = { [weak self] in
-            self?.recentlyButtonPressed()
+        view.addSubview(makeOrderButton)
+        makeOrderButton.translatesAutoresizingMaskIntoConstraints = false
+        makeOrderButton.scheme = .black
+        makeOrderButton.setTitle("Order")
+        makeOrderButton.action = { [weak self] in
+            self?.orderButtonPressed()
         }
                 
         NSLayoutConstraint.activate([
-            recentlyButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
-            recentlyButton.leadingAnchor.constraint(equalTo: cartImage.trailingAnchor, constant: 170),
-            recentlyButton.heightAnchor.constraint(equalToConstant: 25),
-            recentlyButton.widthAnchor.constraint(equalToConstant: 80)
+            makeOrderButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
+            makeOrderButton.leadingAnchor.constraint(equalTo: cartImage.trailingAnchor, constant: 140),
+            makeOrderButton.heightAnchor.constraint(equalToConstant: 25),
+            makeOrderButton.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
     
     private func setupPastOrderButton() {
-        view.addSubview(pastOrderButton)
-        pastOrderButton.translatesAutoresizingMaskIntoConstraints = false
-        pastOrderButton.scheme = .white
-        pastOrderButton.setTitle("Past Orders")
-        pastOrderButton.action = { [weak self] in
-            self?.pastOrderButtonPressed()
+        view.addSubview(clearButton)
+        clearButton.translatesAutoresizingMaskIntoConstraints = false
+        clearButton.scheme = .white
+        clearButton.setTitle("Clear")
+        clearButton.action = { [weak self] in
+            self?.clearButtonPressed()
         }
                 
         NSLayoutConstraint.activate([
-            pastOrderButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
-            pastOrderButton.leadingAnchor.constraint(equalTo: recentlyButton.trailingAnchor, constant: 0),
-            pastOrderButton.heightAnchor.constraint(equalToConstant: 25),
-            pastOrderButton.widthAnchor.constraint(equalToConstant: 80)
+            clearButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
+            clearButton.leadingAnchor.constraint(equalTo: makeOrderButton.trailingAnchor, constant: 20),
+            clearButton.heightAnchor.constraint(equalToConstant: 25),
+            clearButton.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
     
@@ -283,11 +288,11 @@ class CartViewController: UIViewController {
         ])
     }
     
-    func recentlyButtonPressed() {
+    func orderButtonPressed() {
        print("recentlyButtonPressed")
     }
     
-    func pastOrderButtonPressed() {
+    func clearButtonPressed() {
        print("pastOrderButtonPressed")
     }
 }

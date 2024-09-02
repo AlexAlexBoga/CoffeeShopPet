@@ -8,22 +8,34 @@
 import UIKit
 
 protocol HomePresenterProtocol: AnyObject {
-    
+    func getImageData() -> [ImageModel]
+    func getCoffeeData() -> [СoffeeModel]
 }
 
 class HomePresenter {
     
     weak var view: HomeViewProtocol?
     private let imageArray: [ImageModel]
+    private let coffeeArray: [СoffeeModel]
     
-    init(view: HomeViewProtocol?, imageArray: [ImageModel]) {
+    init(view: HomeViewProtocol?, imageArray: [ImageModel], coffeeArray: [СoffeeModel]) {
         self.view = view
         self.imageArray = imageArray
+        self.coffeeArray = coffeeArray
     }
-    
+   
 }
 
 extension HomePresenter: HomePresenterProtocol {
     
+    func getImageData() -> [ImageModel] {
+        return imageArray
+    }
+    
+    func getCoffeeData() -> [СoffeeModel] {
+        return coffeeArray
+    }
     
 }
+    
+

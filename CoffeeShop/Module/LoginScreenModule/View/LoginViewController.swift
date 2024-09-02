@@ -15,6 +15,7 @@ class LoginViewController: UIViewController {
     
     var viewOutput: LoginViewOutput!
     
+    
     init(viewOutput: LoginViewOutput!) {
         super .init(nibName: nil, bundle: nil)
         self.viewOutput = viewOutput
@@ -166,7 +167,7 @@ class LoginViewController: UIViewController {
     }
     func loginButtonPressed() {
         print("loginButtonPressed")
-        viewOutput.loginViewFinish()
+        viewOutput.goToHomeVC()
     }
   
     
@@ -188,6 +189,7 @@ class LoginViewController: UIViewController {
     }
     func createButtonPressed() {
         print("createButtonPressed")
-        viewOutput.loginViewFinish()
+//        viewOutput.goToProfileVC()
+       
     }
 }

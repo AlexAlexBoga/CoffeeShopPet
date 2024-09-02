@@ -75,8 +75,8 @@ class BigVCViewCell: UICollectionViewCell {
     
         NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            priceLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
-            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: -15),
+            priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
         ])
     }
     func configure(with imageName: String, title: String, price: Double) {

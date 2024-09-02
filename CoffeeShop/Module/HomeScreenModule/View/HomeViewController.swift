@@ -8,14 +8,17 @@
 import UIKit
 
 protocol HomeViewProtocol: AnyObject {
-    
+
 }
 
 class HomeViewController: UIViewController, HomeViewProtocol {
 
-    var presenter: HomePresenter?
-    
+    var presenter: HomePresenterProtocol?
+
     private let label = CSLabel()
+    
+    private var coffeeArray: [СoffeeModel] = []
+    private var  imageArray: [ImageModel] = []
     
     lazy var smallHCollection: UICollectionView = {
         
@@ -46,14 +49,25 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
         setupLayout()
+    
     }
     
     private func setupLayout() {
         setupLabel()
         setupSmallHCollection()
         setupBigVCollection()
+        loadData()
     }
- 
+    
+    private func loadData() {
+        guard let presenter = presenter else { return }
+        coffeeArray = presenter.getCoffeeData()
+        imageArray = presenter.getImageData()
+        
+        smallHCollection.reloadData()
+        bigVCollection.reloadData()
+    }
+
     func setupLabel() {
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -100,8 +114,8 @@ class HomeViewController: UIViewController, HomeViewProtocol {
             bigVCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-    
-    }
+   
+}
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -152,12 +166,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 print("Image not found: \(imageName)")
                 return
             }
-            let halfVC = OrderViewController()
-            halfVC.setImage(image: selectedImage)
-            halfVC.modalPresentationStyle = .pageSheet
-            halfVC.modalPresentationStyle = .fullScreen
+            let orderVC = OrderViewController()
+            orderVC.setImage(image: selectedImage)
+            orderVC.modalPresentationStyle = .pageSheet
+            orderVC.modalPresentationStyle = .fullScreen
             
-            present(halfVC, animated: true, completion: nil)
+            present(orderVC, animated: true, completion: nil)
         }
     }
 }
