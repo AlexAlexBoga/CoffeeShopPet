@@ -10,15 +10,16 @@ import UIKit
 protocol HomePresenterProtocol: AnyObject {
     func getImageData() -> [ImageModel]
     func getCoffeeData() -> [СoffeeModel]
+   
 }
 
 class HomePresenter {
     
-    weak var view: HomeViewProtocol?
+    weak var view: HomeViewController?
     private let imageArray: [ImageModel]
     private let coffeeArray: [СoffeeModel]
     
-    init(view: HomeViewProtocol?, imageArray: [ImageModel], coffeeArray: [СoffeeModel]) {
+    init(view: HomeViewController?, imageArray: [ImageModel], coffeeArray: [СoffeeModel]) {
         self.view = view
         self.imageArray = imageArray
         self.coffeeArray = coffeeArray
@@ -27,7 +28,7 @@ class HomePresenter {
 }
 
 extension HomePresenter: HomePresenterProtocol {
-    
+  
     func getImageData() -> [ImageModel] {
         return imageArray
     }

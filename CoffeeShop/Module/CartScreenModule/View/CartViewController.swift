@@ -25,6 +25,7 @@ class CartViewController: UIViewController {
     private var totalLabel = CSLabel()
     private var totalPriceLabel = CSLabel()
     
+    
     lazy var orderCollection: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()

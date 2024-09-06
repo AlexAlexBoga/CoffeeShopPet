@@ -9,9 +9,9 @@ import Foundation
 
 
 struct ImageModel {
-    var imageName: String
-    var description: String
-    var price: Double
+    let imageName: String
+    let description: String
+    let price: Double
     
 }
 

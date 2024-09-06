@@ -17,6 +17,8 @@ class OrderViewController: UIViewController, OrderViewProtocol {
     
     private var imageView: UIImageView!
     private var imageToSet: UIImage?
+    private var coffeeName: String?
+    
     private let bottomView = UIView()
     private var mainLabel = CSLabel()
     private let addFavoriteImage = UIImageView()
@@ -72,9 +74,24 @@ class OrderViewController: UIViewController, OrderViewProtocol {
             imageView.heightAnchor.constraint(equalToConstant: 260)
         ])
         
-        if let image = imageToSet {
+        if let image = presenter?.getSelectedImage() {
+            setImage(image: image)
+        }
+        
+    }
+    
+    func setImage(image: UIImage) {
+        imageToSet = image
+        if imageView != nil {
             imageView.image = image
         }
+    }
+    
+    func setCoffeeName(name: String) {
+        coffeeName = name
+//        if coffeeNameLabel != nil {
+            coffeeNameLabel.text = name
+//        }
     }
 
     private func setupbottomViewView() {
@@ -109,7 +126,7 @@ class OrderViewController: UIViewController, OrderViewProtocol {
     private func setupCoffeeNameLabel() {
         bottomView.addSubview(coffeeNameLabel)
         coffeeNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        coffeeNameLabel.text = "CAPPUCINO LATTE"  // заменить на текст из ячейки
+        coffeeNameLabel.text = coffeeName ?? "CAPPUCINO LATTE"  // заменить на текст из ячейки
         coffeeNameLabel.textColor = .orderText
         coffeeNameLabel.font = .systemFont(ofSize: 16, weight: .bold)
         
@@ -118,6 +135,10 @@ class OrderViewController: UIViewController, OrderViewProtocol {
             coffeeNameLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
             coffeeNameLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -210),
         ])
+        
+        if let name = presenter?.getSelectedCoffeeName() {
+                    setCoffeeName(name: name)
+                }
     }
     
     private func setupOrderLabel() {
@@ -310,13 +331,7 @@ class OrderViewController: UIViewController, OrderViewProtocol {
         print("addButtonPressed")
         dismiss(animated: true, completion: nil)
     }
- 
-    func setImage(image: UIImage) {
-        imageToSet = image
-        if imageView != nil {
-            imageView.image = image
-        }
-    }
+
 }
 
 

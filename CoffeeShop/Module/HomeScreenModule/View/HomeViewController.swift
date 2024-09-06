@@ -7,11 +7,7 @@
 
 import UIKit
 
-protocol HomeViewProtocol: AnyObject {
-
-}
-
-class HomeViewController: UIViewController, HomeViewProtocol {
+class HomeViewController: UIViewController {
 
     var presenter: HomePresenterProtocol?
 
@@ -165,9 +161,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             guard let selectedImage = UIImage(named: imageName) else {
                 print("Image not found: \(imageName)")
                 return
-            }
+            }           
+            
             let orderVC = OrderViewController()
+            let orderPresenter = OrderPresenter(view: nil, image: selectedImage, coffeeName: selectedImageModel.description)
             orderVC.setImage(image: selectedImage)
+            orderVC.setCoffeeName(name: selectedImageModel.description)
+            orderVC.presenter = orderPresenter
             orderVC.modalPresentationStyle = .pageSheet
             orderVC.modalPresentationStyle = .fullScreen
             
