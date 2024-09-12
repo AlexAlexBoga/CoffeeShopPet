@@ -8,6 +8,9 @@
 import UIKit
 
 class CartViewController: UIViewController {
+    
+    var cartPresenter: CartPresenter?
+    private var cartItem: [CartModel] = []
         
     private let cartLabel = CSLabel()
     private let cartImage = UIImageView()
@@ -40,15 +43,22 @@ class CartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+      
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
-    
+        loadData()
         setupLayout()
     }
 
+    private func loadData() {
+        cartPresenter = CartPresenter(view: self)
+        cartItem = cartPresenter?.getCartItems() ?? []
+        orderCollection.reloadData()
+    }
+    
     private func setupLayout() {
         setupCartLabel()
         setupCartImage()
@@ -296,16 +306,23 @@ class CartViewController: UIViewController {
     func clearButtonPressed() {
        print("pastOrderButtonPressed")
     }
+    
 }
 
 extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        return cartItem.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CartViewCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CartViewCell", for: indexPath) as! CartViewCell
+        guard indexPath.item < cartItem.count else {
+            return cell
+        }
+        let cartModel = cartItem[indexPath.item]
+        cell.configure(with: cartModel.imageName,
+                       title: cartModel.description)
         return cell
     }
     

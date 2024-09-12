@@ -7,17 +7,14 @@
 
 import UIKit
 
-protocol OrderViewProtocol: AnyObject {
-    
-}
-
-class OrderViewController: UIViewController, OrderViewProtocol {
+class OrderViewController: UIViewController {
     
     var presenter: OrderPresenterProtocol?
     
     private var imageView: UIImageView!
     private var imageToSet: UIImage?
     private var coffeeName: String?
+    private var imageToSetName: String?
     
     private let bottomView = UIView()
     private var mainLabel = CSLabel()
@@ -77,21 +74,7 @@ class OrderViewController: UIViewController, OrderViewProtocol {
         if let image = presenter?.getSelectedImage() {
             setImage(image: image)
         }
-        
-    }
-    
-    func setImage(image: UIImage) {
-        imageToSet = image
-        if imageView != nil {
-            imageView.image = image
-        }
-    }
-    
-    func setCoffeeName(name: String) {
-        coffeeName = name
-//        if coffeeNameLabel != nil {
-            coffeeNameLabel.text = name
-//        }
+  
     }
 
     private func setupbottomViewView() {
@@ -137,8 +120,8 @@ class OrderViewController: UIViewController, OrderViewProtocol {
         ])
         
         if let name = presenter?.getSelectedCoffeeName() {
-                    setCoffeeName(name: name)
-                }
+            setCoffeeName(name: name)
+        }
     }
     
     private func setupOrderLabel() {
@@ -267,7 +250,6 @@ class OrderViewController: UIViewController, OrderViewProtocol {
         NSLayoutConstraint.activate([
             therdPriceButton.centerYAnchor.constraint(equalTo: secondPriceButton.centerYAnchor),
             therdPriceButton.leadingAnchor.constraint(equalTo: secondPriceButton.trailingAnchor, constant: 12),
-//            firstPriceButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -30),
             therdPriceButton.heightAnchor.constraint(equalToConstant: 44),
             therdPriceButton.widthAnchor.constraint(equalToConstant: 100)
         ])
@@ -317,7 +299,22 @@ class OrderViewController: UIViewController, OrderViewProtocol {
         ])
     }
     
+    func setImage(image: UIImage) {
+        imageToSet = image
+        if imageView != nil {
+            imageView.image = image
+        }
+    }
     
+    func setCoffeeName(name: String) {
+        coffeeName = name
+        coffeeNameLabel.text = name
+    }
+    
+    func setImageName(name: String) {
+        imageToSetName = name
+    }
+
     func firstButtonPressed() {
        print("firstPriceButton")
     }
@@ -329,6 +326,8 @@ class OrderViewController: UIViewController, OrderViewProtocol {
     }
     func addButtonPressed() {
         print("addButtonPressed")
+        presenter?.addToCartButtonPressed()
+        
         dismiss(animated: true, completion: nil)
     }
 

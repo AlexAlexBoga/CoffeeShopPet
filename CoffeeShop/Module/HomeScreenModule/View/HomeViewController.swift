@@ -8,9 +8,9 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    
     var presenter: HomePresenterProtocol?
-
+    
     private let label = CSLabel()
     
     private var coffeeArray: [СoffeeModel] = []
@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
         layout.minimumLineSpacing = 8
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.tag = 1
-
+        
         return collection
     }()
     
@@ -45,14 +45,14 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
         setupLayout()
-    
+        loadData()
     }
     
     private func setupLayout() {
         setupLabel()
         setupSmallHCollection()
         setupBigVCollection()
-        loadData()
+        
     }
     
     private func loadData() {
@@ -63,7 +63,7 @@ class HomeViewController: UIViewController {
         smallHCollection.reloadData()
         bigVCollection.reloadData()
     }
-
+    
     func setupLabel() {
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -87,10 +87,10 @@ class HomeViewController: UIViewController {
         smallHCollection.register(SmallHCViewCell.self, forCellWithReuseIdentifier: "SmallHCViewCell")
         
         NSLayoutConstraint.activate([
-           smallHCollection.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 28),
-           smallHCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-           smallHCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-           smallHCollection.heightAnchor.constraint(equalToConstant: 24),
+            smallHCollection.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 28),
+            smallHCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            smallHCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            smallHCollection.heightAnchor.constraint(equalToConstant: 24),
         ])
     }
     
@@ -110,7 +110,7 @@ class HomeViewController: UIViewController {
             bigVCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-   
+    
 }
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -161,12 +161,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             guard let selectedImage = UIImage(named: imageName) else {
                 print("Image not found: \(imageName)")
                 return
-            }           
+            }
             
             let orderVC = OrderViewController()
-            let orderPresenter = OrderPresenter(view: nil, image: selectedImage, coffeeName: selectedImageModel.description)
+            let orderPresenter = OrderPresenter(view: nil, image: selectedImage, coffeeName: selectedImageModel.description, selectedImageName: selectedImageModel.imageName)
             orderVC.setImage(image: selectedImage)
             orderVC.setCoffeeName(name: selectedImageModel.description)
+            orderVC.setImageName(name: imageName)
             orderVC.presenter = orderPresenter
             orderVC.modalPresentationStyle = .pageSheet
             orderVC.modalPresentationStyle = .fullScreen
@@ -175,29 +176,29 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
 }
-    extension HomeViewController: UICollectionViewDelegateFlowLayout {
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-                switch collectionView.tag {
-                case 1:
-                    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                case 2:
-                    return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
-                default:
-                    return UIEdgeInsets.zero
-                }
-            }
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            
-            switch collectionView.tag {
-            case 1:
-                return CGSize(width: 110, height: 24)
-                     case 2:
-                return CGSize(width: 332, height: 105)
-            default:
-                return CGSize(width: 0, height: 0)
-            }
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch collectionView.tag {
+        case 1:
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        case 2:
+            return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+        default:
+            return UIEdgeInsets.zero
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        switch collectionView.tag {
+        case 1:
+            return CGSize(width: 110, height: 24)
+        case 2:
+            return CGSize(width: 332, height: 105)
+        default:
+            return CGSize(width: 0, height: 0)
+        }
+    }
+}
 

@@ -12,7 +12,6 @@ struct ImageModel {
     let imageName: String
     let description: String
     let price: Double
-    
 }
 
 let imageArray: [ImageModel] = [

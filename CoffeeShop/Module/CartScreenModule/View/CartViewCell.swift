@@ -43,7 +43,7 @@ class CartViewCell: UICollectionViewCell {
             imageView.widthAnchor.constraint(equalToConstant: 70),
             imageView.heightAnchor.constraint(equalToConstant: 93),
         ])
-    
+        
     }
     func setupBottomLabel() {
         contentView.addSubview(titleLabel)
@@ -53,11 +53,15 @@ class CartViewCell: UICollectionViewCell {
         titleLabel.font = .systemFont(ofSize: 16, weight: .medium)
         titleLabel.text = "Title label"
         titleLabel.textColor = .black
-    
+        
         NSLayoutConstraint.activate([
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
         ])
+    }
+    func configure(with imageName: String, title: String) {
+        self.imageView.image = UIImage(named: imageName)
+        self.titleLabel.text = title
     }
     
 }
