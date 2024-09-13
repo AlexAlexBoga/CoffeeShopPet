@@ -6,9 +6,14 @@
 //
 import Foundation
 
+//struct CartModel: Codable {
+//    let imageName: String
+//    let description: String
+//
+//}
 struct CartModel: Codable {
     let imageName: String
     let description: String
-
+    let price: Double
+    let coffeeType: String
 }
-

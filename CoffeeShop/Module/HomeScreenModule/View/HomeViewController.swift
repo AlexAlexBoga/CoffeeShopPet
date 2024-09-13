@@ -60,16 +60,14 @@ class HomeViewController: UIViewController {
         coffeeArray = presenter.getCoffeeData()
         imageArray = presenter.getImageData()
         
-        if let firstCoffee = coffeeArray.first {
-            filterImages(for: firstCoffee.coffeeName)
-    }
-        
+        filterImages(for: "All coffee")
+    
         smallHCollection.reloadData()
         bigVCollection.reloadData()
     }
 
     private func filterImages(for coffeeType: String) {
-        if coffeeType.isEmpty {
+        if coffeeType == "All coffee" {
             filteredImageArray = imageArray
         } else {
             filteredImageArray = imageArray.filter { $0.coffeeType == coffeeType }
@@ -95,6 +93,7 @@ class HomeViewController: UIViewController {
         smallHCollection.translatesAutoresizingMaskIntoConstraints = false
         
         smallHCollection.backgroundColor = .backgroud
+        smallHCollection.showsHorizontalScrollIndicator = false
         smallHCollection.delegate = self
         smallHCollection.dataSource = self
         smallHCollection.register(SmallHCViewCell.self, forCellWithReuseIdentifier: "SmallHCViewCell")
@@ -102,7 +101,7 @@ class HomeViewController: UIViewController {
         NSLayoutConstraint.activate([
             smallHCollection.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 28),
             smallHCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            smallHCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            smallHCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             smallHCollection.heightAnchor.constraint(equalToConstant: 24),
         ])
     }
@@ -112,6 +111,7 @@ class HomeViewController: UIViewController {
         bigVCollection.translatesAutoresizingMaskIntoConstraints = false
         
         bigVCollection.backgroundColor = .backgroundCollection
+        bigVCollection.showsHorizontalScrollIndicator = false
         bigVCollection.delegate = self
         bigVCollection.dataSource = self
         bigVCollection.register(BigVCViewCell.self, forCellWithReuseIdentifier: "BigVCViewCell")
@@ -160,7 +160,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
             cell.configure(with: imageModel.imageName,
                            title: imageModel.description,
-                           price: imageModel.price)
+                           price: imageModel.price,
+                           coffeeType: imageModel.coffeeType)
             return cell
         default:
             return UICollectionViewCell()
@@ -175,22 +176,31 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 } else if collectionView.tag == 2 {
                     let selectedImageModel = filteredImageArray[indexPath.item]
                     let imageName = selectedImageModel.imageName
+                    let coffeeType = selectedImageModel.coffeeType
+                    let coffeePrice = selectedImageModel.price
             
             guard let selectedImage = UIImage(named: imageName) else {
                 print("Image not found: \(imageName)")
                 return
             }
             
-            let orderVC = OrderViewController()
-            let orderPresenter = OrderPresenter(view: nil, image: selectedImage, coffeeName: selectedImageModel.description, selectedImageName: selectedImageModel.imageName)
-            orderVC.setImage(image: selectedImage)
-            orderVC.setCoffeeName(name: selectedImageModel.description)
-            orderVC.setImageName(name: imageName)
-            orderVC.presenter = orderPresenter
-            orderVC.modalPresentationStyle = .pageSheet
-            orderVC.modalPresentationStyle = .fullScreen
-            
-            present(orderVC, animated: true, completion: nil)
+                    let orderVC = OrderViewController()
+                    let orderPresenter = OrderPresenter(view: nil,
+                                                        image: selectedImage,
+                                                        coffeeName: selectedImageModel.description,
+                                                        selectedImageName: imageName,
+                                                        coffeeType: selectedImageModel.coffeeType,
+                                                        coffeePrice: selectedImageModel.price)
+                    orderVC.setImage(image: selectedImage)
+                    orderVC.setCoffeeName(name: selectedImageModel.description)
+                    orderVC.setImageName(name: imageName)
+                    orderVC.setCoffeeType(name: coffeeType)
+                    orderVC.setCoffeePrice(price: coffeePrice)
+                    orderVC.presenter = orderPresenter
+                    orderVC.modalPresentationStyle = .pageSheet
+                    orderVC.modalPresentationStyle = .fullScreen
+                    
+                    present(orderVC, animated: true, completion: nil)
         }
     }
 }

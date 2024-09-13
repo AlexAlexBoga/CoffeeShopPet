@@ -13,7 +13,7 @@ class BigVCViewCell: UICollectionViewCell {
     let imageView = UIImageView()
     let titleLabel = UILabel()
     let priceLabel = UILabel()
-    let coffeSortLabel = UILabel()
+    let coffeTypeLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +27,7 @@ class BigVCViewCell: UICollectionViewCell {
     func setupCell() {
         contentView.backgroundColor = .itemBackground
         setupTopView()
-        setupCoffeeSortLabel()
+        setupCoffeeTypeLabel()
         setupBottomLabel()
         setupPriceLabel()
     
@@ -51,17 +51,17 @@ class BigVCViewCell: UICollectionViewCell {
         ])
     
     }
-    func setupCoffeeSortLabel() {
-        contentView.addSubview(coffeSortLabel)
-        coffeSortLabel.translatesAutoresizingMaskIntoConstraints = false
+    func setupCoffeeTypeLabel() {
+        contentView.addSubview(coffeTypeLabel)
+        coffeTypeLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        coffeSortLabel.font = .systemFont(ofSize: 10, weight: .medium)
-        coffeSortLabel.text = "CoffeSortLabel"
-        coffeSortLabel.textColor = .black
+        coffeTypeLabel.font = .systemFont(ofSize: 10, weight: .medium)
+        coffeTypeLabel.text = "CoffeSortLabel"
+        coffeTypeLabel.textColor = .black
     
         NSLayoutConstraint.activate([
-            coffeSortLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
-            coffeSortLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
+            coffeTypeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            coffeTypeLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
         ])
     }
     
@@ -75,7 +75,7 @@ class BigVCViewCell: UICollectionViewCell {
         titleLabel.textColor = .black
     
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: coffeSortLabel.bottomAnchor, constant: 7),
+            titleLabel.topAnchor.constraint(equalTo: coffeTypeLabel.bottomAnchor, constant: 7),
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
         ])
     }
@@ -95,10 +95,12 @@ class BigVCViewCell: UICollectionViewCell {
             priceLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
         ])
     }
-    func configure(with imageName: String, title: String, price: Double) {
-            imageView.image = UIImage(named: imageName)
-            titleLabel.text = title
-            priceLabel.text = "€ \(price)"
+    
+    func configure(with imageName: String, title: String, price: Double, coffeeType: String) {
+        imageView.image = UIImage(named: imageName)
+        coffeTypeLabel.text = coffeeType
+        titleLabel.text = title
+        priceLabel.text = "€ \(price)"
         }
     
 }

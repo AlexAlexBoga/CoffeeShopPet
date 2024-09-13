@@ -322,7 +322,9 @@ extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         let cartModel = cartItem[indexPath.item]
         cell.configure(with: cartModel.imageName,
-                       title: cartModel.description)
+                       title: cartModel.description,
+                       price: cartModel.price,
+                       coffeeType: cartModel.coffeeType)
         return cell
     }
     

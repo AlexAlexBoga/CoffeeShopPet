@@ -15,6 +15,8 @@ class OrderViewController: UIViewController {
     private var imageToSet: UIImage?
     private var coffeeName: String?
     private var imageToSetName: String?
+    private var coffeeType: String?
+    private var coffeePrice: Double?
     
     private let bottomView = UIView()
     private var mainLabel = CSLabel()
@@ -95,7 +97,7 @@ class OrderViewController: UIViewController {
     private func setupMainLabel() {
         bottomView.addSubview(mainLabel)
         mainLabel.translatesAutoresizingMaskIntoConstraints = false
-        mainLabel.text = "Winter special"  // заменить на текст из ячейки
+        mainLabel.text = coffeeType ?? "Winter special"  // заменить на текст из ячейки
         mainLabel.textColor = .orderText
         mainLabel.font = .systemFont(ofSize: 36, weight: .bold)
         
@@ -258,7 +260,7 @@ class OrderViewController: UIViewController {
     private func setupPriceLabel() {
         bottomView.addSubview(priceLabel)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.text = "€ 4,95" // заменить на текст из ячейки
+        priceLabel.text = coffeePrice != nil ? String(format: "€ %.2f", coffeePrice!) : "€ 4,95" // заменить на текст из ячейки
         priceLabel.textColor = .orderText
         priceLabel.font = .systemFont(ofSize: 32, weight: .bold)
         
@@ -313,6 +315,14 @@ class OrderViewController: UIViewController {
     
     func setImageName(name: String) {
         imageToSetName = name
+    }
+    
+    func setCoffeeType(name: String) {
+        coffeeType = name
+    }
+    
+    func setCoffeePrice(price: Double) {
+        coffeePrice = price
     }
 
     func firstButtonPressed() {

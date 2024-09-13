@@ -35,6 +35,7 @@ struct СoffeeModel {
 }
 
 let coffeeArray: [СoffeeModel] = [
+    СoffeeModel(coffeeName: "All coffee"),
     СoffeeModel(coffeeName: "Popular"),
     СoffeeModel(coffeeName: "Black coffee"),
     СoffeeModel(coffeeName: "Winter special"),

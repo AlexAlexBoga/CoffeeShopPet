@@ -13,6 +13,8 @@ protocol OrderPresenterProtocol: AnyObject {
     func getSelectedImageName() -> String?
     func addToCartButtonPressed()
     func setImageName(_ name: String?)
+    func getCoffeeType() -> String?
+    func getCoffeePrice() -> Double?
 }
 
 class OrderPresenter {
@@ -21,15 +23,28 @@ class OrderPresenter {
     private var selectedImage: UIImage?
     private var coffeeName: String?
     private var selectedImageName: String?
+    private var coffeeType: String?
+    private var coffeePrice: Double?
     
-    init(view: OrderViewController?, image: UIImage?, coffeeName: String?, selectedImageName: String?) {
+    init(view: OrderViewController?, image: UIImage?, coffeeName: String?, selectedImageName: String?, coffeeType: String?, coffeePrice: Double?) {
         self.selectedImage = image
         self.coffeeName = coffeeName
         self.selectedImageName = selectedImageName
+        self.coffeeType = coffeeType
+        self.coffeePrice = coffeePrice
     }
 }
 
 extension OrderPresenter: OrderPresenterProtocol {
+    func getCoffeePrice() -> Double? {
+        return coffeePrice
+    }
+    
+    
+    func getCoffeeType() -> String? {
+        return coffeeType
+    }
+    
     func setImageName(_ name: String?) {
         selectedImageName = name
     }
@@ -47,7 +62,7 @@ extension OrderPresenter: OrderPresenterProtocol {
     }
    
     func addToCartButtonPressed() {
-        let cartItem = CartModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "")
+        let cartItem = CartModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: getCoffeePrice() ?? 0, coffeeType: getCoffeeType() ?? "")
         
         var cartItems = loadCartItemsFromFile() ?? []
         cartItems.append(cartItem)
