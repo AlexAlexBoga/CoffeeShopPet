@@ -10,7 +10,14 @@ class CartCoordinator: Coordinator {
     
     override func start() {
         let vc = CartViewController()
+        let presenter = CartPresenter(view: vc)
+        vc.cartPresenter = presenter
+        
         navigationController?.pushViewController(vc, animated: true)
+      
+        DispatchQueue.main.async {
+            vc.loadData()
+        }
     }
     
     override func finish() {

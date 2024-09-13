@@ -9,7 +9,7 @@ import UIKit
 
 class CartViewController: UIViewController {
     
-    var cartPresenter: CartPresenter?
+    var cartPresenter: CartPresenterProtocol?
     private var cartItem: [CartModel] = []
         
     private let cartLabel = CSLabel()
@@ -43,18 +43,17 @@ class CartViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
-      
+        loadData()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
-        loadData()
         setupLayout()
     }
 
-    private func loadData() {
-        cartPresenter = CartPresenter(view: self)
+    func loadData() {
+        cartPresenter?.loadCartItemsFromJson()
         cartItem = cartPresenter?.getCartItems() ?? []
         orderCollection.reloadData()
     }

@@ -9,6 +9,5 @@ import Foundation
 struct CartModel: Codable {
     let imageName: String
     let description: String
-
 }
 
