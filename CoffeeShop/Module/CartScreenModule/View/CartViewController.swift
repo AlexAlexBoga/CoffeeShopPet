@@ -299,11 +299,12 @@ class CartViewController: UIViewController {
     }
     
     func orderButtonPressed() {
-       print("recentlyButtonPressed")
+       print("orderButtonPressed")
     }
     
     func clearButtonPressed() {
-       print("pastOrderButtonPressed")
+        cartPresenter?.clearButtonPressed()
+       print("clearButtonPressed")
     }
     
 }
@@ -311,7 +312,7 @@ class CartViewController: UIViewController {
 extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return cartItem.count
+        return cartPresenter?.getCartItems().count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

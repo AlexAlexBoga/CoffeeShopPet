@@ -13,6 +13,7 @@ class BigVCViewCell: UICollectionViewCell {
     let imageView = UIImageView()
     let titleLabel = UILabel()
     let priceLabel = UILabel()
+    let coffeSortLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +27,7 @@ class BigVCViewCell: UICollectionViewCell {
     func setupCell() {
         contentView.backgroundColor = .itemBackground
         setupTopView()
+        setupCoffeeSortLabel()
         setupBottomLabel()
         setupPriceLabel()
     
@@ -49,6 +51,20 @@ class BigVCViewCell: UICollectionViewCell {
         ])
     
     }
+    func setupCoffeeSortLabel() {
+        contentView.addSubview(coffeSortLabel)
+        coffeSortLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        coffeSortLabel.font = .systemFont(ofSize: 10, weight: .medium)
+        coffeSortLabel.text = "CoffeSortLabel"
+        coffeSortLabel.textColor = .black
+    
+        NSLayoutConstraint.activate([
+            coffeSortLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            coffeSortLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
+        ])
+    }
+    
     func setupBottomLabel() {
         contentView.addSubview(titleLabel)
         
@@ -59,7 +75,7 @@ class BigVCViewCell: UICollectionViewCell {
         titleLabel.textColor = .black
     
         NSLayoutConstraint.activate([
-            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            titleLabel.topAnchor.constraint(equalTo: coffeSortLabel.bottomAnchor, constant: 7),
             titleLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
         ])
     }

@@ -14,7 +14,8 @@ class HomeViewController: UIViewController {
     private let label = CSLabel()
     
     private var coffeeArray: [СoffeeModel] = []
-    private var  imageArray: [ImageModel] = []
+    private var imageArray: [ImageModel] = []
+    private var filteredImageArray: [ImageModel] = []
     
     lazy var smallHCollection: UICollectionView = {
         
@@ -40,7 +41,6 @@ class HomeViewController: UIViewController {
         return collection
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
@@ -60,7 +60,20 @@ class HomeViewController: UIViewController {
         coffeeArray = presenter.getCoffeeData()
         imageArray = presenter.getImageData()
         
+        if let firstCoffee = coffeeArray.first {
+            filterImages(for: firstCoffee.coffeeName)
+    }
+        
         smallHCollection.reloadData()
+        bigVCollection.reloadData()
+    }
+
+    private func filterImages(for coffeeType: String) {
+        if coffeeType.isEmpty {
+            filteredImageArray = imageArray
+        } else {
+            filteredImageArray = imageArray.filter { $0.coffeeType == coffeeType }
+        }
         bigVCollection.reloadData()
     }
     
@@ -120,7 +133,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 1:
             return coffeeArray.count
         case 2:
-            return imageArray.count
+            return filteredImageArray.count
         default:
             return 0
         }
@@ -139,10 +152,12 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BigVCViewCell", for: indexPath) as! BigVCViewCell
-            guard indexPath.item < imageArray.count else {
+            guard indexPath.item < filteredImageArray.count else {
+
                 return cell
             }
-            let imageModel = imageArray[indexPath.item]
+            let imageModel = filteredImageArray[indexPath.item]
+
             cell.configure(with: imageModel.imageName,
                            title: imageModel.description,
                            price: imageModel.price)
@@ -153,10 +168,13 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Item selected at index \(indexPath.row)")
-        if collectionView.tag == 2 {
-            let selectedImageModel = imageArray[indexPath.item]
-            let imageName = selectedImageModel.imageName
+        if collectionView.tag == 1 {
+                let selectedCoffeeType = coffeeArray[indexPath.item].coffeeName
+                filterImages(for: selectedCoffeeType)
+            
+                } else if collectionView.tag == 2 {
+                    let selectedImageModel = filteredImageArray[indexPath.item]
+                    let imageName = selectedImageModel.imageName
             
             guard let selectedImage = UIImage(named: imageName) else {
                 print("Image not found: \(imageName)")

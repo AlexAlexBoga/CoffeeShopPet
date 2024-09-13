@@ -9,6 +9,7 @@ import Foundation
 protocol CartPresenterProtocol: AnyObject {
     func getCartItems() -> [CartModel]
     func loadCartItemsFromJson()
+    func clearButtonPressed()
 }
 
 class CartPresenter {
@@ -25,8 +26,41 @@ class CartPresenter {
 
 extension CartPresenter: CartPresenterProtocol {
     
+    func clearButtonPressed() {
+        cartItems.removeAll()
+        saveCartItemsToFile(cartItems)
+        view?.orderCollection.reloadData()
+        
+    }
+    
     func getCartItems() -> [CartModel] {
         return cartItems
+    }
+    
+    private func saveCartItemsToFile(_ cartItems: [CartModel]) {
+        let jsonEncoder = JSONEncoder()
+        jsonEncoder.outputFormatting = .prettyPrinted
+        
+        do {
+            let jsonData = try jsonEncoder.encode(cartItems)
+            saveJsonToFile(jsonData: jsonData)
+        } catch {
+            print("Failed to encode cart items: \(error.localizedDescription)")
+        }
+    }
+    
+    private func saveJsonToFile(jsonData: Data) {
+        let fileManager = FileManager.default
+        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
+        if let documentDirectory = urls.first {
+            let fileURL = documentDirectory.appendingPathComponent("cartItems.json")
+            do {
+                try jsonData.write(to: fileURL)
+                print("JSON saved to: \(fileURL.absoluteURL)")
+            } catch {
+                print("Failed to save JSON to file: \(error.localizedDescription)")
+            }
+        }
     }
     
     func loadCartItemsFromJson() {
