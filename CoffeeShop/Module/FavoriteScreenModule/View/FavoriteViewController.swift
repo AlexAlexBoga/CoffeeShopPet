@@ -115,6 +115,22 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
                        coffeeType: favoriteModel.coffeeType)
         return cell
     }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+
+            let deleteAction = UIAction(title: "Delete", attributes: .destructive) { [weak self] action in
+                guard let self = self else { return }
+
+                self.favoriteItem.remove(at: indexPath.item)
+                self.favoritePresenter?.updateCartItems(self.favoriteItem)
+                self.favoriteCollection.reloadData()
+            }
+        
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+                UIMenu(title: "", children: [deleteAction])
+            }
+        }
 }
 
 extension FavoriteViewController: UICollectionViewDelegateFlowLayout {

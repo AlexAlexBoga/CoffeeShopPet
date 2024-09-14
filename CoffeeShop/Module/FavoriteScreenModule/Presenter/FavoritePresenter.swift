@@ -9,6 +9,7 @@ import Foundation
 
 protocol FavoritePresenterProtocol: AnyObject {
     func getFavoriteItem() -> [FavoriteModel]
+    func updateCartItems(_ items: [FavoriteModel])
     
 }
 
@@ -24,6 +25,12 @@ class FavoritePresenter {
 }
 
 extension FavoritePresenter: FavoritePresenterProtocol {
+    
+    func updateCartItems(_ items: [FavoriteModel]) {
+        favoriteItem = items
+        saveFavoriteItemsToFile(favoriteItem)
+    }
+    
     
     func getFavoriteItem() -> [FavoriteModel] {
         return favoriteItem

@@ -10,6 +10,7 @@ protocol CartPresenterProtocol: AnyObject {
     func getCartItems() -> [CartModel]
     func loadCartItemsFromJson()
     func clearButtonPressed()
+    func updateCartItems(_ items: [CartModel])
 }
 
 class CartPresenter {
@@ -25,12 +26,17 @@ class CartPresenter {
 }
 
 extension CartPresenter: CartPresenterProtocol {
+   
+    func updateCartItems(_ items: [CartModel]) {
+        cartItems = items
+        saveCartItemsToFile(cartItems)
+    }
+    
     
     func clearButtonPressed() {
         cartItems.removeAll()
         saveCartItemsToFile(cartItems)
         view?.orderCollection.reloadData()
-        
     }
     
     func getCartItems() -> [CartModel] {

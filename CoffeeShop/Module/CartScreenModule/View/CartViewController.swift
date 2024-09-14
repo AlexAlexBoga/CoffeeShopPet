@@ -344,6 +344,23 @@ extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSour
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+
+            let deleteAction = UIAction(title: "Delete", attributes: .destructive) { [weak self] action in
+                guard let self = self else { return }
+
+                self.cartItem.remove(at: indexPath.item)
+                self.cartPresenter?.updateCartItems(self.cartItem)
+                self.orderCollection.reloadData()
+                self.updateSabtotalPrice()
+                self.totalSum()
+            }
+        
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+                UIMenu(title: "", children: [deleteAction])
+            }
+        }
+    
 }
 
 extension CartViewController: UICollectionViewDelegateFlowLayout {
