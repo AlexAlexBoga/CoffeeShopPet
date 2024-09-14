@@ -55,6 +55,8 @@ class CartViewController: UIViewController {
     func loadData() {
         cartPresenter?.loadCartItemsFromJson()
         cartItem = cartPresenter?.getCartItems() ?? []
+        updateSabtotalPrice()
+        totalSum()
         orderCollection.reloadData()
     }
     
@@ -296,6 +298,19 @@ class CartViewController: UIViewController {
             totalPriceLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -29),
             totalPriceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: sabtotalLabel.trailingAnchor, constant: 8)
         ])
+    }
+    
+    func sabtotalPrice() -> Double {
+        cartItem.reduce(0) { $0 + $1.price}
+    }
+    func updateSabtotalPrice() {
+        let sabtotalSum = sabtotalPrice()
+        sabtotalPriceLabel.text = String(format: "Total: € %.2f", sabtotalSum)
+    }
+    
+    func totalSum() {
+        let totalSum = sabtotalPrice() + 1.5
+        totalPriceLabel.text = String(format: "Total: € %.2f", totalSum)
     }
     
     func orderButtonPressed() {

@@ -104,7 +104,7 @@ class OrderViewController: UIViewController {
         NSLayoutConstraint.activate([
             mainLabel.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 42),
             mainLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
-            mainLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -234),
+            mainLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -214),
         ])
     }
     
@@ -116,7 +116,7 @@ class OrderViewController: UIViewController {
         coffeeNameLabel.font = .systemFont(ofSize: 16, weight: .bold)
         
         NSLayoutConstraint.activate([
-            coffeeNameLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 22),
+            coffeeNameLabel.topAnchor.constraint(equalTo: addFavoriteImage.bottomAnchor, constant: 60),
             coffeeNameLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
             coffeeNameLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -210),
         ])
