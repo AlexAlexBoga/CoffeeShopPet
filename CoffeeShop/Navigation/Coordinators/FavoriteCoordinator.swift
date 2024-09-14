@@ -10,6 +10,9 @@ class FavoriteCoordinator: Coordinator {
     
     override func start() {
         let vc = FavoriteViewController()
+        let presenter = FavoritePresenter(view: vc)
+        vc.favoritePresenter = presenter
+        
         navigationController?.pushViewController(vc, animated: true)
     }
     

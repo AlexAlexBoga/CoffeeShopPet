@@ -1,12 +1,13 @@
 //
-//  CartModel.swift
+//  FavoriteModel.swift
 //  CoffeeShop
 //
-//  Created by Александр Богачев on 5.09.24.
+//  Created by Александр Богачев on 14.09.24.
 //
+
 import Foundation
 
-struct CartModel: Codable {
+struct FavoriteModel: Codable {
     let imageName: String
     let description: String
     let price: Double

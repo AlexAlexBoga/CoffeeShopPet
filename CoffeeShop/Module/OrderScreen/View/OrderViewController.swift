@@ -171,6 +171,10 @@ class OrderViewController: UIViewController {
         addFavoriteImage.translatesAutoresizingMaskIntoConstraints = false
         addFavoriteImage.image = .favoriteHeart
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(favoriteImageTapped))
+           addFavoriteImage.isUserInteractionEnabled = true
+           addFavoriteImage.addGestureRecognizer(tapGesture)
+        
         NSLayoutConstraint.activate([
             addFavoriteImage.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 66),
             addFavoriteImage.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -81),
@@ -323,6 +327,12 @@ class OrderViewController: UIViewController {
     
     func setCoffeePrice(price: Double) {
         coffeePrice = price
+    }
+    
+    @objc
+    func favoriteImageTapped() {
+        print("favoriteImageTapped")
+        presenter?.addToFavoriteButtonPressed()
     }
 
     func firstButtonPressed() {

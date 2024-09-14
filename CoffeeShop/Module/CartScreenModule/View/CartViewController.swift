@@ -303,6 +303,7 @@ class CartViewController: UIViewController {
     func sabtotalPrice() -> Double {
         cartItem.reduce(0) { $0 + $1.price}
     }
+    
     func updateSabtotalPrice() {
         let sabtotalSum = sabtotalPrice()
         sabtotalPriceLabel.text = String(format: "Total: € %.2f", sabtotalSum)

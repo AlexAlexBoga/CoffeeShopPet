@@ -9,8 +9,12 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     
+    var favoritePresenter: FavoritePresenterProtocol?
+    private var favoriteItem: [FavoriteModel] = []
+    
     private let favoriteLabel = CSLabel()
     private let drinksLabel = CSLabel()
+   
     
     lazy var favoriteCollection: UICollectionView = {
         
@@ -23,12 +27,26 @@ class FavoriteViewController: UIViewController {
         return collection
     }()
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        loadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
         
         setupLayout()
+        loadData()
     }
+    
+    func loadData() {
+        favoriteItem = favoritePresenter?.getFavoriteItem() ?? []
+        print("Favorite items count: \(favoriteItem.count)")
+        favoriteCollection.reloadData()
+    }
+    
     private func setupLayout() {
         setupFavoriteLabel()
         setupDrinksLabel()
@@ -82,14 +100,21 @@ class FavoriteViewController: UIViewController {
 extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        return favoritePresenter?.getFavoriteItem().count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteViewCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FavoriteViewCell", for: indexPath) as! FavoriteViewCell
+        guard indexPath.item < favoriteItem.count else {
+            return cell
+        }
+        let favoriteModel = favoriteItem[indexPath.item]
+        cell.configure(with: favoriteModel.imageName,
+                       title: favoriteModel.description,
+                       price: favoriteModel.price,
+                       coffeeType: favoriteModel.coffeeType)
         return cell
     }
-    
 }
 
 extension FavoriteViewController: UICollectionViewDelegateFlowLayout {
