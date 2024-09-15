@@ -42,6 +42,7 @@ class FavoriteViewController: UIViewController {
     }
     
     func loadData() {
+        favoritePresenter?.loadFavoriteItemsFromFile()
         favoriteItem = favoritePresenter?.getFavoriteItem() ?? []
         print("Favorite items count: \(favoriteItem.count)")
         favoriteCollection.reloadData()
