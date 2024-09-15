@@ -7,17 +7,17 @@
 
 import UIKit
 
-protocol HalfScreenViewProtocol: AnyObject {
-    
-    func setImage(image: UIImage)
-}
-
-class OrderViewController: UIViewController, HalfScreenViewProtocol {
+class OrderViewController: UIViewController {
     
     var presenter: OrderPresenterProtocol?
     
     private var imageView: UIImageView!
     private var imageToSet: UIImage?
+    private var coffeeName: String?
+    private var imageToSetName: String?
+    private var coffeeType: String?
+    private var coffeePrice: Double?
+    
     private let bottomView = UIView()
     private var mainLabel = CSLabel()
     private let addFavoriteImage = UIImageView()
@@ -73,9 +73,10 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
             imageView.heightAnchor.constraint(equalToConstant: 260)
         ])
         
-        if let image = imageToSet {
-            imageView.image = image
+        if let image = presenter?.getSelectedImage() {
+            setImage(image: image)
         }
+  
     }
 
     private func setupbottomViewView() {
@@ -96,29 +97,33 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
     private func setupMainLabel() {
         bottomView.addSubview(mainLabel)
         mainLabel.translatesAutoresizingMaskIntoConstraints = false
-        mainLabel.text = "Winter special"  // заменить на текст из ячейки
+        mainLabel.text = coffeeType ?? "Winter special"  // заменить на текст из ячейки
         mainLabel.textColor = .orderText
         mainLabel.font = .systemFont(ofSize: 36, weight: .bold)
         
         NSLayoutConstraint.activate([
             mainLabel.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 42),
             mainLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
-            mainLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -234),
+            mainLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -214),
         ])
     }
     
     private func setupCoffeeNameLabel() {
         bottomView.addSubview(coffeeNameLabel)
         coffeeNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        coffeeNameLabel.text = "CAPPUCINO LATTE"  // заменить на текст из ячейки
+        coffeeNameLabel.text = coffeeName ?? "CAPPUCINO LATTE"  // заменить на текст из ячейки
         coffeeNameLabel.textColor = .orderText
         coffeeNameLabel.font = .systemFont(ofSize: 16, weight: .bold)
         
         NSLayoutConstraint.activate([
-            coffeeNameLabel.topAnchor.constraint(equalTo: mainLabel.bottomAnchor, constant: 22),
+            coffeeNameLabel.topAnchor.constraint(equalTo: addFavoriteImage.bottomAnchor, constant: 60),
             coffeeNameLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
             coffeeNameLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -210),
         ])
+        
+        if let name = presenter?.getSelectedCoffeeName() {
+            setCoffeeName(name: name)
+        }
     }
     
     private func setupOrderLabel() {
@@ -165,6 +170,10 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         bottomView.addSubview(addFavoriteImage)
         addFavoriteImage.translatesAutoresizingMaskIntoConstraints = false
         addFavoriteImage.image = .favoriteHeart
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(favoriteImageTapped))
+           addFavoriteImage.isUserInteractionEnabled = true
+           addFavoriteImage.addGestureRecognizer(tapGesture)
         
         NSLayoutConstraint.activate([
             addFavoriteImage.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 66),
@@ -247,7 +256,6 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         NSLayoutConstraint.activate([
             therdPriceButton.centerYAnchor.constraint(equalTo: secondPriceButton.centerYAnchor),
             therdPriceButton.leadingAnchor.constraint(equalTo: secondPriceButton.trailingAnchor, constant: 12),
-//            firstPriceButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -30),
             therdPriceButton.heightAnchor.constraint(equalToConstant: 44),
             therdPriceButton.widthAnchor.constraint(equalToConstant: 100)
         ])
@@ -256,7 +264,7 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
     private func setupPriceLabel() {
         bottomView.addSubview(priceLabel)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
-        priceLabel.text = "€ 4,95" // заменить на текст из ячейки
+        priceLabel.text = coffeePrice != nil ? String(format: "€ %.2f", coffeePrice!) : "€ 4,95" // заменить на текст из ячейки
         priceLabel.textColor = .orderText
         priceLabel.font = .systemFont(ofSize: 32, weight: .bold)
         
@@ -297,7 +305,36 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
         ])
     }
     
+    func setImage(image: UIImage) {
+        imageToSet = image
+        if imageView != nil {
+            imageView.image = image
+        }
+    }
     
+    func setCoffeeName(name: String) {
+        coffeeName = name
+        coffeeNameLabel.text = name
+    }
+    
+    func setImageName(name: String) {
+        imageToSetName = name
+    }
+    
+    func setCoffeeType(name: String) {
+        coffeeType = name
+    }
+    
+    func setCoffeePrice(price: Double) {
+        coffeePrice = price
+    }
+    
+    @objc
+    func favoriteImageTapped() {
+        print("favoriteImageTapped")
+        presenter?.addToFavoriteButtonPressed()
+    }
+
     func firstButtonPressed() {
        print("firstPriceButton")
     }
@@ -309,15 +346,11 @@ class OrderViewController: UIViewController, HalfScreenViewProtocol {
     }
     func addButtonPressed() {
         print("addButtonPressed")
+        presenter?.addToCartButtonPressed()
+        
         dismiss(animated: true, completion: nil)
     }
- 
-    func setImage(image: UIImage) {
-        imageToSet = image
-        if imageView != nil {
-            imageView.image = image
-        }
-    }
+
 }
 
 

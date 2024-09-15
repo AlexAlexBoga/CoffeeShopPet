@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A92001C02C89C28A00253F7A /* CartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92001BF2C89C28A00253F7A /* CartModel.swift */; };
+		A92001C22C8A184E00253F7A /* CartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92001C12C8A184E00253F7A /* CartPresenter.swift */; };
+		A94A72092C95FB3800362AAE /* FavoriteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A72082C95FB3800362AAE /* FavoriteModel.swift */; };
+		A94A720C2C95FE2A00362AAE /* FavoritePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A94A720B2C95FE2A00362AAE /* FavoritePresenter.swift */; };
 		A958755D2C78C6DA0092D79E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A958755C2C78C6DA0092D79E /* AppDelegate.swift */; };
 		A958755F2C78C6DA0092D79E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A958755E2C78C6DA0092D79E /* SceneDelegate.swift */; };
 		A95875662C78C6DB0092D79E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A95875652C78C6DB0092D79E /* Assets.xcassets */; };
@@ -27,7 +31,9 @@
 		A962A65B2C7E039E00798FD5 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A65A2C7E039E00798FD5 /* HomeModel.swift */; };
 		A962A65D2C7E075200798FD5 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A65C2C7E075200798FD5 /* HomePresenter.swift */; };
 		A962A6632C7E3C4B00798FD5 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6622C7E3C4B00798FD5 /* OrderViewController.swift */; };
-		A962A6652C7E3D2400798FD5 /* OrderScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */; };
+		A962A6652C7E3D2400798FD5 /* OrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A962A6642C7E3D2400798FD5 /* OrderPresenter.swift */; };
+		A96654662C84E14C004F9D0C /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96654652C84E14C004F9D0C /* ProfilePresenter.swift */; };
+		A97129D62C84B28000D59F5F /* OrderCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97129D52C84B28000D59F5F /* OrderCoordinator.swift */; };
 		A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98074642C80EA2600004745 /* CSOrderButton.swift */; };
 		A98074672C80FC6B00004745 /* CSCounterButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98074662C80FC6B00004745 /* CSCounterButton.swift */; };
 		A99749072C7C68BE00C6191F /* CSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749062C7C68BE00C6191F /* CSButton.swift */; };
@@ -46,6 +52,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A92001BF2C89C28A00253F7A /* CartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartModel.swift; sourceTree = "<group>"; };
+		A92001C12C8A184E00253F7A /* CartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartPresenter.swift; sourceTree = "<group>"; };
+		A94A72082C95FB3800362AAE /* FavoriteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteModel.swift; sourceTree = "<group>"; };
+		A94A720B2C95FE2A00362AAE /* FavoritePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePresenter.swift; sourceTree = "<group>"; };
 		A95875592C78C6DA0092D79E /* CoffeeShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A958755C2C78C6DA0092D79E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A958755E2C78C6DA0092D79E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +78,9 @@
 		A962A65A2C7E039E00798FD5 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
 		A962A65C2C7E075200798FD5 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		A962A6622C7E3C4B00798FD5 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
-		A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderScreenPresenter.swift; sourceTree = "<group>"; };
+		A962A6642C7E3D2400798FD5 /* OrderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPresenter.swift; sourceTree = "<group>"; };
+		A96654652C84E14C004F9D0C /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		A97129D52C84B28000D59F5F /* OrderCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCoordinator.swift; sourceTree = "<group>"; };
 		A98074642C80EA2600004745 /* CSOrderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSOrderButton.swift; sourceTree = "<group>"; };
 		A98074662C80FC6B00004745 /* CSCounterButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCounterButton.swift; sourceTree = "<group>"; };
 		A99749062C7C68BE00C6191F /* CSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSButton.swift; sourceTree = "<group>"; };
@@ -97,6 +109,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A92001BD2C89C25C00253F7A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A92001C12C8A184E00253F7A /* CartPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A92001BE2C89C26E00253F7A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A92001BF2C89C28A00253F7A /* CartModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A94A72072C95FB1100362AAE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A94A72082C95FB3800362AAE /* FavoriteModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A94A720A2C95FE0F00362AAE /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A94A720B2C95FE2A00362AAE /* FavoritePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		A95875502C78C6DA0092D79E = {
 			isa = PBXGroup;
 			children = (
@@ -221,7 +265,7 @@
 		A962A6602C7E3C0400798FD5 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				A962A6642C7E3D2400798FD5 /* OrderScreenPresenter.swift */,
+				A962A6642C7E3D2400798FD5 /* OrderPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -231,6 +275,14 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A96654642C84E12B004F9D0C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A96654652C84E14C004F9D0C /* ProfilePresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A99749042C7C686100C6191F /* CustomElements */ = {
@@ -282,6 +334,7 @@
 				A9606F532C832497007C9AB0 /* CartCoordinator.swift */,
 				A9606F552C8324B7007C9AB0 /* FavoriteCoordinator.swift */,
 				A9606F572C8324CD007C9AB0 /* ProfileCoordinator.swift */,
+				A97129D52C84B28000D59F5F /* OrderCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -306,6 +359,8 @@
 		A99749222C7CF86700C6191F /* CartScreenModule */ = {
 			isa = PBXGroup;
 			children = (
+				A92001BE2C89C26E00253F7A /* Model */,
+				A92001BD2C89C25C00253F7A /* Presenter */,
 				A99749232C7CF8A800C6191F /* View */,
 			);
 			path = CartScreenModule;
@@ -343,6 +398,8 @@
 		A997492A2C7D166400C6191F /* FavoriteScreenModule */ = {
 			isa = PBXGroup;
 			children = (
+				A94A720A2C95FE0F00362AAE /* Presenter */,
+				A94A72072C95FB1100362AAE /* Model */,
 				A997492B2C7D16AC00C6191F /* View */,
 			);
 			path = FavoriteScreenModule;
@@ -360,6 +417,7 @@
 		A997492E2C7D186C00C6191F /* ProfileScreenModule */ = {
 			isa = PBXGroup;
 			children = (
+				A96654642C84E12B004F9D0C /* Presenter */,
 				A997492F2C7D18BA00C6191F /* View */,
 			);
 			path = ProfileScreenModule;
@@ -445,6 +503,7 @@
 			files = (
 				A962A65D2C7E075200798FD5 /* HomePresenter.swift in Sources */,
 				A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */,
+				A94A720C2C95FE2A00362AAE /* FavoritePresenter.swift in Sources */,
 				A9606F5A2C833540007C9AB0 /* FirstViewPresenter.swift in Sources */,
 				A958755D2C78C6DA0092D79E /* AppDelegate.swift in Sources */,
 				A9606F582C8324CD007C9AB0 /* ProfileCoordinator.swift in Sources */,
@@ -454,8 +513,11 @@
 				A962A6552C7DB85700798FD5 /* SmallHCViewCell.swift in Sources */,
 				A958755F2C78C6DA0092D79E /* SceneDelegate.swift in Sources */,
 				A98074672C80FC6B00004745 /* CSCounterButton.swift in Sources */,
-				A962A6652C7E3D2400798FD5 /* OrderScreenPresenter.swift in Sources */,
+				A97129D62C84B28000D59F5F /* OrderCoordinator.swift in Sources */,
+				A962A6652C7E3D2400798FD5 /* OrderPresenter.swift in Sources */,
 				A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */,
+				A96654662C84E14C004F9D0C /* ProfilePresenter.swift in Sources */,
+				A92001C02C89C28A00253F7A /* CartModel.swift in Sources */,
 				A9F373BB2C82317D0037A51A /* CSCartButton.swift in Sources */,
 				A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */,
 				A9606F562C8324B7007C9AB0 /* FavoriteCoordinator.swift in Sources */,
@@ -476,6 +538,8 @@
 				A9606F5E2C834803007C9AB0 /* UserStorage.swift in Sources */,
 				A99749072C7C68BE00C6191F /* CSButton.swift in Sources */,
 				A9606F542C832497007C9AB0 /* CartCoordinator.swift in Sources */,
+				A94A72092C95FB3800362AAE /* FavoriteModel.swift in Sources */,
+				A92001C22C8A184E00253F7A /* CartPresenter.swift in Sources */,
 				A99749122C7CC08C00C6191F /* AppCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

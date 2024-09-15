@@ -7,8 +7,9 @@
 
 import UIKit
 
-class AppCoordinator: Coordinator {
-  
+class AppCoordinator: Coordinator, TabBarCoordinator {
+    var tabBarController: UITabBarController?
+    
     private let userStorage = UserStorage.shared
     
     override func start() {
@@ -17,8 +18,9 @@ class AppCoordinator: Coordinator {
 //        } else {
 //            showFirstFlow()
 //        }
-        showFirstFlow()
+//        showFirstFlow()
 //        showLoginFlow()
+        showMainFlow()
     }
     
     override func finish() {
@@ -35,11 +37,26 @@ private extension AppCoordinator {
         firstCoordinator.start()
     }
     
-    func showLoginFlow() {
+    func showLoginScreen() {
         guard let navigationController = navigationController else { return }
         let loginCoordinator = LoginCoordinator(type: .login, navigationController: navigationController, finishDelegate: self)
         addChildCoordinator(loginCoordinator)
         loginCoordinator.start()
+    }
+   
+    
+    func showProfileScreen() {
+        guard let navigationController = navigationController else { return }
+        let profileCoordinator = ProfileCoordinator(type: .profile, navigationController: navigationController, finishDelegate: self)
+        addChildCoordinator(profileCoordinator)
+        profileCoordinator.start()
+    }
+    
+    func showOrderScreen() {
+        guard let navigationController = navigationController else { return }
+        let orderCoordinator = OrderCoordinator(type: .order, navigationController: navigationController, finishDelegate: self)
+        addChildCoordinator(orderCoordinator)
+        orderCoordinator.start()
     }
     
     func showMainFlow() {
@@ -84,13 +101,24 @@ private extension AppCoordinator {
 
 extension AppCoordinator: CoordinatorFinishDelegate {
     func coordinatorDidFinish(childeCoordinators: CoordinatorProtocol) {
+        removeChildCoordinator(childeCoordinators)
         switch childeCoordinators.type {
-        case .login:
-            navigationController?.viewControllers.removeAll()
-            showMainFlow()
         case .first:
-            navigationController?.viewControllers.removeAll()
-            showLoginFlow()
+            showLoginScreen()
+            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
+        case .login:
+            if let loginCoordinator = childeCoordinators as? LoginCoordinator, loginCoordinator.shouldShowProfile { showProfileScreen()
+            } else {
+                showMainFlow()
+            }
+            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
+        case .profile:
+            showLoginScreen()
+            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
+        case .home:
+            showOrderScreen()
+            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
+
         case .app:
             return
         default:

@@ -15,6 +15,7 @@ enum CoordinatorType {
     case cart
     case favorite
     case profile
+    case order
 }
 
 protocol CoordinatorProtocol: AnyObject {
@@ -53,7 +54,7 @@ class Coordinator: CoordinatorProtocol {
     var childeCoordinators: [CoordinatorProtocol]
     var type: CoordinatorType
     var navigationController: UINavigationController?
-    var finishDelegate: (CoordinatorFinishDelegate)?
+    weak var finishDelegate: (CoordinatorFinishDelegate)?
     
     init(childeCoordinators: [CoordinatorProtocol] = [CoordinatorProtocol](), type: CoordinatorType, navigationController: UINavigationController, finishDelegate: CoordinatorFinishDelegate? = nil) {
         self.childeCoordinators = childeCoordinators

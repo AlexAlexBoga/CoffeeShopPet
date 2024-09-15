@@ -7,20 +7,25 @@
 import Foundation
 
 protocol LoginViewOutput: AnyObject {
-    func loginViewFinish()
+    func goToHomeVC()
+    func goToProfileVC()
 }
 
 class LoginViewPresenter: LoginViewOutput {
-    
+   
     weak var coordinator: LoginCoordinator!
     
     init(coordinator: LoginCoordinator!) {
         self.coordinator = coordinator
     }
     
-    func loginViewFinish() {
+    func goToHomeVC() {
         coordinator.finish()
     }
+    func goToProfileVC() {
+        coordinator.nextProfile()
+    }
+    
     
     
 }

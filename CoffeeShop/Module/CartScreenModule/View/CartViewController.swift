@@ -8,11 +8,14 @@
 import UIKit
 
 class CartViewController: UIViewController {
+    
+    var cartPresenter: CartPresenterProtocol?
+    private var cartItem: [CartModel] = []
         
     private let cartLabel = CSLabel()
     private let cartImage = UIImageView()
-    private let recentlyButton = CSCartButton()
-    private let pastOrderButton = CSCartButton()
+    private let makeOrderButton = CSCartButton()
+    private let clearButton = CSCartButton()
     private let bottomView = UIView()
     private let locationImage = UIImageView()
     private let deliverLabel = CSLabel()
@@ -25,6 +28,7 @@ class CartViewController: UIViewController {
     private var totalLabel = CSLabel()
     private var totalPriceLabel = CSLabel()
     
+    
     lazy var orderCollection: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
@@ -35,14 +39,27 @@ class CartViewController: UIViewController {
         
         return collection
     }()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        loadData()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
-    
         setupLayout()
     }
 
+    func loadData() {
+        cartPresenter?.loadCartItemsFromJson()
+        cartItem = cartPresenter?.getCartItems() ?? []
+        updateSabtotalPrice()
+        totalSum()
+        orderCollection.reloadData()
+    }
+    
     private func setupLayout() {
         setupCartLabel()
         setupCartImage()
@@ -88,36 +105,36 @@ class CartViewController: UIViewController {
     }
     
     private func setupRecentlyButton() {
-        view.addSubview(recentlyButton)
-        recentlyButton.translatesAutoresizingMaskIntoConstraints = false
-        recentlyButton.scheme = .black
-        recentlyButton.setTitle("Recently")
-        recentlyButton.action = { [weak self] in
-            self?.recentlyButtonPressed()
+        view.addSubview(makeOrderButton)
+        makeOrderButton.translatesAutoresizingMaskIntoConstraints = false
+        makeOrderButton.scheme = .black
+        makeOrderButton.setTitle("Order")
+        makeOrderButton.action = { [weak self] in
+            self?.orderButtonPressed()
         }
                 
         NSLayoutConstraint.activate([
-            recentlyButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
-            recentlyButton.leadingAnchor.constraint(equalTo: cartImage.trailingAnchor, constant: 170),
-            recentlyButton.heightAnchor.constraint(equalToConstant: 25),
-            recentlyButton.widthAnchor.constraint(equalToConstant: 80)
+            makeOrderButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
+            makeOrderButton.leadingAnchor.constraint(equalTo: cartImage.trailingAnchor, constant: 140),
+            makeOrderButton.heightAnchor.constraint(equalToConstant: 25),
+            makeOrderButton.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
     
     private func setupPastOrderButton() {
-        view.addSubview(pastOrderButton)
-        pastOrderButton.translatesAutoresizingMaskIntoConstraints = false
-        pastOrderButton.scheme = .white
-        pastOrderButton.setTitle("Past Orders")
-        pastOrderButton.action = { [weak self] in
-            self?.pastOrderButtonPressed()
+        view.addSubview(clearButton)
+        clearButton.translatesAutoresizingMaskIntoConstraints = false
+        clearButton.scheme = .white
+        clearButton.setTitle("Clear")
+        clearButton.action = { [weak self] in
+            self?.clearButtonPressed()
         }
                 
         NSLayoutConstraint.activate([
-            pastOrderButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
-            pastOrderButton.leadingAnchor.constraint(equalTo: recentlyButton.trailingAnchor, constant: 0),
-            pastOrderButton.heightAnchor.constraint(equalToConstant: 25),
-            pastOrderButton.widthAnchor.constraint(equalToConstant: 80)
+            clearButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
+            clearButton.leadingAnchor.constraint(equalTo: makeOrderButton.trailingAnchor, constant: 20),
+            clearButton.heightAnchor.constraint(equalToConstant: 25),
+            clearButton.widthAnchor.constraint(equalToConstant: 80)
         ])
     }
     
@@ -283,25 +300,66 @@ class CartViewController: UIViewController {
         ])
     }
     
-    func recentlyButtonPressed() {
-       print("recentlyButtonPressed")
+    func sabtotalPrice() -> Double {
+        cartItem.reduce(0) { $0 + $1.price}
     }
     
-    func pastOrderButtonPressed() {
-       print("pastOrderButtonPressed")
+    func updateSabtotalPrice() {
+        let sabtotalSum = sabtotalPrice()
+        sabtotalPriceLabel.text = String(format: "Total: € %.2f", sabtotalSum)
     }
+    
+    func totalSum() {
+        let totalSum = sabtotalPrice() + 1.5
+        totalPriceLabel.text = String(format: "Total: € %.2f", totalSum)
+    }
+    
+    func orderButtonPressed() {
+       print("orderButtonPressed")
+    }
+    
+    func clearButtonPressed() {
+        cartPresenter?.clearButtonPressed()
+       print("clearButtonPressed")
+    }
+    
 }
 
 extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+        return cartPresenter?.getCartItems().count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CartViewCell", for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CartViewCell", for: indexPath) as! CartViewCell
+        guard indexPath.item < cartItem.count else {
+            return cell
+        }
+        let cartModel = cartItem[indexPath.item]
+        cell.configure(with: cartModel.imageName,
+                       title: cartModel.description,
+                       price: cartModel.price,
+                       coffeeType: cartModel.coffeeType)
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+
+            let deleteAction = UIAction(title: "Delete", attributes: .destructive) { [weak self] action in
+                guard let self = self else { return }
+
+                self.cartItem.remove(at: indexPath.item)
+                self.cartPresenter?.updateCartItems(self.cartItem)
+                self.orderCollection.reloadData()
+                self.updateSabtotalPrice()
+                self.totalSum()
+            }
+        
+            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+                UIMenu(title: "", children: [deleteAction])
+            }
+        }
     
 }
 

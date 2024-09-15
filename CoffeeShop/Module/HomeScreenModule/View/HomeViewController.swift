@@ -7,16 +7,15 @@
 
 import UIKit
 
-protocol HomeViewProtocol: AnyObject {
+class HomeViewController: UIViewController {
     
-}
-
-class HomeViewController: UIViewController, HomeViewProtocol {
-
-//    var coordinator: MainCoordinator?
-    var presenter: HomePresenter?
+    var presenter: HomePresenterProtocol?
     
     private let label = CSLabel()
+    
+    private var coffeeArray: [СoffeeModel] = []
+    private var imageArray: [ImageModel] = []
+    private var filteredImageArray: [ImageModel] = []
     
     lazy var smallHCollection: UICollectionView = {
         
@@ -26,7 +25,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         layout.minimumLineSpacing = 8
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.tag = 1
-
+        
         return collection
     }()
     
@@ -42,19 +41,40 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         return collection
     }()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
         setupLayout()
+        loadData()
     }
     
     private func setupLayout() {
         setupLabel()
         setupSmallHCollection()
         setupBigVCollection()
+        
     }
- 
+    
+    private func loadData() {
+        guard let presenter = presenter else { return }
+        coffeeArray = presenter.getCoffeeData()
+        imageArray = presenter.getImageData()
+        
+        filterImages(for: "All coffee")
+    
+        smallHCollection.reloadData()
+        bigVCollection.reloadData()
+    }
+
+    private func filterImages(for coffeeType: String) {
+        if coffeeType == "All coffee" {
+            filteredImageArray = imageArray
+        } else {
+            filteredImageArray = imageArray.filter { $0.coffeeType == coffeeType }
+        }
+        bigVCollection.reloadData()
+    }
+    
     func setupLabel() {
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -73,15 +93,16 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         smallHCollection.translatesAutoresizingMaskIntoConstraints = false
         
         smallHCollection.backgroundColor = .backgroud
+        smallHCollection.showsHorizontalScrollIndicator = false
         smallHCollection.delegate = self
         smallHCollection.dataSource = self
         smallHCollection.register(SmallHCViewCell.self, forCellWithReuseIdentifier: "SmallHCViewCell")
         
         NSLayoutConstraint.activate([
-           smallHCollection.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 28),
-           smallHCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-           smallHCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-           smallHCollection.heightAnchor.constraint(equalToConstant: 24),
+            smallHCollection.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 28),
+            smallHCollection.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            smallHCollection.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            smallHCollection.heightAnchor.constraint(equalToConstant: 24),
         ])
     }
     
@@ -90,6 +111,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         bigVCollection.translatesAutoresizingMaskIntoConstraints = false
         
         bigVCollection.backgroundColor = .backgroundCollection
+        bigVCollection.showsHorizontalScrollIndicator = false
         bigVCollection.delegate = self
         bigVCollection.dataSource = self
         bigVCollection.register(BigVCViewCell.self, forCellWithReuseIdentifier: "BigVCViewCell")
@@ -102,7 +124,7 @@ class HomeViewController: UIViewController, HomeViewProtocol {
         ])
     }
     
-    }
+}
 
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -111,7 +133,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 1:
             return coffeeArray.count
         case 2:
-            return imageArray.count
+            return filteredImageArray.count
         default:
             return 0
         }
@@ -130,11 +152,16 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BigVCViewCell", for: indexPath) as! BigVCViewCell
-            guard indexPath.item < imageArray.count else {
+            guard indexPath.item < filteredImageArray.count else {
+
                 return cell
             }
-            let imageName = imageArray[indexPath.item].imageName
-            cell.imageView.image = UIImage(named: imageName)
+            let imageModel = filteredImageArray[indexPath.item]
+
+            cell.configure(with: imageModel.imageName,
+                           title: imageModel.description,
+                           price: imageModel.price,
+                           coffeeType: imageModel.coffeeType)
             return cell
         default:
             return UICollectionViewCell()
@@ -142,47 +169,64 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Item selected at index \(indexPath.row)")
-        if collectionView.tag == 2 {
-            let selectedImageModel = imageArray[indexPath.item]
-            let imageName = selectedImageModel.imageName
+        if collectionView.tag == 1 {
+                let selectedCoffeeType = coffeeArray[indexPath.item].coffeeName
+                filterImages(for: selectedCoffeeType)
+            
+                } else if collectionView.tag == 2 {
+                    let selectedImageModel = filteredImageArray[indexPath.item]
+                    let imageName = selectedImageModel.imageName
+                    let coffeeType = selectedImageModel.coffeeType
+                    let coffeePrice = selectedImageModel.price
             
             guard let selectedImage = UIImage(named: imageName) else {
                 print("Image not found: \(imageName)")
                 return
             }
-            let halfVC = OrderViewController()
-            halfVC.setImage(image: selectedImage)
-            halfVC.modalPresentationStyle = .pageSheet
-            halfVC.modalPresentationStyle = .fullScreen
             
-            present(halfVC, animated: true, completion: nil)
+                    let orderVC = OrderViewController()
+                    let orderPresenter = OrderPresenter(view: nil,
+                                                        image: selectedImage,
+                                                        coffeeName: selectedImageModel.description,
+                                                        selectedImageName: imageName,
+                                                        coffeeType: selectedImageModel.coffeeType,
+                                                        coffeePrice: selectedImageModel.price)
+                    orderVC.setImage(image: selectedImage)
+                    orderVC.setCoffeeName(name: selectedImageModel.description)
+                    orderVC.setImageName(name: imageName)
+                    orderVC.setCoffeeType(name: coffeeType)
+                    orderVC.setCoffeePrice(price: coffeePrice)
+                    orderVC.presenter = orderPresenter
+                    orderVC.modalPresentationStyle = .pageSheet
+                    orderVC.modalPresentationStyle = .fullScreen
+                    
+                    present(orderVC, animated: true, completion: nil)
         }
     }
 }
-    extension HomeViewController: UICollectionViewDelegateFlowLayout {
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-                switch collectionView.tag {
-                case 1:
-                    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-                case 2:
-                    return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
-                default:
-                    return UIEdgeInsets.zero
-                }
-            }
-        
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            
-            switch collectionView.tag {
-            case 1:
-                return CGSize(width: 110, height: 24)
-                     case 2:
-                return CGSize(width: 332, height: 105)
-            default:
-                return CGSize(width: 0, height: 0)
-            }
+extension HomeViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch collectionView.tag {
+        case 1:
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        case 2:
+            return UIEdgeInsets(top: 40, left: 0, bottom: 0, right: 0)
+        default:
+            return UIEdgeInsets.zero
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        switch collectionView.tag {
+        case 1:
+            return CGSize(width: 110, height: 24)
+        case 2:
+            return CGSize(width: 332, height: 105)
+        default:
+            return CGSize(width: 0, height: 0)
+        }
+    }
+}
 

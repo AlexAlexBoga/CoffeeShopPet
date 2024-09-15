@@ -4,11 +4,14 @@
 //
 //  Created by Александр Богачев on 31.08.24.
 //
+import UIKit
 
 class HomeCoordinator: Coordinator {
     
     override func start() {
         let vc = HomeViewController()
+        let presenter = HomePresenter(view: vc, imageArray: imageArray, coffeeArray: coffeeArray)
+        vc.presenter = presenter
         navigationController?.pushViewController(vc, animated: true)
     }
     
