@@ -16,6 +16,7 @@ enum CoordinatorType {
     case favorite
     case profile
     case order
+    case account
 }
 
 protocol CoordinatorProtocol: AnyObject {

@@ -8,7 +8,7 @@ import Foundation
 
 protocol LoginViewOutput: AnyObject {
     func goToHomeVC()
-    func goToProfileVC()
+    func goToAccountVC()
 }
 
 class LoginViewPresenter: LoginViewOutput {
@@ -22,7 +22,7 @@ class LoginViewPresenter: LoginViewOutput {
     func goToHomeVC() {
         coordinator.finish()
     }
-    func goToProfileVC() {
+    func goToAccountVC() {
         coordinator.nextProfile()
     }
     

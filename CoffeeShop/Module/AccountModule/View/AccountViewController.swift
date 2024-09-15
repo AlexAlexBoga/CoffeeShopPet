@@ -1,29 +1,13 @@
 //
-//  LoginViewController.swift
+//  AccountViewController.swift
 //  CoffeeShop
 //
-//  Created by Александр Богачев on 26.08.24.
+//  Created by Александр Богачев on 15.09.24.
 //
 
 import UIKit
 
-protocol LoginViewProtocol: AnyObject{
-
-}
-
-class LoginViewController: UIViewController {
-    
-    var viewOutput: LoginViewOutput!
-    
-    
-    init(viewOutput: LoginViewOutput!) {
-        super .init(nibName: nil, bundle: nil)
-        self.viewOutput = viewOutput
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+class AccountViewController: UIViewController {
     
     private let backGroundImage = CSBackGroundView()
     private let welcomeLabel = UILabel()
@@ -35,8 +19,11 @@ class LoginViewController: UIViewController {
     private let passwordUnderLineView = UIView()
     private let emailStackView = UIStackView()
     private let passwordStackView = UIStackView()
-    private let loginButton = CSButton()
     private let createButton = CSButton()
+    private let confirmLabel = UILabel()
+    private let confirmTextField = UITextField()
+    private let confirmUnderLineView = UIView()
+    private let confirmStackView = UIStackView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +35,7 @@ class LoginViewController: UIViewController {
         setupWelcomeLabel()
         setupEmailStackView()
         setupPasswordStackView()
-        setupLoginButton()
+        setupConfirmStackView()
         setupCreateButton()
     }
     
@@ -67,9 +54,8 @@ class LoginViewController: UIViewController {
     private func setupWelcomeLabel() {
         view.addSubview(welcomeLabel)
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
-        welcomeLabel.numberOfLines = 0
         welcomeLabel.lineBreakMode = .byWordWrapping
-        welcomeLabel.text = "Welcome Back!"
+        welcomeLabel.text = "Create account"
         welcomeLabel.textColor = .black
         welcomeLabel.font = UIFont.systemFont(ofSize: 36, weight: .bold)
         welcomeLabel.textAlignment = .left
@@ -77,7 +63,7 @@ class LoginViewController: UIViewController {
         NSLayoutConstraint.activate([
             welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 350),
             welcomeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            welcomeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -155),
+            welcomeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
         ])
     }
     
@@ -104,7 +90,7 @@ class LoginViewController: UIViewController {
         emailStackView.alignment = .fill
         
         NSLayoutConstraint.activate([
-            emailStackView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 13),
+            emailStackView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 25),
             emailStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             emailStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
 
@@ -149,39 +135,51 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    private func setupLoginButton() {
-        view.addSubview(loginButton)
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
-        loginButton.scheme = .black
-        loginButton.setTitle("Login")
-        loginButton.action = { [weak self] in
-            self?.loginButtonPressed()
-        }
-                
+    private func setupConfirmStackView() {
+        confirmLabel.text = "Confirm password"
+        confirmLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+        
+        confirmUnderLineView.backgroundColor = .gray
+        
+        confirmTextField.placeholder = "Password"
+        confirmTextField.font = UIFont.systemFont(ofSize: 15)
+        confirmTextField.textColor = UIColor.black
+        
+        confirmStackView.addArrangedSubview(confirmLabel)
+        confirmStackView.addArrangedSubview(confirmTextField)
+        confirmStackView.addArrangedSubview(confirmUnderLineView)
+        
+        view.addSubview(confirmStackView)
+        confirmStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        confirmStackView.backgroundColor = .clear
+        confirmStackView.axis = .vertical
+        confirmStackView.spacing = 10
+        confirmStackView.alignment = .fill
+        
         NSLayoutConstraint.activate([
-            loginButton.topAnchor.constraint(equalTo: passwordStackView.bottomAnchor, constant: 42),
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
-            loginButton.heightAnchor.constraint(equalToConstant: 50),
+            confirmStackView.topAnchor.constraint(equalTo: passwordStackView.bottomAnchor, constant: 13),
+            confirmStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            confirmStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+
+            confirmUnderLineView.bottomAnchor.constraint(equalTo: confirmStackView.bottomAnchor),
+            confirmUnderLineView.leadingAnchor.constraint(equalTo: confirmStackView.leadingAnchor),
+            confirmUnderLineView.trailingAnchor.constraint(equalTo: confirmUnderLineView.trailingAnchor),
+            confirmUnderLineView.heightAnchor.constraint(equalToConstant: 1),
         ])
     }
-    func loginButtonPressed() {
-        print("loginButtonPressed")
-        viewOutput.goToHomeVC()
-    }
-  
     
     private func setupCreateButton() {
         view.addSubview(createButton)
         createButton.translatesAutoresizingMaskIntoConstraints = false
-        createButton.scheme = .white
+        createButton.scheme = .black
         createButton.setTitle("Create an account")
         createButton.action = { [weak self] in
             self?.createButtonPressed()
         }
                 
         NSLayoutConstraint.activate([
-            createButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 27),
+            createButton.topAnchor.constraint(equalTo: confirmUnderLineView.bottomAnchor, constant: 76),
             createButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
             createButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
             createButton.heightAnchor.constraint(equalToConstant: 50),
@@ -189,7 +187,7 @@ class LoginViewController: UIViewController {
     }
     func createButtonPressed() {
         print("createButtonPressed")
-        viewOutput.goToAccountVC()
+//        viewOutput.goToProfileVC()
        
     }
 }

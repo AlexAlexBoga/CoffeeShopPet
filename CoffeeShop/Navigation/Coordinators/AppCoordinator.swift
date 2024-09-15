@@ -18,9 +18,10 @@ class AppCoordinator: Coordinator, TabBarCoordinator {
 //        } else {
 //            showFirstFlow()
 //        }
-//        showFirstFlow()
+        showFirstFlow()
 //        showLoginFlow()
-        showMainFlow()
+//        showMainFlow()
+//        showAccountScreen()
     }
     
     override func finish() {
@@ -57,6 +58,13 @@ private extension AppCoordinator {
         let orderCoordinator = OrderCoordinator(type: .order, navigationController: navigationController, finishDelegate: self)
         addChildCoordinator(orderCoordinator)
         orderCoordinator.start()
+    }
+    
+    func showAccountScreen() {
+        guard let navigationController = navigationController else { return }
+        let accountCoordinator = AccountCoordinator(type: .account, navigationController: navigationController, finishDelegate: self)
+        addChildCoordinator(accountCoordinator)
+        accountCoordinator.start()
     }
     
     func showMainFlow() {
@@ -107,7 +115,7 @@ extension AppCoordinator: CoordinatorFinishDelegate {
             showLoginScreen()
             navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
         case .login:
-            if let loginCoordinator = childeCoordinators as? LoginCoordinator, loginCoordinator.shouldShowProfile { showProfileScreen()
+            if let loginCoordinator = childeCoordinators as? LoginCoordinator, loginCoordinator.shouldShowProfile { showAccountScreen()
             } else {
                 showMainFlow()
             }
