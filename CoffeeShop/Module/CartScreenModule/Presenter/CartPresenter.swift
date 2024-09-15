@@ -26,63 +26,25 @@ class CartPresenter {
 }
 
 extension CartPresenter: CartPresenterProtocol {
-   
-    func updateCartItems(_ items: [CartModel]) {
-        cartItems = items
-        saveCartItemsToFile(cartItems)
-    }
-    
-    
-    func clearButtonPressed() {
-        cartItems.removeAll()
-        saveCartItemsToFile(cartItems)
-        view?.orderCollection.reloadData()
-    }
     
     func getCartItems() -> [CartModel] {
         return cartItems
     }
     
-    private func saveCartItemsToFile(_ cartItems: [CartModel]) {
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.outputFormatting = .prettyPrinted
-        
-        do {
-            let jsonData = try jsonEncoder.encode(cartItems)
-            saveJsonToFile(jsonData: jsonData)
-        } catch {
-            print("Failed to encode cart items: \(error.localizedDescription)")
-        }
+    func updateCartItems(_ items: [CartModel]) {
+        cartItems = items
+        JsonFileManager.shared.save(cartItems, to: "cartItems.json")
     }
     
-    private func saveJsonToFile(jsonData: Data) {
-        let fileManager = FileManager.default
-        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        if let documentDirectory = urls.first {
-            let fileURL = documentDirectory.appendingPathComponent("cartItems.json")
-            do {
-                try jsonData.write(to: fileURL)
-                print("JSON saved to: \(fileURL.absoluteURL)")
-            } catch {
-                print("Failed to save JSON to file: \(error.localizedDescription)")
-            }
-        }
+    
+    func clearButtonPressed() {
+        cartItems.removeAll()
+        JsonFileManager.shared.save(cartItems, to: "cartItems.json")
+        view?.orderCollection.reloadData()
     }
     
     func loadCartItemsFromJson() {
-        let fileManager = FileManager.default
-        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        if let documentDirectory = urls.first {
-            let fileURL = documentDirectory.appendingPathComponent("cartItems.json")
-            do {
-                let jsonData = try Data(contentsOf: fileURL)
-                let jsonDecoder = JSONDecoder()
-                let loadedCartItems = try jsonDecoder.decode([CartModel].self, from: jsonData)
-                cartItems = loadedCartItems
-                print("Loaded cart items from JSON: \(loadedCartItems)")
-            } catch {
-                print("Failed to load cart items from JSON file: \(error.localizedDescription)")
-            }
-        }
+        cartItems = JsonFileManager.shared.load(from: "cartItems.json", as: CartModel.self) ?? []
+        print("Loaded favorite items from file: \(cartItems)")
     }
 }

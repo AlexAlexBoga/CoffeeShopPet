@@ -46,6 +46,9 @@
 		A99749292C7D134900C6191F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749282C7D134900C6191F /* HomeViewController.swift */; };
 		A997492D2C7D16C800C6191F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997492C2C7D16C800C6191F /* FavoriteViewController.swift */; };
 		A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749302C7D18DB00C6191F /* ProfileViewController.swift */; };
+		A9D96AC62C972B6500AB1556 /* JsonFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D96AC52C972B6500AB1556 /* JsonFileManager.swift */; };
+		A9D96ACA2C973DCD00AB1556 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D96AC92C973DCD00AB1556 /* AccountViewController.swift */; };
+		A9D96ACC2C973EDF00AB1556 /* AccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D96ACB2C973EDF00AB1556 /* AccountCoordinator.swift */; };
 		A9F373BB2C82317D0037A51A /* CSCartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BA2C82317D0037A51A /* CSCartButton.swift */; };
 		A9F373BD2C82422C0037A51A /* CartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BC2C82422C0037A51A /* CartViewCell.swift */; };
 		A9F373BF2C826BA50037A51A /* FavoriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BE2C826BA50037A51A /* FavoriteViewCell.swift */; };
@@ -93,6 +96,9 @@
 		A99749282C7D134900C6191F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A997492C2C7D16C800C6191F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		A99749302C7D18DB00C6191F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A9D96AC52C972B6500AB1556 /* JsonFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFileManager.swift; sourceTree = "<group>"; };
+		A9D96AC92C973DCD00AB1556 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		A9D96ACB2C973EDF00AB1556 /* AccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCoordinator.swift; sourceTree = "<group>"; };
 		A9F373BA2C82317D0037A51A /* CSCartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCartButton.swift; sourceTree = "<group>"; };
 		A9F373BC2C82422C0037A51A /* CartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewCell.swift; sourceTree = "<group>"; };
 		A9F373BE2C826BA50037A51A /* FavoriteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewCell.swift; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 		A958755B2C78C6DA0092D79E /* CoffeeShop */ = {
 			isa = PBXGroup;
 			children = (
+				A9D96AC42C972B4100AB1556 /* JsonManager */,
 				A9606F5B2C8347AE007C9AB0 /* Services */,
 				A997491E2C7CF58900C6191F /* Navigation */,
 				A95875702C78F2D90092D79E /* Common */,
@@ -186,6 +193,7 @@
 			children = (
 				A95875722C78F3750092D79E /* FirstScreenModule */,
 				A99749082C7C810A00C6191F /* LoginScreenModule */,
+				A9D96AC72C973D6B00AB1556 /* AccountModule */,
 				A99749262C7D12EF00C6191F /* HomeScreenModule */,
 				A962A65E2C7E3BB200798FD5 /* OrderScreen */,
 				A99749222C7CF86700C6191F /* CartScreenModule */,
@@ -335,6 +343,7 @@
 				A9606F552C8324B7007C9AB0 /* FavoriteCoordinator.swift */,
 				A9606F572C8324CD007C9AB0 /* ProfileCoordinator.swift */,
 				A97129D52C84B28000D59F5F /* OrderCoordinator.swift */,
+				A9D96ACB2C973EDF00AB1556 /* AccountCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -431,6 +440,30 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A9D96AC42C972B4100AB1556 /* JsonManager */ = {
+			isa = PBXGroup;
+			children = (
+				A9D96AC52C972B6500AB1556 /* JsonFileManager.swift */,
+			);
+			path = JsonManager;
+			sourceTree = "<group>";
+		};
+		A9D96AC72C973D6B00AB1556 /* AccountModule */ = {
+			isa = PBXGroup;
+			children = (
+				A9D96AC82C973D9E00AB1556 /* View */,
+			);
+			path = AccountModule;
+			sourceTree = "<group>";
+		};
+		A9D96AC82C973D9E00AB1556 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A9D96AC92C973DCD00AB1556 /* AccountViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -503,12 +536,14 @@
 			files = (
 				A962A65D2C7E075200798FD5 /* HomePresenter.swift in Sources */,
 				A997490F2C7C829800C6191F /* CSBackGroundView.swift in Sources */,
+				A9D96ACA2C973DCD00AB1556 /* AccountViewController.swift in Sources */,
 				A94A720C2C95FE2A00362AAE /* FavoritePresenter.swift in Sources */,
 				A9606F5A2C833540007C9AB0 /* FirstViewPresenter.swift in Sources */,
 				A958755D2C78C6DA0092D79E /* AppDelegate.swift in Sources */,
 				A9606F582C8324CD007C9AB0 /* ProfileCoordinator.swift in Sources */,
 				A9F373BF2C826BA50037A51A /* FavoriteViewCell.swift in Sources */,
 				A99749162C7CCA4300C6191F /* LoginPresenter.swift in Sources */,
+				A9D96AC62C972B6500AB1556 /* JsonFileManager.swift in Sources */,
 				A997492D2C7D16C800C6191F /* FavoriteViewController.swift in Sources */,
 				A962A6552C7DB85700798FD5 /* SmallHCViewCell.swift in Sources */,
 				A958755F2C78C6DA0092D79E /* SceneDelegate.swift in Sources */,
@@ -518,6 +553,7 @@
 				A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */,
 				A96654662C84E14C004F9D0C /* ProfilePresenter.swift in Sources */,
 				A92001C02C89C28A00253F7A /* CartModel.swift in Sources */,
+				A9D96ACC2C973EDF00AB1556 /* AccountCoordinator.swift in Sources */,
 				A9F373BB2C82317D0037A51A /* CSCartButton.swift in Sources */,
 				A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */,
 				A9606F562C8324B7007C9AB0 /* FavoriteCoordinator.swift in Sources */,
