@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol AccountViewProtocol: AnyObject {
+    func showError(_ message: String)
+    func showSuccess(_ message: String)
+}
+
 class AccountViewController: UIViewController {
+    
+    private var presenter: AccountPresenterProtocol!
     
     private let backGroundImage = CSBackGroundView()
     private let welcomeLabel = UILabel()
@@ -28,6 +35,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupLayout()
+        presenter = AccountPresenter(view: self)
     }
     
     private func setupLayout() {
@@ -187,7 +195,29 @@ class AccountViewController: UIViewController {
     }
     func createButtonPressed() {
         print("createButtonPressed")
-//        viewOutput.goToProfileVC()
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text,
+              let confirmPassword = confirmTextField.text else {
+            return
+        }
+        presenter.registerUser(email: email, password: password, confirmPassword: confirmPassword)
        
     }
+}
+
+
+extension AccountViewController: AccountViewProtocol {
+    func showError(_ message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+               present(alert, animated: true, completion: nil)
+    }
+    
+    func showSuccess(_ message: String) {
+        let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+    }
+    
+    
 }

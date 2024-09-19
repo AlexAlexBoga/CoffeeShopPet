@@ -167,7 +167,11 @@ class LoginViewController: UIViewController {
     }
     func loginButtonPressed() {
         print("loginButtonPressed")
-        viewOutput.goToHomeVC()
+        guard let email = emailTextField.text,
+              let password = passwordTextField.text else {
+            return
+        }
+        viewOutput.loginUser(with: email, password: password)
     }
   
     
@@ -189,7 +193,7 @@ class LoginViewController: UIViewController {
     }
     func createButtonPressed() {
         print("createButtonPressed")
-        viewOutput.goToAccountVC()
+        viewOutput.goToProfileVC()
        
     }
 }
