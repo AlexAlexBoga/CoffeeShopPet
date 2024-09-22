@@ -8,7 +8,8 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-    
+
+    private let userManager = UserManager()
     
     private let bottomView = UIView()
     private let profileLabel = CSLabel()
@@ -20,12 +21,24 @@ class ProfileViewController: UIViewController {
     private var addressField = UITextField()
     private var emailField = UITextField()
     private var phoneField = UITextField()
-    private let logOutButton = UIButton()
+    private let saveButton = CSButton()
+    private let logOutButton = CSButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
+      
         setupLayout()
+        setProfile()
+    }
+    
+    func setProfile() {
+        let profile = ProfileManager.shared.loadProfile()
+
+        nameField.text = profile.name
+        addressField.text = profile.address
+        emailField.text = profile.email
+        phoneField.text = profile.phone
     }
     
     private func setupLayout() {
@@ -39,6 +52,8 @@ class ProfileViewController: UIViewController {
         setupPhoneField()
         setupEmailLabel()
         setupEmailField()
+        setupSaveButton()
+        setupLogOutButton()
     }
     
     private func setupProfileLabel() {
@@ -186,6 +201,57 @@ class ProfileViewController: UIViewController {
             emailField.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
             emailField.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
         ])
+    }
+    
+    private func setupSaveButton() {
+        view.addSubview(saveButton)
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.scheme = .white
+        saveButton.setTitle("Save Profile")
+        saveButton.action = { [weak self] in
+            self?.saveButtonPressed()
+        }
+                
+        NSLayoutConstraint.activate([
+            saveButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 200),
+            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            saveButton.heightAnchor.constraint(equalToConstant: 47),
+            saveButton.widthAnchor.constraint(equalToConstant: 140)
+        ])
+    }
+    func saveButtonPressed() {
+        print("saveButtonPressed")
+        let profile = Profile(
+            name: nameField.text ?? "",
+            address: addressField.text ?? "",
+            phone: phoneField.text ?? "",
+            email: emailField.text ?? ""
+        )
+        ProfileManager.shared.save(profile)
+    }
+    
+    private func setupLogOutButton() {
+        view.addSubview(logOutButton)
+        logOutButton.translatesAutoresizingMaskIntoConstraints = false
+        logOutButton.scheme = .white
+        logOutButton.setTitle("Delete Profile")
+        logOutButton.action = { [weak self] in
+            self?.logOutButtonPressed()
+        }
+                
+        NSLayoutConstraint.activate([
+            logOutButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 200),
+            logOutButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor, constant: 60),
+            logOutButton.heightAnchor.constraint(equalToConstant: 47),
+            logOutButton.widthAnchor.constraint(equalToConstant: 140),
+            logOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+        ])
+    }
+    func logOutButtonPressed() {
+        print("logOutButtonPressed")
+        ProfileManager.shared.clear()
+        setProfile()
+        userManager.deleteUser()
     }
 
 }
