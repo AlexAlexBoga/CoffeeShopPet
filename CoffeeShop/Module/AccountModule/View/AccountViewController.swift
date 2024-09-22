@@ -16,7 +16,10 @@ class AccountViewController: UIViewController {
     
     private var presenter: AccountPresenterProtocol!
     
-    private let backGroundImage = CSBackGroundView()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
+    private let backGroundImage = UIImageView()//CSBackGroundView()
     private let welcomeLabel = UILabel()
     private let emailLabel = UILabel()
     private let passwordLabel = UILabel()
@@ -34,33 +37,88 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNaviagationBar()
         setupLayout()
         presenter = AccountPresenter(view: self)
     }
     
     private func setupLayout() {
         setupBackGroundImage()
+        setupScrollView()
+        setupContentView()
         setupWelcomeLabel()
         setupEmailStackView()
         setupPasswordStackView()
         setupConfirmStackView()
         setupCreateButton()
+        setupKeyboard()
+    }
+    
+    private func setupNaviagationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.backgroundColor = .clear
+    }
+    
+    private func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .clear
+        scrollView.alwaysBounceVertical = false
+        
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+    }
+    
+    private func setupContentView() {
+        scrollView.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -100),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+        ])
+    }
+    
+    private func setupKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped(_:)))
+        
+        view.addGestureRecognizer(tapGesture)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillChangeFrame(_:)),
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
+                                               object: nil)
     }
     
     private func setupBackGroundImage() {
-        view.addSubview(backGroundImage)
+        scrollView.addSubview(backGroundImage)
         backGroundImage.translatesAutoresizingMaskIntoConstraints = false
+        backGroundImage.image = UIImage(named: "backgroundImage")
+        backGroundImage.contentMode = .scaleAspectFill
+        backGroundImage.clipsToBounds = false
         
         NSLayoutConstraint.activate([
-            backGroundImage.topAnchor.constraint(equalTo: view.topAnchor),
-            backGroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            backGroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            backGroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backGroundImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -100),
+            backGroundImage.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 40),
+            backGroundImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            backGroundImage.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            backGroundImage.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+
         ])
     }
     
     private func setupWelcomeLabel() {
-        view.addSubview(welcomeLabel)
+        contentView.addSubview(welcomeLabel)
         welcomeLabel.translatesAutoresizingMaskIntoConstraints = false
         welcomeLabel.lineBreakMode = .byWordWrapping
         welcomeLabel.text = "Create account"
@@ -69,9 +127,9 @@ class AccountViewController: UIViewController {
         welcomeLabel.textAlignment = .left
         
         NSLayoutConstraint.activate([
-            welcomeLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 350),
-            welcomeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            welcomeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            welcomeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 350),
+            welcomeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            welcomeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
         ])
     }
     
@@ -89,7 +147,7 @@ class AccountViewController: UIViewController {
         emailStackView.addArrangedSubview(emailTextField)
         emailStackView.addArrangedSubview(emailUnderLineView)
         
-        view.addSubview(emailStackView)
+        contentView.addSubview(emailStackView)
         emailStackView.translatesAutoresizingMaskIntoConstraints = false
         
         emailStackView.backgroundColor = .clear
@@ -99,8 +157,8 @@ class AccountViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             emailStackView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 25),
-            emailStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            emailStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            emailStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            emailStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
 
             emailUnderLineView.bottomAnchor.constraint(equalTo: emailStackView.bottomAnchor),
             emailUnderLineView.leadingAnchor.constraint(equalTo: emailStackView.leadingAnchor),
@@ -123,7 +181,7 @@ class AccountViewController: UIViewController {
         passwordStackView.addArrangedSubview(passwordTextField)
         passwordStackView.addArrangedSubview(passwordUnderLineView)
         
-        view.addSubview(passwordStackView)
+        contentView.addSubview(passwordStackView)
         passwordStackView.translatesAutoresizingMaskIntoConstraints = false
         
         passwordStackView.backgroundColor = .clear
@@ -133,8 +191,8 @@ class AccountViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             passwordStackView.topAnchor.constraint(equalTo: emailStackView.bottomAnchor, constant: 13),
-            passwordStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            passwordStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            passwordStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            passwordStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
 
             passwordUnderLineView.bottomAnchor.constraint(equalTo: passwordStackView.bottomAnchor),
             passwordUnderLineView.leadingAnchor.constraint(equalTo: passwordStackView.leadingAnchor),
@@ -157,7 +215,7 @@ class AccountViewController: UIViewController {
         confirmStackView.addArrangedSubview(confirmTextField)
         confirmStackView.addArrangedSubview(confirmUnderLineView)
         
-        view.addSubview(confirmStackView)
+        contentView.addSubview(confirmStackView)
         confirmStackView.translatesAutoresizingMaskIntoConstraints = false
         
         confirmStackView.backgroundColor = .clear
@@ -167,8 +225,8 @@ class AccountViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             confirmStackView.topAnchor.constraint(equalTo: passwordStackView.bottomAnchor, constant: 13),
-            confirmStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            confirmStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            confirmStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            confirmStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
 
             confirmUnderLineView.bottomAnchor.constraint(equalTo: confirmStackView.bottomAnchor),
             confirmUnderLineView.leadingAnchor.constraint(equalTo: confirmStackView.leadingAnchor),
@@ -178,7 +236,7 @@ class AccountViewController: UIViewController {
     }
     
     private func setupCreateButton() {
-        view.addSubview(createButton)
+        contentView.addSubview(createButton)
         createButton.translatesAutoresizingMaskIntoConstraints = false
         createButton.scheme = .black
         createButton.setTitle("Create an account")
@@ -188,8 +246,8 @@ class AccountViewController: UIViewController {
                 
         NSLayoutConstraint.activate([
             createButton.topAnchor.constraint(equalTo: confirmUnderLineView.bottomAnchor, constant: 76),
-            createButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            createButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30),
+            createButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            createButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
             createButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
@@ -201,7 +259,39 @@ class AccountViewController: UIViewController {
             return
         }
         presenter.registerUser(email: email, password: password, confirmPassword: confirmPassword)
-       
+        
+    }
+    
+    @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        contentView.endEditing(false)
+    }
+    
+    @objc
+    func keyboardWillChangeFrame(_ notification: NSNotification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        
+        scrollView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0,
+                                               bottom: scrollView.frame.maxY - keyboardFrame.minY, right: 0.0)
+        
+        let textFields = [emailTextField,
+                          passwordTextField,
+                          confirmTextField]
+        
+        if let firstResponder = textFields
+            .first(where: \.isFirstResponder) {
+            
+            let frame = firstResponder.frame.inset(by: UIEdgeInsets(top: -10,
+                                                                    left: -10,
+                                                                    bottom: -110,
+                                                                    right: -10))
+            
+            let newOrigin = scrollView.convert(frame.origin, from: firstResponder.superview)
+            let newFrame = CGRect(origin: newOrigin, size: frame.size)
+            
+            scrollView.scrollRectToVisible(newFrame, animated: true)
+        }
     }
 }
 

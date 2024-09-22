@@ -9,6 +9,7 @@ import Foundation
 
 protocol AccountPresenterProtocol: AnyObject {
     func registerUser(email: String, password: String, confirmPassword: String)
+    func goToLogin()
 }
 
 class AccountPresenter {
@@ -22,7 +23,7 @@ class AccountPresenter {
 }
 
 extension AccountPresenter: AccountPresenterProtocol {
-    
+ 
     func registerUser(email: String, password: String, confirmPassword: String) {
         if email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
             view?.showError("All field is empty")
@@ -37,4 +38,9 @@ extension AccountPresenter: AccountPresenterProtocol {
         view?.showSuccess("Registration successful!")
     }
 
+    func goToLogin() {
+        
+    }
+    
+    
 }
