@@ -54,10 +54,7 @@ class CSOrderButton: UIView {
     
     @objc
     private func buttonPressed() {
-        scheme = (scheme == .offButton) ? .onButton : .offButton
-        
-        guard let action = self.action else { return }
-        action()
+        action?()
     }
     
     private func setCollorScheme(scheme: CSOrderButtonCollorScheme) {
@@ -78,5 +75,6 @@ class CSOrderButton: UIView {
     public func setTitle(_ title: String?) {
         button.setTitle(title, for: .normal)
     }
+ 
 }
 
