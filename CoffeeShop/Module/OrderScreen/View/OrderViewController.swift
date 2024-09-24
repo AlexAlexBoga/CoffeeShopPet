@@ -318,16 +318,25 @@ class OrderViewController: UIViewController {
             firstPriceButton.scheme = .onButton
             secondPriceButton.scheme = .offButton
             thirdPriceButton.scheme = .offButton
+            if let newPrice = presenter?.setSelectedFirstPrice(coffeePrice) {
+                priceLabel.text = String(format: "€ %.2f", newPrice)
+            }
             firstButtonPressed()
         case .button2:
             firstPriceButton.scheme = .offButton
             secondPriceButton.scheme = .onButton
             thirdPriceButton.scheme = .offButton
+            if let newPrice = presenter?.setSelectedSecondPrice(coffeePrice) {
+                priceLabel.text = String(format: "€ %.2f", newPrice)
+            }
             secondButtonPressed()
         case .button3:
             firstPriceButton.scheme = .offButton
             secondPriceButton.scheme = .offButton
             thirdPriceButton.scheme = .onButton
+            if let newPrice = presenter?.setSelectedThirdPrice(coffeePrice) {
+                priceLabel.text = String(format: "€ %.2f", newPrice)
+            }
             thirdButtonPressed()
         }
     }
@@ -364,11 +373,14 @@ class OrderViewController: UIViewController {
 
     func firstButtonPressed() {
        print("firstPriceButton")
+//        presenter?.setSelectedFirstPrice(coffeePrice)
     }
     func secondButtonPressed() {
+//        presenter?.setSelectedSecondPrice(coffeePrice)
        print("secondPriceButton")
     }
     func thirdButtonPressed() {
+//        presenter?.setSelectedThirdPrice(coffeePrice)
        print("thirdPriceButton")
     }
     func addButtonPressed() {

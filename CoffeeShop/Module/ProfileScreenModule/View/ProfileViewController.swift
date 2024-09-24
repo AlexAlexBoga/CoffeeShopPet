@@ -11,6 +11,9 @@ class ProfileViewController: UIViewController {
 
     private let userManager = UserManager()
     
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    
     private let bottomView = UIView()
     private let profileLabel = CSLabel()
     private let nameLabel = CSLabel()
@@ -27,7 +30,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
-      
+        setupNaviagationBar()
         setupLayout()
         setProfile()
     }
@@ -42,6 +45,8 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupLayout() {
+        setupScrollView()
+        setupContentView()
         setupProfileLabel()
         setupBottomView()
         setupNameLabel()
@@ -54,30 +59,81 @@ class ProfileViewController: UIViewController {
         setupEmailField()
         setupSaveButton()
         setupLogOutButton()
+        setupKeyboard()
+    }
+    
+    private func setupNaviagationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.backgroundColor = .clear
+    }
+    
+    private func setupScrollView() {
+        view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .clear
+        scrollView.alwaysBounceVertical = true
+        scrollView.isScrollEnabled = false
+        
+        
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.heightAnchor.constraint(equalTo: view.heightAnchor)
+        ])
+
+    }
+    
+    private func setupContentView() {
+        scrollView.addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -100),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 100),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 10)
+        ])
+    }
+    
+    private func setupKeyboard() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped(_:)))
+        
+        view.addGestureRecognizer(tapGesture)
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillChangeFrame(_:)),
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
+                                               object: nil)
     }
     
     private func setupProfileLabel() {
-        view.addSubview(profileLabel)
+        contentView.addSubview(profileLabel)
         profileLabel.translatesAutoresizingMaskIntoConstraints = false
         profileLabel.text = "Your Profile"
         
         NSLayoutConstraint.activate([
-            profileLabel.topAnchor.constraint(equalTo: view.topAnchor,constant: 84),
-            profileLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
-            profileLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -193),
+            profileLabel.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 84),
+            profileLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
+            profileLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -193),
         ])
     }
     
     private func setupBottomView() {
-        view.addSubview(bottomView)
+        contentView.addSubview(bottomView)
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         bottomView.backgroundColor = .itemBackground
         bottomView.layer.cornerRadius = 9
         
         NSLayoutConstraint.activate([
             bottomView.topAnchor.constraint(equalTo: profileLabel.bottomAnchor, constant: 30),
-            bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            bottomView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            bottomView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             bottomView.heightAnchor.constraint(equalToConstant: 350)
             
         ])
@@ -204,7 +260,7 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupSaveButton() {
-        view.addSubview(saveButton)
+        contentView.addSubview(saveButton)
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         saveButton.scheme = .white
         saveButton.setTitle("Save Profile")
@@ -214,7 +270,7 @@ class ProfileViewController: UIViewController {
                 
         NSLayoutConstraint.activate([
             saveButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 200),
-            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30),
+            saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             saveButton.heightAnchor.constraint(equalToConstant: 47),
             saveButton.widthAnchor.constraint(equalToConstant: 140)
         ])
@@ -231,7 +287,7 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupLogOutButton() {
-        view.addSubview(logOutButton)
+        contentView.addSubview(logOutButton)
         logOutButton.translatesAutoresizingMaskIntoConstraints = false
         logOutButton.scheme = .white
         logOutButton.setTitle("Delete Profile")
@@ -244,7 +300,7 @@ class ProfileViewController: UIViewController {
             logOutButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor, constant: 60),
             logOutButton.heightAnchor.constraint(equalToConstant: 47),
             logOutButton.widthAnchor.constraint(equalToConstant: 140),
-            logOutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30)
+            logOutButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30)
         ])
     }
     func logOutButtonPressed() {
@@ -254,4 +310,37 @@ class ProfileViewController: UIViewController {
         userManager.deleteUser()
     }
 
+    @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {
+        contentView.endEditing(false)
+    }
+    
+    @objc
+    func keyboardWillChangeFrame(_ notification: NSNotification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+        
+        scrollView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0,
+                                               bottom: scrollView.frame.maxY - keyboardFrame.minY, right: 0.0)
+        
+        let textFields = [nameField,
+                          addressField,
+                          phoneField,
+                          emailField
+                          ]
+        
+        if let firstResponder = textFields
+            .first(where: \.isFirstResponder) {
+            
+            let frame = firstResponder.frame.inset(by: UIEdgeInsets(top: -10,
+                                                                    left: -10,
+                                                                    bottom: -10,
+                                                                    right: -10))
+            
+            let newOrigin = scrollView.convert(frame.origin, from: firstResponder.superview)
+            let newFrame = CGRect(origin: newOrigin, size: frame.size)
+            
+            scrollView.scrollRectToVisible(newFrame, animated: true)
+        }
+    }
 }

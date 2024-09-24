@@ -16,6 +16,9 @@ protocol OrderPresenterProtocol: AnyObject {
     func getCoffeeType() -> String?
     func getCoffeePrice() -> Double?
     func addToFavoriteButtonPressed()
+    func setSelectedFirstPrice(_ price: Double?) -> Double
+    func setSelectedSecondPrice(_ price: Double?) -> Double
+    func setSelectedThirdPrice(_ price: Double?) -> Double
 }
 
 class OrderPresenter {
@@ -27,6 +30,10 @@ class OrderPresenter {
     private var coffeeType: String?
     private var coffeePrice: Double?
     
+    private var isFirstPriceSelected = false
+    private var isSecondPriceSelected = false
+    private var isThirdPriceSelected = false
+    
     init(view: OrderViewController?, image: UIImage?, coffeeName: String?, selectedImageName: String?, coffeeType: String?, coffeePrice: Double?) {
         self.selectedImage = image
         self.coffeeName = coffeeName
@@ -34,9 +41,35 @@ class OrderPresenter {
         self.coffeeType = coffeeType
         self.coffeePrice = coffeePrice
     }
+   
 }
 
 extension OrderPresenter: OrderPresenterProtocol {
+ 
+    func setSelectedFirstPrice(_ price: Double?) -> Double {
+        if !isFirstPriceSelected {
+               isFirstPriceSelected = true
+               coffeePrice = (coffeePrice ?? 0) + 0.53
+           }
+           return coffeePrice ?? 0
+    }
+    
+    func setSelectedSecondPrice(_ price: Double?) -> Double {
+        if !isSecondPriceSelected {
+               isSecondPriceSelected = true
+               coffeePrice = (coffeePrice ?? 0) + 0.74
+           }
+           return coffeePrice ?? 0
+    }
+    
+    func setSelectedThirdPrice(_ price: Double?) -> Double {
+        if !isThirdPriceSelected {
+               isThirdPriceSelected = true
+               coffeePrice = (coffeePrice ?? 0) + 0.92
+           }
+           return coffeePrice ?? 0
+    }
+
 
     func getCoffeePrice() -> Double? {
         return coffeePrice
