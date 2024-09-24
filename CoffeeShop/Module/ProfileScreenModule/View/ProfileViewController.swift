@@ -97,7 +97,7 @@ class ProfileViewController: UIViewController {
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, constant: 10)
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor, multiplier: 1.0)
         ])
     }
     
@@ -272,7 +272,7 @@ class ProfileViewController: UIViewController {
             saveButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 200),
             saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             saveButton.heightAnchor.constraint(equalToConstant: 47),
-            saveButton.widthAnchor.constraint(equalToConstant: 140)
+            saveButton.widthAnchor.constraint(equalToConstant: 145)
         ])
     }
     func saveButtonPressed() {
@@ -297,9 +297,8 @@ class ProfileViewController: UIViewController {
                 
         NSLayoutConstraint.activate([
             logOutButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 200),
-            logOutButton.leadingAnchor.constraint(equalTo: saveButton.trailingAnchor, constant: 60),
             logOutButton.heightAnchor.constraint(equalToConstant: 47),
-            logOutButton.widthAnchor.constraint(equalToConstant: 140),
+            logOutButton.widthAnchor.constraint(equalToConstant: 145),
             logOutButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30)
         ])
     }

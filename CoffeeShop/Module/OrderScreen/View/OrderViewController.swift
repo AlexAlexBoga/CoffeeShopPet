@@ -282,7 +282,6 @@ class OrderViewController: UIViewController {
         NSLayoutConstraint.activate([
             countButton.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 10),
             countButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
-            countButton.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             countButton.widthAnchor.constraint(equalToConstant: 133),
             countButton.heightAnchor.constraint(equalToConstant: 47),
         ])
