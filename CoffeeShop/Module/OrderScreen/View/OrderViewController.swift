@@ -67,7 +67,7 @@ class OrderViewController: UIViewController {
         view.addSubview(imageView)
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 83),
+            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 260)
@@ -81,12 +81,12 @@ class OrderViewController: UIViewController {
 
     private func setupbottomViewView() {
         bottomView.backgroundColor = .orderBack
-        bottomView.layer.cornerRadius = 25
+        bottomView.layer.cornerRadius = 15
         view.addSubview(bottomView)
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            bottomView.topAnchor.constraint(equalTo: view.topAnchor,constant: 323),
+            bottomView.topAnchor.constraint(equalTo: view.topAnchor,constant: 265),
             bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
