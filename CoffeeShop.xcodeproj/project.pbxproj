@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -46,9 +46,12 @@
 		A99749292C7D134900C6191F /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749282C7D134900C6191F /* HomeViewController.swift */; };
 		A997492D2C7D16C800C6191F /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A997492C2C7D16C800C6191F /* FavoriteViewController.swift */; };
 		A99749312C7D18DB00C6191F /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99749302C7D18DB00C6191F /* ProfileViewController.swift */; };
+		A9B8BC782C9C2248005CE565 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B8BC772C9C2248005CE565 /* ProfileManager.swift */; };
 		A9D96AC62C972B6500AB1556 /* JsonFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D96AC52C972B6500AB1556 /* JsonFileManager.swift */; };
 		A9D96ACA2C973DCD00AB1556 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D96AC92C973DCD00AB1556 /* AccountViewController.swift */; };
 		A9D96ACC2C973EDF00AB1556 /* AccountCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D96ACB2C973EDF00AB1556 /* AccountCoordinator.swift */; };
+		A9D96ACF2C974B1E00AB1556 /* AccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D96ACE2C974B1E00AB1556 /* AccountPresenter.swift */; };
+		A9D96AD22C974F7600AB1556 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9D96AD12C974F7600AB1556 /* UserManager.swift */; };
 		A9F373BB2C82317D0037A51A /* CSCartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BA2C82317D0037A51A /* CSCartButton.swift */; };
 		A9F373BD2C82422C0037A51A /* CartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BC2C82422C0037A51A /* CartViewCell.swift */; };
 		A9F373BF2C826BA50037A51A /* FavoriteViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F373BE2C826BA50037A51A /* FavoriteViewCell.swift */; };
@@ -96,9 +99,12 @@
 		A99749282C7D134900C6191F /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		A997492C2C7D16C800C6191F /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		A99749302C7D18DB00C6191F /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		A9B8BC772C9C2248005CE565 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
 		A9D96AC52C972B6500AB1556 /* JsonFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonFileManager.swift; sourceTree = "<group>"; };
 		A9D96AC92C973DCD00AB1556 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		A9D96ACB2C973EDF00AB1556 /* AccountCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountCoordinator.swift; sourceTree = "<group>"; };
+		A9D96ACE2C974B1E00AB1556 /* AccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPresenter.swift; sourceTree = "<group>"; };
+		A9D96AD12C974F7600AB1556 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		A9F373BA2C82317D0037A51A /* CSCartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSCartButton.swift; sourceTree = "<group>"; };
 		A9F373BC2C82422C0037A51A /* CartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewCell.swift; sourceTree = "<group>"; };
 		A9F373BE2C826BA50037A51A /* FavoriteViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewCell.swift; sourceTree = "<group>"; };
@@ -426,6 +432,7 @@
 		A997492E2C7D186C00C6191F /* ProfileScreenModule */ = {
 			isa = PBXGroup;
 			children = (
+				A9B8BC722C9C1E3E005CE565 /* Model */,
 				A96654642C84E12B004F9D0C /* Presenter */,
 				A997492F2C7D18BA00C6191F /* View */,
 			);
@@ -440,6 +447,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		A9B8BC722C9C1E3E005CE565 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9B8BC772C9C2248005CE565 /* ProfileManager.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A9D96AC42C972B4100AB1556 /* JsonManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +466,8 @@
 		A9D96AC72C973D6B00AB1556 /* AccountModule */ = {
 			isa = PBXGroup;
 			children = (
+				A9D96AD02C974F5300AB1556 /* Model */,
+				A9D96ACD2C974AF200AB1556 /* Presenter */,
 				A9D96AC82C973D9E00AB1556 /* View */,
 			);
 			path = AccountModule;
@@ -462,6 +479,22 @@
 				A9D96AC92C973DCD00AB1556 /* AccountViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		A9D96ACD2C974AF200AB1556 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				A9D96ACE2C974B1E00AB1556 /* AccountPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		A9D96AD02C974F5300AB1556 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A9D96AD12C974F7600AB1556 /* UserManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -500,7 +533,6 @@
 				};
 			};
 			buildConfigurationList = A95875542C78C6DA0092D79E /* Build configuration list for PBXProject "CoffeeShop" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -508,6 +540,7 @@
 				Base,
 			);
 			mainGroup = A95875502C78C6DA0092D79E;
+			preferredProjectObjectVersion = 77;
 			productRefGroup = A958755A2C78C6DA0092D79E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -548,9 +581,11 @@
 				A962A6552C7DB85700798FD5 /* SmallHCViewCell.swift in Sources */,
 				A958755F2C78C6DA0092D79E /* SceneDelegate.swift in Sources */,
 				A98074672C80FC6B00004745 /* CSCounterButton.swift in Sources */,
+				A9D96ACF2C974B1E00AB1556 /* AccountPresenter.swift in Sources */,
 				A97129D62C84B28000D59F5F /* OrderCoordinator.swift in Sources */,
 				A962A6652C7E3D2400798FD5 /* OrderPresenter.swift in Sources */,
 				A98074652C80EA2600004745 /* CSOrderButton.swift in Sources */,
+				A9D96AD22C974F7600AB1556 /* UserManager.swift in Sources */,
 				A96654662C84E14C004F9D0C /* ProfilePresenter.swift in Sources */,
 				A92001C02C89C28A00253F7A /* CartModel.swift in Sources */,
 				A9D96ACC2C973EDF00AB1556 /* AccountCoordinator.swift in Sources */,
@@ -561,6 +596,7 @@
 				A99749292C7D134900C6191F /* HomeViewController.swift in Sources */,
 				A99749252C7CF8C000C6191F /* CartViewController.swift in Sources */,
 				A9606F4E2C830BC1007C9AB0 /* Coordinator.swift in Sources */,
+				A9B8BC782C9C2248005CE565 /* ProfileManager.swift in Sources */,
 				A9606F502C831AAE007C9AB0 /* FirstCoordinator.swift in Sources */,
 				A962A6572C7DDCED00798FD5 /* BigVCViewCell.swift in Sources */,
 				A95875762C78F4620092D79E /* FirstViewController.swift in Sources */,
@@ -725,8 +761,9 @@
 				INFOPLIST_FILE = CoffeeShop/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -752,8 +789,9 @@
 				INFOPLIST_FILE = CoffeeShop/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

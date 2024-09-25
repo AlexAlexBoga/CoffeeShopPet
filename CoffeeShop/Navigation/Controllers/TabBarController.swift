@@ -35,7 +35,7 @@ class TabBarController: UITabBarController {
         
         for item in tabBar.items ?? [] {
                     item.imageInsets = UIEdgeInsets(top: -6, left: 0, bottom: 0, right: 0)
-                    item.title = nil // Убираем текст
+                    item.title = nil
                 }
             UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -3)
         }

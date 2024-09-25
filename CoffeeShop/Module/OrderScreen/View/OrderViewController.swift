@@ -29,7 +29,7 @@ class OrderViewController: UIViewController {
     private let sizeLabel = UILabel()
     private let firstPriceButton = CSOrderButton()
     private let secondPriceButton = CSOrderButton()
-    private let therdPriceButton = CSOrderButton()
+    private let thirdPriceButton = CSOrderButton()
     private var priceLabel = UILabel()
     private let countButton = CSCounterView()
     private let addButton = CSButton()
@@ -53,7 +53,7 @@ class OrderViewController: UIViewController {
         setupSizeLabel()
         setupFirstPriceButton()
         setupSecondPriceButton()
-        setupTherdPriceButton()
+        setupThirdPriceButton()
         setupPriceLabel()
         stupcountButton() 
         setupAddButton()
@@ -67,7 +67,7 @@ class OrderViewController: UIViewController {
         view.addSubview(imageView)
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 83),
+            imageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             imageView.heightAnchor.constraint(equalToConstant: 260)
@@ -81,12 +81,12 @@ class OrderViewController: UIViewController {
 
     private func setupbottomViewView() {
         bottomView.backgroundColor = .orderBack
-        bottomView.layer.cornerRadius = 25
+        bottomView.layer.cornerRadius = 15
         view.addSubview(bottomView)
         bottomView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            bottomView.topAnchor.constraint(equalTo: view.topAnchor,constant: 323),
+            bottomView.topAnchor.constraint(equalTo: view.topAnchor,constant: 265),
             bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -214,9 +214,9 @@ class OrderViewController: UIViewController {
         bottomView.addSubview(firstPriceButton)
         firstPriceButton.translatesAutoresizingMaskIntoConstraints = false
         firstPriceButton.scheme = .offButton
-        firstPriceButton.setTitle("First")
+        firstPriceButton.setTitle("200 ml")
         firstPriceButton.action = { [weak self] in
-            self?.firstButtonPressed()
+            self?.buttonPress(for: .button1)
         }
                 
         NSLayoutConstraint.activate([
@@ -231,9 +231,9 @@ class OrderViewController: UIViewController {
         bottomView.addSubview(secondPriceButton)
         secondPriceButton.translatesAutoresizingMaskIntoConstraints = false
         secondPriceButton.scheme = .offButton
-        secondPriceButton.setTitle("Second")
+        secondPriceButton.setTitle("300 ml")
         secondPriceButton.action = { [weak self] in
-            self?.secondButtonPressed()
+            self?.buttonPress(for: .button2)
         }
                 
         NSLayoutConstraint.activate([
@@ -244,20 +244,20 @@ class OrderViewController: UIViewController {
         ])
     }
     
-    private func setupTherdPriceButton() {
-        bottomView.addSubview(therdPriceButton)
-        therdPriceButton.translatesAutoresizingMaskIntoConstraints = false
-        therdPriceButton.scheme = .offButton
-        therdPriceButton.setTitle("Therd")
-        therdPriceButton.action = { [weak self] in
-            self?.therdButtonPressed()
+    private func setupThirdPriceButton() {
+        bottomView.addSubview(thirdPriceButton)
+        thirdPriceButton.translatesAutoresizingMaskIntoConstraints = false
+        thirdPriceButton.scheme = .offButton
+        thirdPriceButton.setTitle("350 ml")
+        thirdPriceButton.action = { [weak self] in
+            self?.buttonPress(for: .button3)
         }
                 
         NSLayoutConstraint.activate([
-            therdPriceButton.centerYAnchor.constraint(equalTo: secondPriceButton.centerYAnchor),
-            therdPriceButton.leadingAnchor.constraint(equalTo: secondPriceButton.trailingAnchor, constant: 12),
-            therdPriceButton.heightAnchor.constraint(equalToConstant: 44),
-            therdPriceButton.widthAnchor.constraint(equalToConstant: 100)
+            thirdPriceButton.centerYAnchor.constraint(equalTo: secondPriceButton.centerYAnchor),
+            thirdPriceButton.leadingAnchor.constraint(equalTo: secondPriceButton.trailingAnchor, constant: 12),
+            thirdPriceButton.heightAnchor.constraint(equalToConstant: 44),
+            thirdPriceButton.widthAnchor.constraint(equalToConstant: 100)
         ])
     }
     
@@ -282,7 +282,6 @@ class OrderViewController: UIViewController {
         NSLayoutConstraint.activate([
             countButton.topAnchor.constraint(equalTo: priceLabel.bottomAnchor, constant: 10),
             countButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
-            countButton.centerXAnchor.constraint(equalTo: bottomView.centerXAnchor),
             countButton.widthAnchor.constraint(equalToConstant: 133),
             countButton.heightAnchor.constraint(equalToConstant: 47),
         ])
@@ -303,6 +302,42 @@ class OrderViewController: UIViewController {
             addButton.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -30),
             addButton.heightAnchor.constraint(equalToConstant: 47),
         ])
+    }
+    
+    
+    enum ButtonType {
+        case button1
+        case button2
+        case button3
+    }
+    
+    private func buttonPress(for buttonType: ButtonType) {
+        switch buttonType {
+        case .button1:
+            firstPriceButton.scheme = .onButton
+            secondPriceButton.scheme = .offButton
+            thirdPriceButton.scheme = .offButton
+            if let newPrice = presenter?.setSelectedFirstPrice(coffeePrice) {
+                priceLabel.text = String(format: "€ %.2f", newPrice)
+            }
+            firstButtonPressed()
+        case .button2:
+            firstPriceButton.scheme = .offButton
+            secondPriceButton.scheme = .onButton
+            thirdPriceButton.scheme = .offButton
+            if let newPrice = presenter?.setSelectedSecondPrice(coffeePrice) {
+                priceLabel.text = String(format: "€ %.2f", newPrice)
+            }
+            secondButtonPressed()
+        case .button3:
+            firstPriceButton.scheme = .offButton
+            secondPriceButton.scheme = .offButton
+            thirdPriceButton.scheme = .onButton
+            if let newPrice = presenter?.setSelectedThirdPrice(coffeePrice) {
+                priceLabel.text = String(format: "€ %.2f", newPrice)
+            }
+            thirdButtonPressed()
+        }
     }
     
     func setImage(image: UIImage) {
@@ -337,12 +372,15 @@ class OrderViewController: UIViewController {
 
     func firstButtonPressed() {
        print("firstPriceButton")
+//        presenter?.setSelectedFirstPrice(coffeePrice)
     }
     func secondButtonPressed() {
+//        presenter?.setSelectedSecondPrice(coffeePrice)
        print("secondPriceButton")
     }
-    func therdButtonPressed() {
-       print("therdPriceButton")
+    func thirdButtonPressed() {
+//        presenter?.setSelectedThirdPrice(coffeePrice)
+       print("thirdPriceButton")
     }
     func addButtonPressed() {
         print("addButtonPressed")

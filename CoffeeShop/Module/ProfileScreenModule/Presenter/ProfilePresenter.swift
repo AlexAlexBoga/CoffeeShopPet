@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ProfilePresenterProtocol: AnyObject {
-//    func goToHomeVC()
+
+    
 }
 
 class ProfilePresenter: ProfilePresenterProtocol {
@@ -19,10 +20,6 @@ class ProfilePresenter: ProfilePresenterProtocol {
     init(coordinator: ProfileCoordinator!) {
         self.coordinator = coordinator
     }
-//
-//     func goToHomeVC() {
-//         coordinator.finish()
-//     }
-     
+
 }
     

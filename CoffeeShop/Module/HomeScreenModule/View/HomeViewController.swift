@@ -198,7 +198,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     orderVC.setCoffeePrice(price: coffeePrice)
                     orderVC.presenter = orderPresenter
                     orderVC.modalPresentationStyle = .pageSheet
-                    orderVC.modalPresentationStyle = .fullScreen
                     
                     present(orderVC, animated: true, completion: nil)
         }
