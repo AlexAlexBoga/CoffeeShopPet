@@ -269,7 +269,7 @@ class ProfileViewController: UIViewController {
         }
                 
         NSLayoutConstraint.activate([
-            saveButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 200),
+            saveButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 180),
             saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             saveButton.heightAnchor.constraint(equalToConstant: 47),
             saveButton.widthAnchor.constraint(equalToConstant: 145)
@@ -296,7 +296,7 @@ class ProfileViewController: UIViewController {
         }
                 
         NSLayoutConstraint.activate([
-            logOutButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 200),
+            logOutButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 180),
             logOutButton.heightAnchor.constraint(equalToConstant: 47),
             logOutButton.widthAnchor.constraint(equalToConstant: 145),
             logOutButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30)

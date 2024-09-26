@@ -19,10 +19,11 @@ protocol OrderPresenterProtocol: AnyObject {
     func setSelectedFirstPrice(_ price: Double?) -> Double
     func setSelectedSecondPrice(_ price: Double?) -> Double
     func setSelectedThirdPrice(_ price: Double?) -> Double
+    func didUpdateCount(_ count: Int)
 }
 
 class OrderPresenter {
-    
+
     weak var view: OrderViewController?
     private var selectedImage: UIImage?
     private var coffeeName: String?
@@ -33,40 +34,62 @@ class OrderPresenter {
     private var isFirstPriceSelected = false
     private var isSecondPriceSelected = false
     private var isThirdPriceSelected = false
-    
+    private var isPriceSet = false
+    private var currentCount: Int = 1
+    private var totalPrice: Double = 0
+        
     init(view: OrderViewController?, image: UIImage?, coffeeName: String?, selectedImageName: String?, coffeeType: String?, coffeePrice: Double?) {
         self.selectedImage = image
         self.coffeeName = coffeeName
         self.selectedImageName = selectedImageName
         self.coffeeType = coffeeType
         self.coffeePrice = coffeePrice
+      
     }
-   
 }
 
-extension OrderPresenter: OrderPresenterProtocol {
- 
+
+extension OrderPresenter: OrderPresenterProtocol{
+   
+    func didUpdateCount(_ count: Int) {
+        currentCount = count
+        let newPrice = (coffeePrice ?? 0) * Double(currentCount)
+        totalPrice = newPrice
+        print("Current count is now \(currentCount)")
+        print("Current price is now \(totalPrice)")
+    }
+    
+
     func setSelectedFirstPrice(_ price: Double?) -> Double {
-        if !isFirstPriceSelected {
-               isFirstPriceSelected = true
-               coffeePrice = (coffeePrice ?? 0) + 0.53
-           }
+        if !isPriceSet {
+            if !isFirstPriceSelected {
+                isFirstPriceSelected = true
+                isPriceSet = true
+                coffeePrice = (coffeePrice ?? 0) + 0.53
+            }
+        }
            return coffeePrice ?? 0
     }
     
     func setSelectedSecondPrice(_ price: Double?) -> Double {
-        if !isSecondPriceSelected {
-               isSecondPriceSelected = true
-               coffeePrice = (coffeePrice ?? 0) + 0.74
-           }
+        if !isPriceSet {
+            if !isSecondPriceSelected {
+                isSecondPriceSelected = true
+                isPriceSet = true
+                coffeePrice = (coffeePrice ?? 0) + 0.74
+            }
+        }
            return coffeePrice ?? 0
     }
     
     func setSelectedThirdPrice(_ price: Double?) -> Double {
-        if !isThirdPriceSelected {
-               isThirdPriceSelected = true
-               coffeePrice = (coffeePrice ?? 0) + 0.92
-           }
+        if !isPriceSet {
+            if !isThirdPriceSelected {
+                isThirdPriceSelected = true
+                isPriceSet = true
+                coffeePrice = (coffeePrice ?? 0) + 0.92
+            }
+        }
            return coffeePrice ?? 0
     }
 
@@ -97,7 +120,7 @@ extension OrderPresenter: OrderPresenterProtocol {
     }
     
     func addToFavoriteButtonPressed() {
-        let newFavoriteItem = FavoriteModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: getCoffeePrice() ?? 0, coffeeType: getCoffeeType() ?? "")
+        let newFavoriteItem = FavoriteModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: totalPrice, coffeeType: getCoffeeType() ?? "")
         
         var favoriteItem = loadFavoriteItemsFromFile() ?? []
         favoriteItem.append(newFavoriteItem)
@@ -152,7 +175,7 @@ extension OrderPresenter: OrderPresenterProtocol {
     }
    
     func addToCartButtonPressed() {
-        let cartItem = CartModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: getCoffeePrice() ?? 0, coffeeType: getCoffeeType() ?? "")
+        let cartItem = CartModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: totalPrice, coffeeType: getCoffeeType() ?? "")
         
         var cartItems = loadCartItemsFromFile() ?? []
         cartItems.append(cartItem)

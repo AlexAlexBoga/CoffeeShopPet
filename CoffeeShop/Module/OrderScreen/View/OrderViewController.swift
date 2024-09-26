@@ -7,8 +7,8 @@
 
 import UIKit
 
-class OrderViewController: UIViewController {
-    
+class OrderViewController: UIViewController, CSCounterViewDelegate {
+  
     var presenter: OrderPresenterProtocol?
     
     private var imageView: UIImageView!
@@ -37,6 +37,8 @@ class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
+        countButton.delegate = self
+
         setupLayout()
     }
     
@@ -55,7 +57,7 @@ class OrderViewController: UIViewController {
         setupSecondPriceButton()
         setupThirdPriceButton()
         setupPriceLabel()
-        stupcountButton() 
+        setupCountButton() 
         setupAddButton()
     }
     
@@ -271,11 +273,11 @@ class OrderViewController: UIViewController {
         NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: firstPriceButton.bottomAnchor, constant: 40),
             priceLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
-            priceLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -260),
+            priceLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -220),
         ])
     }
     
-    private func stupcountButton() {
+    private func setupCountButton() {
         bottomView.addSubview(countButton)
         countButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -285,6 +287,7 @@ class OrderViewController: UIViewController {
             countButton.widthAnchor.constraint(equalToConstant: 133),
             countButton.heightAnchor.constraint(equalToConstant: 47),
         ])
+       
     }
     
     private func setupAddButton() {
@@ -320,7 +323,6 @@ class OrderViewController: UIViewController {
             if let newPrice = presenter?.setSelectedFirstPrice(coffeePrice) {
                 priceLabel.text = String(format: "€ %.2f", newPrice)
             }
-            firstButtonPressed()
         case .button2:
             firstPriceButton.scheme = .offButton
             secondPriceButton.scheme = .onButton
@@ -328,7 +330,6 @@ class OrderViewController: UIViewController {
             if let newPrice = presenter?.setSelectedSecondPrice(coffeePrice) {
                 priceLabel.text = String(format: "€ %.2f", newPrice)
             }
-            secondButtonPressed()
         case .button3:
             firstPriceButton.scheme = .offButton
             secondPriceButton.scheme = .offButton
@@ -336,7 +337,6 @@ class OrderViewController: UIViewController {
             if let newPrice = presenter?.setSelectedThirdPrice(coffeePrice) {
                 priceLabel.text = String(format: "€ %.2f", newPrice)
             }
-            thirdButtonPressed()
         }
     }
     
@@ -370,25 +370,24 @@ class OrderViewController: UIViewController {
         presenter?.addToFavoriteButtonPressed()
     }
 
-    func firstButtonPressed() {
-       print("firstPriceButton")
-//        presenter?.setSelectedFirstPrice(coffeePrice)
-    }
-    func secondButtonPressed() {
-//        presenter?.setSelectedSecondPrice(coffeePrice)
-       print("secondPriceButton")
-    }
-    func thirdButtonPressed() {
-//        presenter?.setSelectedThirdPrice(coffeePrice)
-       print("thirdPriceButton")
-    }
     func addButtonPressed() {
         print("addButtonPressed")
         presenter?.addToCartButtonPressed()
         
         dismiss(animated: true, completion: nil)
     }
-
+    func didIncrementCount(_ count: Int) {
+        presenter?.didUpdateCount(count)
+        priceLabel.text = String(format: "€ %.2f", Double(count) * (coffeePrice ?? 0))
+        
+    }
+    
+    func didDecrementCount(_ count: Int) {
+        presenter?.didUpdateCount(count)
+        priceLabel.text = String(format: "€ %.2f", Double(count) * (coffeePrice ?? 0))
+    }
+    
+  
 }
 
 
