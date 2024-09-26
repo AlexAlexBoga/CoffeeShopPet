@@ -75,6 +75,6 @@ class CSOrderButton: UIView {
     public func setTitle(_ title: String?) {
         button.setTitle(title, for: .normal)
     }
- 
+    
 }
 

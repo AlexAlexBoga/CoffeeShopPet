@@ -71,11 +71,11 @@ class CSCounterView: UIView {
         stackView.addArrangedSubview(incrementButton)
         
         NSLayoutConstraint.activate([
-                   stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-                   stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                   stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                   stackView.topAnchor.constraint(equalTo: self.topAnchor)
-               ])
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: self.topAnchor)
+        ])
     }
     
     private func updateCountLabel() {

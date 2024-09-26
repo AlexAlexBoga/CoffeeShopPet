@@ -36,7 +36,6 @@ class CartViewCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.layer.cornerRadius = 10
-        
         imageView.backgroundColor = .green
         imageView.layer.cornerRadius = 8
         imageView.layer.masksToBounds = true
@@ -47,7 +46,6 @@ class CartViewCell: UICollectionViewCell {
             imageView.widthAnchor.constraint(equalToConstant: 70),
             imageView.heightAnchor.constraint(equalToConstant: 93),
         ])
-        
     }
     
     func setupCoffeeTypeLabel() {
@@ -57,7 +55,7 @@ class CartViewCell: UICollectionViewCell {
         coffeTypeLabel.font = .systemFont(ofSize: 10, weight: .medium)
         coffeTypeLabel.text = "CoffeSortLabel"
         coffeTypeLabel.textColor = .black
-    
+        
         NSLayoutConstraint.activate([
             coffeTypeLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
             coffeTypeLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 15),
@@ -66,7 +64,6 @@ class CartViewCell: UICollectionViewCell {
     
     func setupBottomLabel() {
         contentView.addSubview(titleLabel)
-        
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         titleLabel.font = .systemFont(ofSize: 16, weight: .medium)
@@ -81,13 +78,12 @@ class CartViewCell: UICollectionViewCell {
     
     func setupPriceLabel() {
         contentView.addSubview(priceLabel)
-        
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         priceLabel.font = .systemFont(ofSize: 16, weight: .medium)
         priceLabel.text = "€"
         priceLabel.textColor = .black
-    
+        
         NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             priceLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
@@ -100,7 +96,7 @@ class CartViewCell: UICollectionViewCell {
         coffeTypeLabel.text = coffeeType
         titleLabel.text = title
         priceLabel.text = "€ \(price)"
-        }
+    }
     
 }
 

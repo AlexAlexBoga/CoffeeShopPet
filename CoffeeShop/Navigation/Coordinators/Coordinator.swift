@@ -30,7 +30,6 @@ protocol CoordinatorProtocol: AnyObject {
     
 }
 
-// Добавление и удаление дочерних элементов в координатор
 extension CoordinatorProtocol {
    
     func addChildCoordinator(_ childCoordinator: CoordinatorProtocol) {
@@ -38,11 +37,10 @@ extension CoordinatorProtocol {
     }
     
     func removeChildCoordinator(_ childCoordinator: CoordinatorProtocol) {
-        childeCoordinators = childeCoordinators.filter{ $0 !== childCoordinator} //Убирает текущий элемент
+        childeCoordinators = childeCoordinators.filter{ $0 !== childCoordinator}
     }
 }
 
-// Имеет метод, который завершает координатор
 protocol CoordinatorFinishDelegate: AnyObject {
     func coordinatorDidFinish(childeCoordinators: CoordinatorProtocol)
 }
@@ -66,7 +64,7 @@ class Coordinator: CoordinatorProtocol {
     
     deinit {
         print("coordinator deinited \(type)")
-        childeCoordinators.forEach{ $0.finishDelegate = nil} //удаляем ссылки на его завершение
+        childeCoordinators.forEach{ $0.finishDelegate = nil}
         childeCoordinators.removeAll()
     }
     
@@ -77,6 +75,5 @@ class Coordinator: CoordinatorProtocol {
     func finish() {
         print("coordinator finish")
     }
-    
-    
+        
 }

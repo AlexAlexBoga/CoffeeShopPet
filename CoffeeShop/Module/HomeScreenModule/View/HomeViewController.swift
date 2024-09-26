@@ -12,13 +12,11 @@ class HomeViewController: UIViewController {
     var presenter: HomePresenterProtocol?
     
     private let label = CSLabel()
-    
     private var coffeeArray: [СoffeeModel] = []
     private var imageArray: [ImageModel] = []
     private var filteredImageArray: [ImageModel] = []
     
     lazy var smallHCollection: UICollectionView = {
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 0
@@ -30,7 +28,6 @@ class HomeViewController: UIViewController {
     }()
     
     lazy var bigVCollection: UICollectionView = {
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 20
@@ -52,7 +49,6 @@ class HomeViewController: UIViewController {
         setupLabel()
         setupSmallHCollection()
         setupBigVCollection()
-        
     }
     
     private func loadData() {
@@ -61,11 +57,11 @@ class HomeViewController: UIViewController {
         imageArray = presenter.getImageData()
         
         filterImages(for: "All coffee")
-    
+        
         smallHCollection.reloadData()
         bigVCollection.reloadData()
     }
-
+    
     private func filterImages(for coffeeType: String) {
         if coffeeType == "All coffee" {
             filteredImageArray = imageArray
@@ -78,7 +74,6 @@ class HomeViewController: UIViewController {
     func setupLabel() {
         view.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         label.text = "What would you like to drink today?"
         
         NSLayoutConstraint.activate([
@@ -153,11 +148,11 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BigVCViewCell", for: indexPath) as! BigVCViewCell
             guard indexPath.item < filteredImageArray.count else {
-
+                
                 return cell
             }
             let imageModel = filteredImageArray[indexPath.item]
-
+            
             cell.configure(with: imageModel.imageName,
                            title: imageModel.description,
                            price: imageModel.price,
@@ -170,36 +165,36 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView.tag == 1 {
-                let selectedCoffeeType = coffeeArray[indexPath.item].coffeeName
-                filterImages(for: selectedCoffeeType)
+            let selectedCoffeeType = coffeeArray[indexPath.item].coffeeName
+            filterImages(for: selectedCoffeeType)
             
-                } else if collectionView.tag == 2 {
-                    let selectedImageModel = filteredImageArray[indexPath.item]
-                    let imageName = selectedImageModel.imageName
-                    let coffeeType = selectedImageModel.coffeeType
-                    let coffeePrice = selectedImageModel.price
+        } else if collectionView.tag == 2 {
+            let selectedImageModel = filteredImageArray[indexPath.item]
+            let imageName = selectedImageModel.imageName
+            let coffeeType = selectedImageModel.coffeeType
+            let coffeePrice = selectedImageModel.price
             
             guard let selectedImage = UIImage(named: imageName) else {
                 print("Image not found: \(imageName)")
                 return
             }
             
-                    let orderVC = OrderViewController()
-                    let orderPresenter = OrderPresenter(view: nil,
-                                                        image: selectedImage,
-                                                        coffeeName: selectedImageModel.description,
-                                                        selectedImageName: imageName,
-                                                        coffeeType: selectedImageModel.coffeeType,
-                                                        coffeePrice: selectedImageModel.price)
-                    orderVC.setImage(image: selectedImage)
-                    orderVC.setCoffeeName(name: selectedImageModel.description)
-                    orderVC.setImageName(name: imageName)
-                    orderVC.setCoffeeType(name: coffeeType)
-                    orderVC.setCoffeePrice(price: coffeePrice)
-                    orderVC.presenter = orderPresenter
-                    orderVC.modalPresentationStyle = .pageSheet
-                    
-                    present(orderVC, animated: true, completion: nil)
+            let orderVC = OrderViewController()
+            let orderPresenter = OrderPresenter(view: nil,
+                                                image: selectedImage,
+                                                coffeeName: selectedImageModel.description,
+                                                selectedImageName: imageName,
+                                                coffeeType: selectedImageModel.coffeeType,
+                                                coffeePrice: selectedImageModel.price)
+            orderVC.setImage(image: selectedImage)
+            orderVC.setCoffeeName(name: selectedImageModel.description)
+            orderVC.setImageName(name: imageName)
+            orderVC.setCoffeeType(name: coffeeType)
+            orderVC.setCoffeePrice(price: coffeePrice)
+            orderVC.presenter = orderPresenter
+            orderVC.modalPresentationStyle = .pageSheet
+            
+            present(orderVC, animated: true, completion: nil)
         }
     }
 }

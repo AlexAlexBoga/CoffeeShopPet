@@ -8,7 +8,7 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
+    
     private let userManager = UserManager()
     
     private let scrollView = UIScrollView()
@@ -37,7 +37,6 @@ class ProfileViewController: UIViewController {
     
     func setProfile() {
         let profile = ProfileManager.shared.loadProfile()
-
         nameField.text = profile.name
         addressField.text = profile.address
         emailField.text = profile.email
@@ -76,7 +75,6 @@ class ProfileViewController: UIViewController {
         scrollView.alwaysBounceVertical = true
         scrollView.isScrollEnabled = false
         
-        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -84,7 +82,6 @@ class ProfileViewController: UIViewController {
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             scrollView.heightAnchor.constraint(equalTo: view.heightAnchor)
         ])
-
     }
     
     private func setupContentView() {
@@ -135,7 +132,6 @@ class ProfileViewController: UIViewController {
             bottomView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             bottomView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             bottomView.heightAnchor.constraint(equalToConstant: 350)
-            
         ])
     }
     
@@ -148,7 +144,6 @@ class ProfileViewController: UIViewController {
             nameLabel.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 30),
             nameLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 10),
             nameLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -10),
-            
         ])
     }
     
@@ -159,16 +154,16 @@ class ProfileViewController: UIViewController {
         nameField.textAlignment = .left
         
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: nameField.frame.height))
-            nameField.leftView = paddingView
-            nameField.leftViewMode = .always
-
+        nameField.leftView = paddingView
+        nameField.leftViewMode = .always
+        
         NSLayoutConstraint.activate([
             nameField.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
             nameField.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
             nameField.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
         ])
     }
-
+    
     private func setupAddressLabel() {
         bottomView.addSubview(addressLabel)
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -178,7 +173,6 @@ class ProfileViewController: UIViewController {
             addressLabel.topAnchor.constraint(equalTo: nameField.bottomAnchor, constant: 30),
             addressLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 10),
             addressLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -10),
-            
         ])
     }
     
@@ -191,14 +185,14 @@ class ProfileViewController: UIViewController {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: addressField.frame.height))
         addressField.leftView = paddingView
         addressField.leftViewMode = .always
-
+        
         NSLayoutConstraint.activate([
             addressField.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 5),
             addressField.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
             addressField.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
         ])
     }
-
+    
     private func setupPhoneLabel() {
         bottomView.addSubview(phoneLabel)
         phoneLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -208,7 +202,6 @@ class ProfileViewController: UIViewController {
             phoneLabel.topAnchor.constraint(equalTo: addressField.bottomAnchor, constant: 30),
             phoneLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 10),
             phoneLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -10),
-            
         ])
     }
     
@@ -221,14 +214,14 @@ class ProfileViewController: UIViewController {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: addressField.frame.height))
         phoneField.leftView = paddingView
         phoneField.leftViewMode = .always
-
+        
         NSLayoutConstraint.activate([
             phoneField.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 5),
             phoneField.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
             phoneField.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
         ])
     }
-
+    
     private func setupEmailLabel() {
         bottomView.addSubview(emailLabel)
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -238,7 +231,6 @@ class ProfileViewController: UIViewController {
             emailLabel.topAnchor.constraint(equalTo: phoneField.bottomAnchor, constant: 30),
             emailLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 10),
             emailLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -10),
-            
         ])
     }
     
@@ -251,7 +243,7 @@ class ProfileViewController: UIViewController {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: emailField.frame.height))
         emailField.leftView = paddingView
         emailField.leftViewMode = .always
-
+        
         NSLayoutConstraint.activate([
             emailField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 5),
             emailField.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
@@ -267,7 +259,7 @@ class ProfileViewController: UIViewController {
         saveButton.action = { [weak self] in
             self?.saveButtonPressed()
         }
-                
+        
         NSLayoutConstraint.activate([
             saveButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 180),
             saveButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
@@ -294,7 +286,7 @@ class ProfileViewController: UIViewController {
         logOutButton.action = { [weak self] in
             self?.logOutButtonPressed()
         }
-                
+        
         NSLayoutConstraint.activate([
             logOutButton.topAnchor.constraint(equalTo: bottomView.bottomAnchor, constant: 180),
             logOutButton.heightAnchor.constraint(equalToConstant: 47),
@@ -308,7 +300,7 @@ class ProfileViewController: UIViewController {
         setProfile()
         userManager.deleteUser()
     }
-
+    
     @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {
         contentView.endEditing(false)
     }
@@ -326,7 +318,7 @@ class ProfileViewController: UIViewController {
                           addressField,
                           phoneField,
                           emailField
-                          ]
+        ]
         
         if let firstResponder = textFields
             .first(where: \.isFirstResponder) {

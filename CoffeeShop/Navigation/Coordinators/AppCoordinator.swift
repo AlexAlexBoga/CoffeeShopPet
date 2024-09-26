@@ -18,9 +18,9 @@ class AppCoordinator: Coordinator, TabBarCoordinator {
 //        } else {
 //            showFirstFlow()
 //        }
-//        showFirstFlow()
+        showFirstFlow()
 //        showLoginFlow()
-        showMainFlow()
+//        showMainFlow()
 //        showAccountScreen()
     }
     
@@ -44,7 +44,6 @@ private extension AppCoordinator {
         addChildCoordinator(loginCoordinator)
         loginCoordinator.start()
     }
-   
     
     func showProfileScreen() {
         guard let navigationController = navigationController else { return }

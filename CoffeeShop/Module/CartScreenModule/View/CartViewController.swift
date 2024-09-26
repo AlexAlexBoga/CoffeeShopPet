@@ -11,7 +11,7 @@ class CartViewController: UIViewController {
     
     var cartPresenter: CartPresenterProtocol?
     private var cartItem: [CartModel] = []
-        
+    
     private let cartLabel = CSLabel()
     private let cartImage = UIImageView()
     private let makeOrderButton = CSCartButton()
@@ -28,9 +28,7 @@ class CartViewController: UIViewController {
     private var totalLabel = CSLabel()
     private var totalPriceLabel = CSLabel()
     
-    
     lazy var orderCollection: UICollectionView = {
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 20
@@ -45,13 +43,13 @@ class CartViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
         loadData()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
         setupLayout()
     }
-
+    
     func loadData() {
         cartPresenter?.loadCartItemsFromJson()
         cartItem = cartPresenter?.getCartItems() ?? []
@@ -112,7 +110,7 @@ class CartViewController: UIViewController {
         makeOrderButton.action = { [weak self] in
             self?.orderButtonPressed()
         }
-                
+        
         NSLayoutConstraint.activate([
             makeOrderButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
             makeOrderButton.leadingAnchor.constraint(equalTo: cartImage.trailingAnchor, constant: 140),
@@ -129,7 +127,7 @@ class CartViewController: UIViewController {
         clearButton.action = { [weak self] in
             self?.clearButtonPressed()
         }
-                
+        
         NSLayoutConstraint.activate([
             clearButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 90),
             clearButton.leadingAnchor.constraint(equalTo: makeOrderButton.trailingAnchor, constant: 20),
@@ -166,7 +164,6 @@ class CartViewController: UIViewController {
             bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             bottomView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
-            
         ])
     }
     
@@ -242,9 +239,9 @@ class CartViewController: UIViewController {
         sabtotalPriceLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         
         NSLayoutConstraint.activate([
-        sabtotalPriceLabel.centerYAnchor.constraint(equalTo: sabtotalLabel.centerYAnchor),
-        sabtotalPriceLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -29),
-        sabtotalPriceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: sabtotalLabel.trailingAnchor, constant: 8)
+            sabtotalPriceLabel.centerYAnchor.constraint(equalTo: sabtotalLabel.centerYAnchor),
+            sabtotalPriceLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -29),
+            sabtotalPriceLabel.leadingAnchor.constraint(greaterThanOrEqualTo: sabtotalLabel.trailingAnchor, constant: 8)
         ])
     }
     
@@ -315,12 +312,12 @@ class CartViewController: UIViewController {
     }
     
     func orderButtonPressed() {
-       print("orderButtonPressed")
+        print("orderButtonPressed")
     }
     
     func clearButtonPressed() {
         cartPresenter?.clearButtonPressed()
-       print("clearButtonPressed")
+        print("clearButtonPressed")
     }
     
 }
@@ -345,21 +342,21 @@ extension CartViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-
-            let deleteAction = UIAction(title: "Delete", attributes: .destructive) { [weak self] action in
-                guard let self = self else { return }
-
-                self.cartItem.remove(at: indexPath.item)
-                self.cartPresenter?.updateCartItems(self.cartItem)
-                self.orderCollection.reloadData()
-                self.updateSabtotalPrice()
-                self.totalSum()
-            }
         
-            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-                UIMenu(title: "", children: [deleteAction])
-            }
+        let deleteAction = UIAction(title: "Delete", attributes: .destructive) { [weak self] action in
+            guard let self = self else { return }
+            
+            self.cartItem.remove(at: indexPath.item)
+            self.cartPresenter?.updateCartItems(self.cartItem)
+            self.orderCollection.reloadData()
+            self.updateSabtotalPrice()
+            self.totalSum()
         }
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            UIMenu(title: "", children: [deleteAction])
+        }
+    }
     
 }
 

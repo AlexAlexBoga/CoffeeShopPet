@@ -13,7 +13,7 @@ protocol LoginViewOutput: AnyObject {
 }
 
 class LoginViewPresenter: LoginViewOutput {
-  
+    
     weak var coordinator: LoginCoordinator!
     private let userManager = UserManager()
     
@@ -24,6 +24,7 @@ class LoginViewPresenter: LoginViewOutput {
     func goToHomeVC() {
         coordinator.finish()
     }
+    
     func goToProfileVC() {
         coordinator.nextProfile()
     }

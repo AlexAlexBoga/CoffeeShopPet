@@ -14,10 +14,8 @@ class FavoriteViewController: UIViewController {
     
     private let favoriteLabel = CSLabel()
     private let drinksLabel = CSLabel()
-   
     
     lazy var favoriteCollection: UICollectionView = {
-        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumInteritemSpacing = 20
@@ -26,7 +24,7 @@ class FavoriteViewController: UIViewController {
         
         return collection
     }()
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
@@ -36,7 +34,6 @@ class FavoriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
-        
         setupLayout()
         loadData()
     }
@@ -95,7 +92,6 @@ class FavoriteViewController: UIViewController {
             favoriteCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-
 }
 
 extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -117,21 +113,20 @@ extension FavoriteViewController: UICollectionViewDelegate, UICollectionViewData
         return cell
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-
-            let deleteAction = UIAction(title: "Delete", attributes: .destructive) { [weak self] action in
-                guard let self = self else { return }
-
-                self.favoriteItem.remove(at: indexPath.item)
-                self.favoritePresenter?.updateCartItems(self.favoriteItem)
-                self.favoriteCollection.reloadData()
-            }
         
-            return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-                UIMenu(title: "", children: [deleteAction])
-            }
+        let deleteAction = UIAction(title: "Delete", attributes: .destructive) { [weak self] action in
+            guard let self = self else { return }
+            
+            self.favoriteItem.remove(at: indexPath.item)
+            self.favoritePresenter?.updateCartItems(self.favoriteItem)
+            self.favoriteCollection.reloadData()
         }
+        
+        return UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+            UIMenu(title: "", children: [deleteAction])
+        }
+    }
 }
 
 extension FavoriteViewController: UICollectionViewDelegateFlowLayout {

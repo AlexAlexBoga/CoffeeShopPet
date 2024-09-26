@@ -23,7 +23,7 @@ protocol OrderPresenterProtocol: AnyObject {
 }
 
 class OrderPresenter {
-
+    
     weak var view: OrderViewController?
     private var selectedImage: UIImage?
     private var coffeeName: String?
@@ -37,20 +37,18 @@ class OrderPresenter {
     private var isPriceSet = false
     private var currentCount: Int = 1
     private var totalPrice: Double = 0
-        
+    
     init(view: OrderViewController?, image: UIImage?, coffeeName: String?, selectedImageName: String?, coffeeType: String?, coffeePrice: Double?) {
         self.selectedImage = image
         self.coffeeName = coffeeName
         self.selectedImageName = selectedImageName
         self.coffeeType = coffeeType
         self.coffeePrice = coffeePrice
-      
     }
 }
 
-
 extension OrderPresenter: OrderPresenterProtocol{
-   
+    
     func didUpdateCount(_ count: Int) {
         currentCount = count
         let newPrice = (coffeePrice ?? 0) * Double(currentCount)
@@ -59,7 +57,6 @@ extension OrderPresenter: OrderPresenterProtocol{
         print("Current price is now \(totalPrice)")
     }
     
-
     func setSelectedFirstPrice(_ price: Double?) -> Double {
         if !isPriceSet {
             if !isFirstPriceSelected {
@@ -68,7 +65,7 @@ extension OrderPresenter: OrderPresenterProtocol{
                 coffeePrice = (coffeePrice ?? 0) + 0.53
             }
         }
-           return coffeePrice ?? 0
+        return coffeePrice ?? 0
     }
     
     func setSelectedSecondPrice(_ price: Double?) -> Double {
@@ -79,7 +76,7 @@ extension OrderPresenter: OrderPresenterProtocol{
                 coffeePrice = (coffeePrice ?? 0) + 0.74
             }
         }
-           return coffeePrice ?? 0
+        return coffeePrice ?? 0
     }
     
     func setSelectedThirdPrice(_ price: Double?) -> Double {
@@ -90,14 +87,12 @@ extension OrderPresenter: OrderPresenterProtocol{
                 coffeePrice = (coffeePrice ?? 0) + 0.92
             }
         }
-           return coffeePrice ?? 0
+        return coffeePrice ?? 0
     }
-
-
+    
     func getCoffeePrice() -> Double? {
         return coffeePrice
     }
-    
     
     func getCoffeeType() -> String? {
         return coffeeType
@@ -173,7 +168,7 @@ extension OrderPresenter: OrderPresenterProtocol{
         }
         return nil
     }
-   
+    
     func addToCartButtonPressed() {
         let cartItem = CartModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: totalPrice, coffeeType: getCoffeeType() ?? "")
         

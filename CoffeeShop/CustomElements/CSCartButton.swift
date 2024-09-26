@@ -64,14 +64,12 @@ class CSCartButton: UIView {
         case .white:
             button.backgroundColor = .orderButton
             button.setTitleColor(.orderText, for: .normal)
-            
             button.layer.cornerRadius = 8
         case.black:
             button.backgroundColor = .backgroud
             button.setTitleColor(.black, for: .normal)
             button.layer.borderWidth = 2
             button.layer.borderColor = UIColor.black.cgColor
-          
         }
     }
     
