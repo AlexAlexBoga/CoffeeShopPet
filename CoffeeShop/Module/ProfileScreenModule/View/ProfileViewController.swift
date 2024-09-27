@@ -276,6 +276,11 @@ class ProfileViewController: UIViewController {
             email: emailField.text ?? ""
         )
         ProfileManager.shared.save(profile)
+        
+        let alertController = UIAlertController(title: "User Profile", message: "Profile saved successfully!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     private func setupLogOutButton() {
@@ -299,6 +304,11 @@ class ProfileViewController: UIViewController {
         ProfileManager.shared.clear()
         setProfile()
         userManager.deleteUser()
+        
+        let alertController = UIAlertController(title: "User Profile", message: "Profile deleted successfully!", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {
