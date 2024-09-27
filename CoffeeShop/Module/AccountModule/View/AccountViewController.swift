@@ -173,6 +173,7 @@ class AccountViewController: UIViewController {
         passwordTextField.placeholder = "Password"
         passwordTextField.font = UIFont.systemFont(ofSize: 15)
         passwordTextField.textColor = UIColor.black
+        passwordTextField.isSecureTextEntry = true
         
         passwordStackView.addArrangedSubview(passwordLabel)
         passwordStackView.addArrangedSubview(passwordTextField)
@@ -207,6 +208,7 @@ class AccountViewController: UIViewController {
         confirmTextField.placeholder = "Password"
         confirmTextField.font = UIFont.systemFont(ofSize: 15)
         confirmTextField.textColor = UIColor.black
+        confirmTextField.isSecureTextEntry = true
         
         confirmStackView.addArrangedSubview(confirmLabel)
         confirmStackView.addArrangedSubview(confirmTextField)

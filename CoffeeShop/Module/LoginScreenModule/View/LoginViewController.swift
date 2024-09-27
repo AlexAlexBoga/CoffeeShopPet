@@ -175,6 +175,7 @@ class LoginViewController: UIViewController {
         passwordTextField.placeholder = "Password"
         passwordTextField.font = UIFont.systemFont(ofSize: 15)
         passwordTextField.textColor = UIColor.black
+        passwordTextField.isSecureTextEntry = true
         
         passwordStackView.addArrangedSubview(passwordLabel)
         passwordStackView.addArrangedSubview(passwordTextField)

@@ -313,6 +313,12 @@ class CartViewController: UIViewController {
     
     func orderButtonPressed() {
         print("orderButtonPressed")
+        let alertController = UIAlertController(title: "Order", message: "Your order has been placed successfully!", preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
     func clearButtonPressed() {
