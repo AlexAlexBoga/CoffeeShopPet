@@ -16,10 +16,9 @@ protocol OrderPresenterProtocol: AnyObject {
     func getCoffeeType() -> String?
     func getCoffeePrice() -> Double?
     func addToFavoriteButtonPressed()
-    func setSelectedFirstPrice(_ price: Double?) -> Double
-    func setSelectedSecondPrice(_ price: Double?) -> Double
-    func setSelectedThirdPrice(_ price: Double?) -> Double
+    func setSelectedSize(_ size: String) -> Double
     func didUpdateCount(_ count: Int)
+    func getCurrentCount() -> Int
 }
 
 class OrderPresenter {
@@ -30,27 +29,45 @@ class OrderPresenter {
     private var selectedImageName: String?
     private var coffeeType: String?
     private var coffeePrice: Double?
-    
-    private var isFirstPriceSelected = false
-    private var isSecondPriceSelected = false
-    private var isThirdPriceSelected = false
+    private var baseCoffeePrice: Double = 0.0
     private var isPriceSet = false
     private var currentCount: Int = 1
     private var totalPrice: Double = 0
     private var favoriteItem: [FavoriteModel] = []
     private var cartItems: [CartModel] = []
     
+    private var coffeePrices: [String: Double] = [
+        "small": 2.00,
+        "medium": 2.50,
+        "large": 3.00
+    ]
+    
     init(view: OrderViewController?, image: UIImage?, coffeeName: String?, selectedImageName: String?, coffeeType: String?, coffeePrice: Double?) {
         self.selectedImage = image
         self.coffeeName = coffeeName
         self.selectedImageName = selectedImageName
         self.coffeeType = coffeeType
-        self.coffeePrice = coffeePrice
+        self.baseCoffeePrice = coffeePrice ?? 0
+        self.coffeePrice = baseCoffeePrice
         self.totalPrice = coffeePrice ?? 0
     }
 }
 
 extension OrderPresenter: OrderPresenterProtocol{
+    
+    func getCurrentCount() -> Int {
+        return currentCount
+    }
+    
+    func setSelectedSize(_ size: String) -> Double {
+        guard let price = coffeePrices[size] else {
+            print("Unknown coffee size: \(size)")
+            return coffeePrice ?? 0
+        }
+        coffeePrice = baseCoffeePrice + price
+        totalPrice = coffeePrice! * Double(currentCount)
+        return coffeePrice ?? 0
+    }
     
     func didUpdateCount(_ count: Int) {
         currentCount = count
@@ -59,40 +76,7 @@ extension OrderPresenter: OrderPresenterProtocol{
         print("Current count is now \(currentCount)")
         print("Current price is now \(totalPrice)")
     }
-    
-    func setSelectedFirstPrice(_ price: Double?) -> Double {
-        if !isPriceSet {
-            if !isFirstPriceSelected {
-                isFirstPriceSelected = true
-                isPriceSet = true
-                coffeePrice = (coffeePrice ?? 0) + 0.53
-            }
-        }
-        return coffeePrice ?? 0
-    }
-    
-    func setSelectedSecondPrice(_ price: Double?) -> Double {
-        if !isPriceSet {
-            if !isSecondPriceSelected {
-                isSecondPriceSelected = true
-                isPriceSet = true
-                coffeePrice = (coffeePrice ?? 0) + 0.74
-            }
-        }
-        return coffeePrice ?? 0
-    }
-    
-    func setSelectedThirdPrice(_ price: Double?) -> Double {
-        if !isPriceSet {
-            if !isThirdPriceSelected {
-                isThirdPriceSelected = true
-                isPriceSet = true
-                coffeePrice = (coffeePrice ?? 0) + 0.92
-            }
-        }
-        return coffeePrice ?? 0
-    }
-    
+
     func getCoffeePrice() -> Double? {
         return coffeePrice
     }
