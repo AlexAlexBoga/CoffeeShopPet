@@ -13,12 +13,12 @@ class AppCoordinator: Coordinator, TabBarCoordinator {
     private let userStorage = UserStorage.shared
     
     override func start() {
-//        if userStorage.passedOnboarding {
-//            showMainFlow()
-//        } else {
-//            showFirstFlow()
-//        }
-        showFirstFlow()
+        if userStorage.passedOnboarding {
+            showMainFlow()
+        } else {
+            showFirstFlow()
+        }
+//        showFirstFlow()
 //        showLoginFlow()
 //        showMainFlow()
 //        showAccountScreen()
