@@ -34,6 +34,36 @@ class TabBarController: UITabBarController {
             item.title = nil
         }
         UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -3)
+        
+        setupSwipeGestures()
+    }
+    
+    private func setupSwipeGestures() {
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        swipeRight.direction = .right
+        view.addGestureRecognizer(swipeRight)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+        swipeLeft.direction = .left
+        view.addGestureRecognizer(swipeLeft)
+    }
+    
+    @objc private func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
+        let currentIndex = selectedIndex
+        
+        if gesture.direction == .left {
+            if currentIndex < (viewControllers?.count ?? 0) - 1 {
+                UIView.transition(with: view, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                    self.selectedIndex = currentIndex + 1
+                }, completion: nil)
+            }
+        } else if gesture.direction == .right {
+            if currentIndex > 0 {
+                UIView.transition(with: view, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                    self.selectedIndex = currentIndex - 1
+                }, completion: nil)
+            }
+        }
     }
 }
 
