@@ -15,13 +15,11 @@ class ProfileCoordinator: Coordinator {
     override func finish() {
         print("AppCoordinator finish")
         finishDelegate?.coordinatorDidFinish(childeCoordinators: self)
-        
     }
 }
 
 extension ProfileCoordinator {
     func showProfile() {
-//        let presenter = ProfilePresenter(coordinator: self)
         let viewController = ProfileViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }

@@ -22,7 +22,6 @@ class CartPresenter {
         self.view = view
         loadCartItemsFromJson()
     }
-    
 }
 
 extension CartPresenter: CartPresenterProtocol {
@@ -35,7 +34,6 @@ extension CartPresenter: CartPresenterProtocol {
         cartItems = items
         JsonFileManager.shared.save(cartItems, to: "cartItems.json")
     }
-    
     
     func clearButtonPressed() {
         cartItems.removeAll()

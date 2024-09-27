@@ -24,6 +24,4 @@ class FirstViewPresenter: FirstViewOutput {
         userStorage.passedOnboarding = true
         coordinator.finish()
     }
-    
-    
 }

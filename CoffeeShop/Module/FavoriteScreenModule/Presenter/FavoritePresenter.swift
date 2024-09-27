@@ -11,7 +11,6 @@ protocol FavoritePresenterProtocol: AnyObject {
     func getFavoriteItem() -> [FavoriteModel]
     func updateCartItems(_ items: [FavoriteModel])
     func loadFavoriteItemsFromFile()
-    
 }
 
 class FavoritePresenter {

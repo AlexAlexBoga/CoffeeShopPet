@@ -44,7 +44,6 @@ private extension AppCoordinator {
         addChildCoordinator(loginCoordinator)
         loginCoordinator.start()
     }
-   
     
     func showProfileScreen() {
         guard let navigationController = navigationController else { return }
@@ -125,6 +124,8 @@ extension AppCoordinator: CoordinatorFinishDelegate {
             navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
         case .home:
             showOrderScreen()
+            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
+        case .account:
             navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
 
         case .app:

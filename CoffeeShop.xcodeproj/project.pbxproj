@@ -261,7 +261,6 @@
 		A962A65E2C7E3BB200798FD5 /* OrderScreen */ = {
 			isa = PBXGroup;
 			children = (
-				A962A6612C7E3C1800798FD5 /* Model */,
 				A962A6602C7E3C0400798FD5 /* Presenter */,
 				A962A65F2C7E3BFA00798FD5 /* View */,
 			);
@@ -282,13 +281,6 @@
 				A962A6642C7E3D2400798FD5 /* OrderPresenter.swift */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		A962A6612C7E3C1800798FD5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		A96654642C84E12B004F9D0C /* Presenter */ = {

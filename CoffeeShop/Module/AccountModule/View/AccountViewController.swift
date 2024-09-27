@@ -18,8 +18,7 @@ class AccountViewController: UIViewController {
     
     private let scrollView = UIScrollView()
     private let contentView = UIView()
-    
-    private let backGroundImage = UIImageView()//CSBackGroundView()
+    private let backGroundImage = UIImageView()
     private let welcomeLabel = UILabel()
     private let emailLabel = UILabel()
     private let passwordLabel = UILabel()
@@ -67,7 +66,6 @@ class AccountViewController: UIViewController {
         scrollView.backgroundColor = .clear
         scrollView.alwaysBounceVertical = false
         
-        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -113,7 +111,6 @@ class AccountViewController: UIViewController {
             backGroundImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             backGroundImage.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             backGroundImage.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-
         ])
     }
     
@@ -159,7 +156,7 @@ class AccountViewController: UIViewController {
             emailStackView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 25),
             emailStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             emailStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-
+            
             emailUnderLineView.bottomAnchor.constraint(equalTo: emailStackView.bottomAnchor),
             emailUnderLineView.leadingAnchor.constraint(equalTo: emailStackView.leadingAnchor),
             emailUnderLineView.trailingAnchor.constraint(equalTo: emailStackView.trailingAnchor),
@@ -193,7 +190,7 @@ class AccountViewController: UIViewController {
             passwordStackView.topAnchor.constraint(equalTo: emailStackView.bottomAnchor, constant: 13),
             passwordStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             passwordStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-
+            
             passwordUnderLineView.bottomAnchor.constraint(equalTo: passwordStackView.bottomAnchor),
             passwordUnderLineView.leadingAnchor.constraint(equalTo: passwordStackView.leadingAnchor),
             passwordUnderLineView.trailingAnchor.constraint(equalTo: passwordStackView.trailingAnchor),
@@ -227,7 +224,7 @@ class AccountViewController: UIViewController {
             confirmStackView.topAnchor.constraint(equalTo: passwordStackView.bottomAnchor, constant: 13),
             confirmStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             confirmStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-
+            
             confirmUnderLineView.bottomAnchor.constraint(equalTo: confirmStackView.bottomAnchor),
             confirmUnderLineView.leadingAnchor.constraint(equalTo: confirmStackView.leadingAnchor),
             confirmUnderLineView.trailingAnchor.constraint(equalTo: confirmUnderLineView.trailingAnchor),
@@ -243,7 +240,7 @@ class AccountViewController: UIViewController {
         createButton.action = { [weak self] in
             self?.createButtonPressed()
         }
-                
+        
         NSLayoutConstraint.activate([
             createButton.topAnchor.constraint(equalTo: confirmUnderLineView.bottomAnchor, constant: 76),
             createButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
@@ -259,7 +256,6 @@ class AccountViewController: UIViewController {
             return
         }
         presenter.registerUser(email: email, password: password, confirmPassword: confirmPassword)
-        
     }
     
     @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {
@@ -295,19 +291,17 @@ class AccountViewController: UIViewController {
     }
 }
 
-
 extension AccountViewController: AccountViewProtocol {
     func showError(_ message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-               alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-               present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     func showSuccess(_ message: String) {
         let alert = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                present(alert, animated: true, completion: nil)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
-    
     
 }

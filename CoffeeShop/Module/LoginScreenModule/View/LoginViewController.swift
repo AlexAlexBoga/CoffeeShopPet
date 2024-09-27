@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol LoginViewProtocol: AnyObject{
-
-}
-
 class LoginViewController: UIViewController {
     
     var viewOutput: LoginViewOutput!
@@ -27,7 +23,7 @@ class LoginViewController: UIViewController {
     private let scrollView = UIScrollView()
     private let contentView = UIView()
     
-    private let backGroundImage = UIImageView()//CSBackGroundView()
+    private let backGroundImage = UIImageView()
     private let welcomeLabel = UILabel()
     private let emailLabel = UILabel()
     private let passwordLabel = UILabel()
@@ -71,14 +67,12 @@ class LoginViewController: UIViewController {
         scrollView.backgroundColor = .clear
         scrollView.alwaysBounceVertical = false
         
-        
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: -10),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
         ])
-
     }
     
     private func setupContentView() {
@@ -111,7 +105,6 @@ class LoginViewController: UIViewController {
         backGroundImage.image = UIImage(named: "backgroundImage")
         backGroundImage.contentMode = .scaleAspectFill
         backGroundImage.clipsToBounds = false
-
         
         NSLayoutConstraint.activate([
             backGroundImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -100),
@@ -165,7 +158,7 @@ class LoginViewController: UIViewController {
             emailStackView.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 13),
             emailStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             emailStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-
+            
             emailUnderLineView.bottomAnchor.constraint(equalTo: emailStackView.bottomAnchor),
             emailUnderLineView.leadingAnchor.constraint(equalTo: emailStackView.leadingAnchor),
             emailUnderLineView.trailingAnchor.constraint(equalTo: emailStackView.trailingAnchor),
@@ -199,7 +192,7 @@ class LoginViewController: UIViewController {
             passwordStackView.topAnchor.constraint(equalTo: emailStackView.bottomAnchor, constant: 13),
             passwordStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
             passwordStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
-
+            
             passwordUnderLineView.bottomAnchor.constraint(equalTo: passwordStackView.bottomAnchor),
             passwordUnderLineView.leadingAnchor.constraint(equalTo: passwordStackView.leadingAnchor),
             passwordUnderLineView.trailingAnchor.constraint(equalTo: passwordStackView.trailingAnchor),
@@ -215,7 +208,7 @@ class LoginViewController: UIViewController {
         loginButton.action = { [weak self] in
             self?.loginButtonPressed()
         }
-                
+        
         NSLayoutConstraint.activate([
             loginButton.topAnchor.constraint(equalTo: passwordStackView.bottomAnchor, constant: 42),
             loginButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
@@ -231,7 +224,6 @@ class LoginViewController: UIViewController {
         }
         viewOutput.loginUser(with: email, password: password)
     }
-  
     
     private func setupCreateButton() {
         contentView.addSubview(createButton)
@@ -241,7 +233,7 @@ class LoginViewController: UIViewController {
         createButton.action = { [weak self] in
             self?.createButtonPressed()
         }
-                
+        
         NSLayoutConstraint.activate([
             createButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 27),
             createButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 30),
@@ -252,7 +244,6 @@ class LoginViewController: UIViewController {
     func createButtonPressed() {
         print("createButtonPressed")
         viewOutput.goToProfileVC()
-       
     }
     
     @objc func backgroundTapped(_ sender: UITapGestureRecognizer) {

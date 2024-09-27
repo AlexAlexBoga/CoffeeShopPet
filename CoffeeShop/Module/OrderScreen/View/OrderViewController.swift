@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OrderViewController: UIViewController {
+class OrderViewController: UIViewController, CSCounterViewDelegate {
     
     var presenter: OrderPresenterProtocol?
     
@@ -17,7 +17,6 @@ class OrderViewController: UIViewController {
     private var imageToSetName: String?
     private var coffeeType: String?
     private var coffeePrice: Double?
-    
     private let bottomView = UIView()
     private var mainLabel = CSLabel()
     private let addFavoriteImage = UIImageView()
@@ -37,6 +36,7 @@ class OrderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroud
+        countButton.delegate = self
         setupLayout()
     }
     
@@ -55,7 +55,7 @@ class OrderViewController: UIViewController {
         setupSecondPriceButton()
         setupThirdPriceButton()
         setupPriceLabel()
-        stupcountButton() 
+        setupCountButton()
         setupAddButton()
     }
     
@@ -76,9 +76,8 @@ class OrderViewController: UIViewController {
         if let image = presenter?.getSelectedImage() {
             setImage(image: image)
         }
-  
     }
-
+    
     private func setupbottomViewView() {
         bottomView.backgroundColor = .orderBack
         bottomView.layer.cornerRadius = 15
@@ -90,7 +89,6 @@ class OrderViewController: UIViewController {
             bottomView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             bottomView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             bottomView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            
         ])
     }
     
@@ -172,8 +170,8 @@ class OrderViewController: UIViewController {
         addFavoriteImage.image = .favoriteHeart
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(favoriteImageTapped))
-           addFavoriteImage.isUserInteractionEnabled = true
-           addFavoriteImage.addGestureRecognizer(tapGesture)
+        addFavoriteImage.isUserInteractionEnabled = true
+        addFavoriteImage.addGestureRecognizer(tapGesture)
         
         NSLayoutConstraint.activate([
             addFavoriteImage.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: 66),
@@ -218,7 +216,7 @@ class OrderViewController: UIViewController {
         firstPriceButton.action = { [weak self] in
             self?.buttonPress(for: .button1)
         }
-                
+        
         NSLayoutConstraint.activate([
             firstPriceButton.topAnchor.constraint(equalTo: sizeLabel.bottomAnchor, constant: 9),
             firstPriceButton.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
@@ -235,7 +233,7 @@ class OrderViewController: UIViewController {
         secondPriceButton.action = { [weak self] in
             self?.buttonPress(for: .button2)
         }
-                
+        
         NSLayoutConstraint.activate([
             secondPriceButton.centerYAnchor.constraint(equalTo: firstPriceButton.centerYAnchor),
             secondPriceButton.leadingAnchor.constraint(equalTo: firstPriceButton.trailingAnchor, constant: 12),
@@ -252,7 +250,7 @@ class OrderViewController: UIViewController {
         thirdPriceButton.action = { [weak self] in
             self?.buttonPress(for: .button3)
         }
-                
+        
         NSLayoutConstraint.activate([
             thirdPriceButton.centerYAnchor.constraint(equalTo: secondPriceButton.centerYAnchor),
             thirdPriceButton.leadingAnchor.constraint(equalTo: secondPriceButton.trailingAnchor, constant: 12),
@@ -271,11 +269,11 @@ class OrderViewController: UIViewController {
         NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: firstPriceButton.bottomAnchor, constant: 40),
             priceLabel.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor, constant: 30),
-            priceLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -260),
+            priceLabel.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: -220),
         ])
     }
     
-    private func stupcountButton() {
+    private func setupCountButton() {
         bottomView.addSubview(countButton)
         countButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -295,7 +293,7 @@ class OrderViewController: UIViewController {
         addButton.action = { [weak self] in
             self?.addButtonPressed()
         }
-                
+        
         NSLayoutConstraint.activate([
             addButton.centerYAnchor.constraint(equalTo: countButton.centerYAnchor),
             addButton.leadingAnchor.constraint(equalTo: countButton.trailingAnchor, constant: 10),
@@ -303,7 +301,6 @@ class OrderViewController: UIViewController {
             addButton.heightAnchor.constraint(equalToConstant: 47),
         ])
     }
-    
     
     enum ButtonType {
         case button1
@@ -320,7 +317,6 @@ class OrderViewController: UIViewController {
             if let newPrice = presenter?.setSelectedFirstPrice(coffeePrice) {
                 priceLabel.text = String(format: "€ %.2f", newPrice)
             }
-            firstButtonPressed()
         case .button2:
             firstPriceButton.scheme = .offButton
             secondPriceButton.scheme = .onButton
@@ -328,7 +324,6 @@ class OrderViewController: UIViewController {
             if let newPrice = presenter?.setSelectedSecondPrice(coffeePrice) {
                 priceLabel.text = String(format: "€ %.2f", newPrice)
             }
-            secondButtonPressed()
         case .button3:
             firstPriceButton.scheme = .offButton
             secondPriceButton.scheme = .offButton
@@ -336,7 +331,6 @@ class OrderViewController: UIViewController {
             if let newPrice = presenter?.setSelectedThirdPrice(coffeePrice) {
                 priceLabel.text = String(format: "€ %.2f", newPrice)
             }
-            thirdButtonPressed()
         }
     }
     
@@ -369,26 +363,22 @@ class OrderViewController: UIViewController {
         print("favoriteImageTapped")
         presenter?.addToFavoriteButtonPressed()
     }
-
-    func firstButtonPressed() {
-       print("firstPriceButton")
-//        presenter?.setSelectedFirstPrice(coffeePrice)
-    }
-    func secondButtonPressed() {
-//        presenter?.setSelectedSecondPrice(coffeePrice)
-       print("secondPriceButton")
-    }
-    func thirdButtonPressed() {
-//        presenter?.setSelectedThirdPrice(coffeePrice)
-       print("thirdPriceButton")
-    }
+    
     func addButtonPressed() {
         print("addButtonPressed")
         presenter?.addToCartButtonPressed()
-        
         dismiss(animated: true, completion: nil)
     }
-
+    func didIncrementCount(_ count: Int) {
+        presenter?.didUpdateCount(count)
+        priceLabel.text = String(format: "€ %.2f", Double(count) * (coffeePrice ?? 0))
+    }
+    
+    func didDecrementCount(_ count: Int) {
+        presenter?.didUpdateCount(count)
+        priceLabel.text = String(format: "€ %.2f", Double(count) * (coffeePrice ?? 0))
+    }
+    
 }
 
 

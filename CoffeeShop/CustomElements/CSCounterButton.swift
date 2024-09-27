@@ -7,14 +7,21 @@
 
 import UIKit
 
+protocol CSCounterViewDelegate: AnyObject {
+    func didIncrementCount(_ count: Int)
+    func didDecrementCount(_ count: Int)
+}
+
 class CSCounterView: UIView {
+    
+    weak var delegate: CSCounterViewDelegate?
     
     private let stackView = UIStackView()
     private let decrementButton = UIButton(type: .system)
     private let incrementButton = UIButton(type: .system)
     private let countLabel = UILabel()
     
-    private var count: Int = 0 {
+    private var count: Int = 1 {
         didSet {
             updateCountLabel()
         }
@@ -50,7 +57,7 @@ class CSCounterView: UIView {
         decrementButton.addTarget(self, action: #selector(decrementTapped), for: .touchUpInside)
         stackView.addArrangedSubview(decrementButton)
         
-        countLabel.text = "0"
+        countLabel.text = "1"
         countLabel.font = .systemFont(ofSize: 16, weight: .bold)
         countLabel.textColor = .orderText
         countLabel.textAlignment = .center
@@ -64,24 +71,27 @@ class CSCounterView: UIView {
         stackView.addArrangedSubview(incrementButton)
         
         NSLayoutConstraint.activate([
-                   stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
-                   stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-                   stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-                   stackView.topAnchor.constraint(equalTo: self.topAnchor)
-               ])
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: self.topAnchor)
+        ])
     }
     
     private func updateCountLabel() {
         countLabel.text = "\(count)"
+        print("count: \(count)")
     }
     
     @objc private func decrementTapped() {
-        if count > 0 {
+        if count > 1 {
             count -= 1
+            delegate?.didDecrementCount(count)
         }
     }
     
     @objc private func incrementTapped() {
         count += 1
+        delegate?.didIncrementCount(count)
     }
 }

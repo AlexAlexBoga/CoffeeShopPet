@@ -10,7 +10,6 @@ import UIKit
 protocol HomePresenterProtocol: AnyObject {
     func getImageData() -> [ImageModel]
     func getCoffeeData() -> [СoffeeModel]
-   
 }
 
 class HomePresenter {
@@ -24,11 +23,11 @@ class HomePresenter {
         self.imageArray = imageArray
         self.coffeeArray = coffeeArray
     }
-   
+    
 }
 
 extension HomePresenter: HomePresenterProtocol {
-  
+    
     func getImageData() -> [ImageModel] {
         return imageArray
     }
@@ -38,5 +37,5 @@ extension HomePresenter: HomePresenterProtocol {
     }
     
 }
-    
+
 

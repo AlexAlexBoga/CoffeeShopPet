@@ -19,6 +19,7 @@ protocol OrderPresenterProtocol: AnyObject {
     func setSelectedFirstPrice(_ price: Double?) -> Double
     func setSelectedSecondPrice(_ price: Double?) -> Double
     func setSelectedThirdPrice(_ price: Double?) -> Double
+    func didUpdateCount(_ count: Int)
 }
 
 class OrderPresenter {
@@ -33,6 +34,11 @@ class OrderPresenter {
     private var isFirstPriceSelected = false
     private var isSecondPriceSelected = false
     private var isThirdPriceSelected = false
+    private var isPriceSet = false
+    private var currentCount: Int = 1
+    private var totalPrice: Double = 0
+    private var favoriteItem: [FavoriteModel] = []
+    private var cartItems: [CartModel] = []
     
     init(view: OrderViewController?, image: UIImage?, coffeeName: String?, selectedImageName: String?, coffeeType: String?, coffeePrice: Double?) {
         self.selectedImage = image
@@ -40,41 +46,56 @@ class OrderPresenter {
         self.selectedImageName = selectedImageName
         self.coffeeType = coffeeType
         self.coffeePrice = coffeePrice
+        self.totalPrice = coffeePrice ?? 0
     }
-   
 }
 
-extension OrderPresenter: OrderPresenterProtocol {
- 
+extension OrderPresenter: OrderPresenterProtocol{
+    
+    func didUpdateCount(_ count: Int) {
+        currentCount = count
+        let newPrice = (coffeePrice ?? 0) * Double(currentCount)
+        totalPrice = newPrice
+        print("Current count is now \(currentCount)")
+        print("Current price is now \(totalPrice)")
+    }
+    
     func setSelectedFirstPrice(_ price: Double?) -> Double {
-        if !isFirstPriceSelected {
-               isFirstPriceSelected = true
-               coffeePrice = (coffeePrice ?? 0) + 0.53
-           }
-           return coffeePrice ?? 0
+        if !isPriceSet {
+            if !isFirstPriceSelected {
+                isFirstPriceSelected = true
+                isPriceSet = true
+                coffeePrice = (coffeePrice ?? 0) + 0.53
+            }
+        }
+        return coffeePrice ?? 0
     }
     
     func setSelectedSecondPrice(_ price: Double?) -> Double {
-        if !isSecondPriceSelected {
-               isSecondPriceSelected = true
-               coffeePrice = (coffeePrice ?? 0) + 0.74
-           }
-           return coffeePrice ?? 0
+        if !isPriceSet {
+            if !isSecondPriceSelected {
+                isSecondPriceSelected = true
+                isPriceSet = true
+                coffeePrice = (coffeePrice ?? 0) + 0.74
+            }
+        }
+        return coffeePrice ?? 0
     }
     
     func setSelectedThirdPrice(_ price: Double?) -> Double {
-        if !isThirdPriceSelected {
-               isThirdPriceSelected = true
-               coffeePrice = (coffeePrice ?? 0) + 0.92
-           }
-           return coffeePrice ?? 0
+        if !isPriceSet {
+            if !isThirdPriceSelected {
+                isThirdPriceSelected = true
+                isPriceSet = true
+                coffeePrice = (coffeePrice ?? 0) + 0.92
+            }
+        }
+        return coffeePrice ?? 0
     }
-
-
+    
     func getCoffeePrice() -> Double? {
         return coffeePrice
     }
-    
     
     func getCoffeeType() -> String? {
         return coffeeType
@@ -97,112 +118,36 @@ extension OrderPresenter: OrderPresenterProtocol {
     }
     
     func addToFavoriteButtonPressed() {
-        let newFavoriteItem = FavoriteModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: getCoffeePrice() ?? 0, coffeeType: getCoffeeType() ?? "")
+        loadFavoriteItemsFromFile()
         
-        var favoriteItem = loadFavoriteItemsFromFile() ?? []
+        let newFavoriteItem = FavoriteModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: totalPrice, coffeeType: getCoffeeType() ?? "")
+        
         favoriteItem.append(newFavoriteItem)
         saveFavoriteItemsToFile(favoriteItem)
     }
     
     private func saveFavoriteItemsToFile(_ favoriteItems: [FavoriteModel]) {
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.outputFormatting = .prettyPrinted
-        
-        do {
-            let jsonData = try jsonEncoder.encode(favoriteItems)
-            saveJsonToFavoriteFile(jsonData: jsonData)
-        } catch {
-            print("Failed to encode cart items: \(error.localizedDescription)")
-        }
+        JsonFileManager.shared.save(favoriteItems, to: "favoriteItems.json")
     }
     
-    private func saveJsonToFavoriteFile(jsonData: Data) {
-        let fileManager = FileManager.default
-        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        if let documentDirectory = urls.first {
-            let fileURL = documentDirectory.appendingPathComponent("favoriteItems.json")
-            do {
-                try jsonData.write(to: fileURL)
-                print("JSON saved to: \(fileURL.absoluteURL)")
-            } catch {
-                print("Failed to save JSON to file: \(error.localizedDescription)")
-            }
-        }
+    private func loadFavoriteItemsFromFile() {
+        favoriteItem = JsonFileManager.shared.load(from: "favoriteItems.json", as: FavoriteModel.self) ?? []
     }
     
-    private func loadFavoriteItemsFromFile() -> [FavoriteModel]? {
-        let fileManager = FileManager.default
-        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        if let documentDirectory = urls.first {
-            let fileURL = documentDirectory.appendingPathComponent("favoriteItems.json")
-            do {
-                let data = try Data(contentsOf: fileURL)
-                let jsonDecoder = JSONDecoder()
-                let favoriteItems = try jsonDecoder.decode([FavoriteModel].self, from: data)
-                return favoriteItems
-            } catch {
-                if (error as NSError).code == NSFileReadNoSuchFileError {
-                    print("No existing cart items file found, a new one will be created.")
-                } else {
-                    print("Failed to load or decode cart items: \(error.localizedDescription)")
-                }
-            }
-        }
-        return nil
-    }
-   
     func addToCartButtonPressed() {
-        let cartItem = CartModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: getCoffeePrice() ?? 0, coffeeType: getCoffeeType() ?? "")
+        loadCartItemsFromFile()
         
-        var cartItems = loadCartItemsFromFile() ?? []
+        let cartItem = CartModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: totalPrice, coffeeType: getCoffeeType() ?? "")
+        
         cartItems.append(cartItem)
         saveCartItemsToFile(cartItems)
     }
     
     private func saveCartItemsToFile(_ cartItems: [CartModel]) {
-        let jsonEncoder = JSONEncoder()
-        jsonEncoder.outputFormatting = .prettyPrinted
-        
-        do {
-            let jsonData = try jsonEncoder.encode(cartItems)
-            saveJsonToFile(jsonData: jsonData)
-        } catch {
-            print("Failed to encode cart items: \(error.localizedDescription)")
-        }
+        JsonFileManager.shared.save(cartItems, to: "cartItems.json")
     }
     
-    private func saveJsonToFile(jsonData: Data) {
-        let fileManager = FileManager.default
-        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        if let documentDirectory = urls.first {
-            let fileURL = documentDirectory.appendingPathComponent("cartItems.json")
-            do {
-                try jsonData.write(to: fileURL)
-                print("JSON saved to: \(fileURL.absoluteURL)")
-            } catch {
-                print("Failed to save JSON to file: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    private func loadCartItemsFromFile() -> [CartModel]? {
-        let fileManager = FileManager.default
-        let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
-        if let documentDirectory = urls.first {
-            let fileURL = documentDirectory.appendingPathComponent("cartItems.json")
-            do {
-                let data = try Data(contentsOf: fileURL)
-                let jsonDecoder = JSONDecoder()
-                let cartItems = try jsonDecoder.decode([CartModel].self, from: data)
-                return cartItems
-            } catch {
-                if (error as NSError).code == NSFileReadNoSuchFileError {
-                    print("No existing cart items file found, a new one will be created.")
-                } else {
-                    print("Failed to load or decode cart items: \(error.localizedDescription)")
-                }
-            }
-        }
-        return nil
+    private func loadCartItemsFromFile() {
+        cartItems = JsonFileManager.shared.load(from: "cartItems.json", as: CartModel.self) ?? []
     }
 }

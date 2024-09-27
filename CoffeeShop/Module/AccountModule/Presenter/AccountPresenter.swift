@@ -23,7 +23,7 @@ class AccountPresenter {
 }
 
 extension AccountPresenter: AccountPresenterProtocol {
- 
+    
     func registerUser(email: String, password: String, confirmPassword: String) {
         if email.isEmpty || password.isEmpty || confirmPassword.isEmpty {
             view?.showError("All field is empty")
@@ -37,10 +37,9 @@ extension AccountPresenter: AccountPresenterProtocol {
         userManager.saveUser(email: email, password: password)
         view?.showSuccess("Registration successful!")
     }
-
+    
     func goToLogin() {
         
     }
-    
     
 }

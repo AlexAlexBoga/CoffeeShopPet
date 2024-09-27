@@ -7,19 +7,13 @@
 
 import UIKit
 
-protocol ProfilePresenterProtocol: AnyObject {
-
+class ProfilePresenter {
     
-}
-
-class ProfilePresenter: ProfilePresenterProtocol {
-  
-   
     weak var coordinator: ProfileCoordinator!
-   
+    
     init(coordinator: ProfileCoordinator!) {
         self.coordinator = coordinator
     }
-
-}
     
+}
+

@@ -36,15 +36,15 @@ class SmallHCViewCell: UICollectionViewCell {
         bottomLabel.backgroundColor = .backgroundCollection
         bottomLabel.layer.cornerRadius = 10
         bottomLabel.layer.masksToBounds = true
-    
+        
         NSLayoutConstraint.activate([
             bottomLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             bottomLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             bottomLabel.widthAnchor.constraint(equalToConstant: 110),
             bottomLabel.heightAnchor.constraint(equalToConstant: 24),
-                ])
-      
+        ])
+        
     }
-   
+    
 }
 
