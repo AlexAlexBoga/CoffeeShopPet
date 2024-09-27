@@ -314,24 +314,25 @@ class OrderViewController: UIViewController, CSCounterViewDelegate {
             firstPriceButton.scheme = .onButton
             secondPriceButton.scheme = .offButton
             thirdPriceButton.scheme = .offButton
-            if let newPrice = presenter?.setSelectedFirstPrice(coffeePrice) {
-                priceLabel.text = String(format: "€ %.2f", newPrice)
-            }
+
+            let selectedPrice = presenter?.setSelectedSize("small")
+            priceLabel.text = String(format: "€ %.2f", selectedPrice ?? 0)
         case .button2:
             firstPriceButton.scheme = .offButton
             secondPriceButton.scheme = .onButton
             thirdPriceButton.scheme = .offButton
-            if let newPrice = presenter?.setSelectedSecondPrice(coffeePrice) {
-                priceLabel.text = String(format: "€ %.2f", newPrice)
-            }
+
+            let selectedPrice = presenter?.setSelectedSize("medium")
+            priceLabel.text = String(format: "€ %.2f", selectedPrice ?? 0)
         case .button3:
             firstPriceButton.scheme = .offButton
             secondPriceButton.scheme = .offButton
             thirdPriceButton.scheme = .onButton
-            if let newPrice = presenter?.setSelectedThirdPrice(coffeePrice) {
-                priceLabel.text = String(format: "€ %.2f", newPrice)
-            }
+
+            let selectedPrice = presenter?.setSelectedSize("large")
+            priceLabel.text = String(format: "€ %.2f", selectedPrice ?? 0)
         }
+        updatePriceLabel()
     }
     
     func setImage(image: UIImage) {
@@ -369,16 +370,23 @@ class OrderViewController: UIViewController, CSCounterViewDelegate {
         presenter?.addToCartButtonPressed()
         dismiss(animated: true, completion: nil)
     }
+    
     func didIncrementCount(_ count: Int) {
         presenter?.didUpdateCount(count)
         priceLabel.text = String(format: "€ %.2f", Double(count) * (coffeePrice ?? 0))
+        updatePriceLabel()
     }
     
     func didDecrementCount(_ count: Int) {
         presenter?.didUpdateCount(count)
         priceLabel.text = String(format: "€ %.2f", Double(count) * (coffeePrice ?? 0))
+        updatePriceLabel()
     }
-    
+    private func updatePriceLabel() {
+        if let currentPrice = presenter?.getCoffeePrice(), let currentCount = presenter?.getCurrentCount() {
+            priceLabel.text = String(format: "€ %.2f", currentPrice * Double(currentCount))
+        }
+    }
 }
 
 
