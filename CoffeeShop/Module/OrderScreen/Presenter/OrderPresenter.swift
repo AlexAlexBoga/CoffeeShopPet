@@ -118,6 +118,8 @@ extension OrderPresenter: OrderPresenterProtocol{
     }
     
     func addToFavoriteButtonPressed() {
+        loadFavoriteItemsFromFile()
+        
         let newFavoriteItem = FavoriteModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: totalPrice, coffeeType: getCoffeeType() ?? "")
         
         favoriteItem.append(newFavoriteItem)
@@ -133,6 +135,8 @@ extension OrderPresenter: OrderPresenterProtocol{
     }
     
     func addToCartButtonPressed() {
+        loadCartItemsFromFile()
+        
         let cartItem = CartModel(imageName: getSelectedImageName() ?? "", description: getSelectedCoffeeName() ?? "", price: totalPrice, coffeeType: getCoffeeType() ?? "")
         
         cartItems.append(cartItem)

@@ -18,9 +18,9 @@ class AppCoordinator: Coordinator, TabBarCoordinator {
 //        } else {
 //            showFirstFlow()
 //        }
-        showFirstFlow()
+//        showFirstFlow()
 //        showLoginFlow()
-//        showMainFlow()
+        showMainFlow()
 //        showAccountScreen()
     }
     
@@ -124,6 +124,8 @@ extension AppCoordinator: CoordinatorFinishDelegate {
             navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
         case .home:
             showOrderScreen()
+            navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
+        case .account:
             navigationController?.viewControllers = [navigationController?.viewControllers.last ?? UIViewController()]
 
         case .app:
