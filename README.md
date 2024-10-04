@@ -1,4 +1,4 @@
-# CoffeeShop
+# CoffeeShop (UIKit)
 
 CoffeeShop is an application that allows users to order their favorite coffee online. With an easy registration process and a user-friendly interface, enjoy a seamless coffee ordering experience.
 
